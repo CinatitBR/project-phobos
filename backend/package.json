@@ -4,6 +4,9 @@
   "main": "app.js",
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "start": "nodemon src/app.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",

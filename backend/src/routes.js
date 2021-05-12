@@ -2,7 +2,7 @@ import path from 'path'
 import express from 'express'
 import multer from 'multer'
 import { v4 as uuidv4 } from 'uuid'
-import PdfModel from './Models/PdfModel.js'
+import PdfModel from './models/PdfModel.js'
 
 const router = express.Router()
 const mimeExtensions = { 'application/pdf': 'pdf' }

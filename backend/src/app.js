@@ -3,6 +3,7 @@ import express from 'express'
 import multer from 'multer'
 import cors from 'cors'
 import { v4 as uuidv4 } from 'uuid'
+import PdfModel from './Models/PdfModel.js'
 
 const app = express()
 const mimeExtensions = { 'application/pdf': 'pdf' }
@@ -21,13 +22,21 @@ const storage = multer.diskStorage({
     cb(null, fileStoragePath)
   },
 
-  filename: (req, file, cb) => {
-    const { mimetype } = file
+  filename: async (req, file, cb) => {
+    const { userId } = req.body
+    const { mimetype, originalname } = file
 
     const fileExtension = mimeExtensions[mimetype] 
     const filename = `${uuidv4()}.${fileExtension}`
 
-    cb(null, filename)
+    try {
+      await PdfModel.create({filename, title: originalname,  userId})
+
+      cb(null, filename)
+    }
+    catch (e) {
+      cb(e)
+    }
   }
 })
 

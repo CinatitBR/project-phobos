@@ -41,8 +41,6 @@ app.get('/', (req, res) => {
 })
 
 app.post('/pdf/upload', upload.single('pdf'), (req, res) => {
-  console.log(req.file)
-
   res.json({message: 'ok'})
 })
 

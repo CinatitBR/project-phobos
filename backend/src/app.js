@@ -37,7 +37,7 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res) => {
-  res.send('Hello, world!')
+  res.send('Hello')
 })
 
 app.post('/pdf/upload', upload.single('pdf'), (req, res) => {

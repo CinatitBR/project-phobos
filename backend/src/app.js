@@ -28,9 +28,10 @@ const storage = multer.diskStorage({
 
     const fileExtension = mimeExtensions[mimetype] 
     const filename = `${uuidv4()}.${fileExtension}`
+    const title = path.parse(originalname).name
 
     try {
-      await PdfModel.create({filename, title: originalname,  userId})
+      await PdfModel.create({filename, title,  userId})
 
       cb(null, filename)
     }

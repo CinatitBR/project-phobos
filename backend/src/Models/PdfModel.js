@@ -14,6 +14,6 @@ const create = async ({ filename, title, userId }) => {
   }
 }
 
-const PdfModel = { create }
+const pdfModel = { create }
 
-export default PdfModel
+export default pdfModel

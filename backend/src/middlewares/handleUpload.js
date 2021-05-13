@@ -1,7 +1,7 @@
 import path from 'path'
 import multer from 'multer'
 import { v4 as uuidv4 } from 'uuid'
-import PdfModel from '../models/PdfModel.js'
+import pdfModel from '../models/pdfModel.js'
 
 const mimeExtensions = { 'application/pdf': 'pdf' }
 
@@ -27,7 +27,7 @@ const setFilename = async (req, file, cb) => {
   const title = path.parse(originalname).name
 
   try {
-    await PdfModel.create({filename, title,  userId})
+    await pdfModel.create({filename, title,  userId})
 
     cb(null, filename)
   }

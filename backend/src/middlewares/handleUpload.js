@@ -28,11 +28,11 @@ const handleUpload = (extension) => {
   
     const fileExtension = mimeExtensions[mimetype]
   
-    const storagePath = 'C:\\Users\\Igor\\Documents\\phobos-storage'
+    const storagePath = process.env.STORAGE_PATH
     const userFolder = `user${userId}`
-    const fileStoragePath = path.join(storagePath, userFolder, fileExtension)
+    const filePath = path.join(storagePath, userFolder, fileExtension)
   
-    cb(null, fileStoragePath)
+    cb(null, filePath)
   }
   
   const setFilename = async (req, file, cb) => {

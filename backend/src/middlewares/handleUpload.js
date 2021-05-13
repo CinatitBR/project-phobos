@@ -5,42 +5,6 @@ import pdfModel from '../models/pdfModel.js'
 
 const mimeExtensions = { 'application/pdf': 'pdf' }
 
-const setDestination = (req, file, cb) => {
-  const { userId } = req.body
-  const { mimetype } = file
-
-  const fileExtension = mimeExtensions[mimetype]
-
-  const storagePath = 'C:\\Users\\Igor\\Documents\\phobos-storage'
-  const userFolder = `user${userId}`
-  const fileStoragePath = path.join(storagePath, userFolder, fileExtension)
-
-  cb(null, fileStoragePath)
-}
-
-const setFilename = async (req, file, cb) => {
-  const { userId } = req.body
-  const { mimetype, originalname } = file
-
-  const fileExtension = mimeExtensions[mimetype] 
-  const filename = `${uuidv4()}.${fileExtension}`
-  const title = path.parse(originalname).name
-
-  try {
-    await pdfModel.create({filename, title,  userId})
-
-    cb(null, filename)
-  }
-  catch (e) {
-    cb(e)
-  }
-}
-
-const storage = multer.diskStorage({
-  destination: setDestination,
-  filename: setFilename
-})
-
 const handleUpload = (extension) => {
   const allowedExtension = extension
 
@@ -57,6 +21,42 @@ const handleUpload = (extension) => {
   
     cb(null, true)
   }
+
+  const setDestination = (req, file, cb) => {
+    const { userId } = req.body
+    const { mimetype } = file
+  
+    const fileExtension = mimeExtensions[mimetype]
+  
+    const storagePath = 'C:\\Users\\Igor\\Documents\\phobos-storage'
+    const userFolder = `user${userId}`
+    const fileStoragePath = path.join(storagePath, userFolder, fileExtension)
+  
+    cb(null, fileStoragePath)
+  }
+  
+  const setFilename = async (req, file, cb) => {
+    const { userId } = req.body
+    const { mimetype, originalname } = file
+  
+    const fileExtension = mimeExtensions[mimetype] 
+    const filename = `${uuidv4()}.${fileExtension}`
+    const title = path.parse(originalname).name
+  
+    try {
+      await pdfModel.create({filename, title,  userId})
+  
+      cb(null, filename)
+    }
+    catch (e) {
+      cb(e)
+    }
+  }
+
+  const storage = multer.diskStorage({
+    destination: setDestination,
+    filename: setFilename
+  })
 
   const upload = multer({ storage, fileFilter })
   return upload.single(extension)

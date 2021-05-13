@@ -41,9 +41,25 @@ const storage = multer.diskStorage({
   filename: setFilename
 })
 
-const upload = multer({ storage })
-const handleUpload = {
-  pdf: upload.single('pdf')
+const handleUpload = (extension) => {
+  const allowedExtension = extension
+
+  const fileFilter = (req, file, cb) => {
+    const { mimetype } = file
+    const fileExtension = mimeExtensions[mimetype]
+
+    if (fileExtension !== allowedExtension) {
+      const error = new Error(`File not allowed. Please, upload a ${extension} file`) 
+
+      cb(error, false)
+      return
+    }
+  
+    cb(null, true)
+  }
+
+  const upload = multer({ storage, fileFilter })
+  return upload.single(extension)
 }
 
 export default handleUpload

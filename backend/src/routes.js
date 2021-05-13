@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   res.send('Hello')
 })
 
-router.post('/pdf/upload', handleUpload.pdf, (req, res) => {
+router.post('/pdf/upload', handleUpload('pdf'), (req, res) => {
   res.json({message: 'ok'})
 })
 

@@ -7,7 +7,7 @@ const prepareData = (pdfData) => {
 
   for (const [index, page] of Pages.entries()) {
     const { Texts } = page
-    const pageData = {number: index + 1, text: ''}
+    const pageData = {number: index + 1, body: ''}
 
     for (const textBlock of Texts) {
       const { R } = textBlock
@@ -15,12 +15,14 @@ const prepareData = (pdfData) => {
       for (const textRun of R) {
         const { T } = textRun
   
-        pageData.text += `${T} `
+        pageData.body += `${T} `
       }
     }
 
-    pageData.text = decodeURIComponent(pageData.text)
-    pdfDataPreparer.emit('dataReady', pageData)
+    pageData.body = decodeURIComponent(pageData.body)
+
+    const preparedData = { page: pageData }
+    pdfDataPreparer.emit('dataReady', preparedData)
   }
 }
 

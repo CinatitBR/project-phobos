@@ -1,4 +1,6 @@
-const preparePdfData = (pdfData, cb) => {
+const preparePdfData = (pdfData) => {
+  const preparedData = { pages: [] }
+  
   const { Pages } = pdfData.formImage
 
   for (const [index, page] of Pages.entries()) {
@@ -16,10 +18,10 @@ const preparePdfData = (pdfData, cb) => {
     }
 
     pageData.body = decodeURIComponent(pageData.body)
-    const preparedData = { page: pageData }
-
-    cb(preparedData)
+    preparedData.pages.push(pageData)
   }
+
+  return preparedData
 }
 
 export default preparePdfData

@@ -24,7 +24,7 @@ router.post('/pdf/upload', handleUpload('pdf'), (req, res) => {
   })
 
   pdfParser.on("pdfParser_dataReady", pdfData => {
-    console.log(pdfData)
+    console.log(JSON.stringify(pdfData))
   });
 
   pdfParser.loadPDF(filePath)

@@ -14,6 +14,22 @@ const create = async ({ filename, title, userId }) => {
   }
 }
 
-const pdfModel = { create }
+const findByFilename = async (filename) => {
+  const sql = `
+    SELECT * FROM pdf
+    WHERE filename = ?
+  `
+
+  try {
+    const [rows, fields] = await db.query(sql, filename)
+
+    return rows[0]
+  }
+  catch (e) {
+    throw new Error(e)
+  }
+}
+
+const pdfModel = { create, findByFilename }
 
 export default pdfModel

@@ -1,8 +1,4 @@
-import EventEmitter from 'events'
-
-const pdfDataPreparer = new EventEmitter()
-
-const prepareData = (pdfData) => {
+const preparePdfData = (pdfData, cb) => {
   const { Pages } = pdfData.formImage
 
   for (const [index, page] of Pages.entries()) {
@@ -20,12 +16,10 @@ const prepareData = (pdfData) => {
     }
 
     pageData.body = decodeURIComponent(pageData.body)
-
     const preparedData = { page: pageData }
-    pdfDataPreparer.emit('dataReady', preparedData)
+
+    cb(preparedData)
   }
 }
 
-pdfDataPreparer.prepareData = prepareData
-
-export default pdfDataPreparer
+export default preparePdfData

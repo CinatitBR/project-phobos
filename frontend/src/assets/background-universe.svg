@@ -1,0 +1,33 @@
+<svg width="1440" height="1024" viewBox="0 0 1440 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1440" height="1024" fill="url(#paint0_linear)"/>
+<circle cx="1165" cy="803" r="2" fill="white"/>
+<circle cx="267" cy="293" r="2" fill="white"/>
+<circle cx="1049" cy="161" r="2" fill="white"/>
+<circle cx="358" cy="760" r="2" fill="white"/>
+<circle cx="778" cy="438" r="2" fill="white"/>
+<circle cx="576" cy="194" r="2" fill="white"/>
+<circle cx="745" cy="815" r="2" fill="white"/>
+<circle cx="1228" cy="336" r="2" fill="white"/>
+<circle cx="863" cy="263" r="2" fill="white"/>
+<circle cx="572" cy="478" r="2" fill="white"/>
+<circle cx="132" cy="591" r="2" fill="white"/>
+<circle cx="100" cy="157" r="2" fill="white"/>
+<circle cx="267" cy="293" r="2" fill="white"/>
+<circle cx="767" cy="86" r="2" fill="white"/>
+<circle cx="1045" cy="543" r="2" fill="white"/>
+<circle cx="159" cy="926" r="2" fill="white"/>
+<circle cx="510" cy="953" r="2" fill="white"/>
+<circle cx="354" cy="36" r="2" fill="white"/>
+<circle cx="398" cy="539" r="2" fill="white"/>
+<circle cx="1274" cy="591" r="2" fill="white"/>
+<circle cx="819" cy="641" r="2" fill="white"/>
+<circle cx="989" cy="968" r="2" fill="white"/>
+<circle cx="1019" cy="697" r="2" fill="white"/>
+<defs>
+<linearGradient id="paint0_linear" x1="56" y1="48" x2="1416" y2="1005.5" gradientUnits="userSpaceOnUse">
+<stop offset="0.399489" stop-color="#101236"/>
+<stop offset="0.641547" stop-color="#0F1242"/>
+<stop offset="1" stop-color="#161A60"/>
+</linearGradient>
+</defs>
+</svg>

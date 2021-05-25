@@ -1,0 +1,13 @@
+button {
+  margin-top: 30px;
+  width: 100%;
+
+  font-size: 25px;
+  color: var(--white);
+  background: var(--primary-green);
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}

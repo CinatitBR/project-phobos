@@ -90,7 +90,7 @@ html {
   border-radius: 5px;
 } */
 
-button[type="submit"] {
+/* button[type="submit"] {
   margin-top: 30px;
   width: 100%;
 
@@ -102,7 +102,7 @@ button[type="submit"] {
   text-align: center;
   border: none;
   cursor: pointer;
-}
+} */
 
 #suggestion {
   font-size: 18px;

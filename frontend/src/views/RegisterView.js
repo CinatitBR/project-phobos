@@ -1,5 +1,6 @@
 import Label from '../components/Label'
 import Input from '../components/Input'
+import SubmitButton from '../components/SubmitButton'
 
 import logo from '../assets/logo.svg'
 import planets from '../assets/planets.svg'
@@ -43,7 +44,7 @@ const RegisterView = () => {
 
             </div>
 
-            <button type="submit">Create account</button>
+            <SubmitButton text="Create account" />
             <h3 id="suggestion">Already on board? <a href="#">Login</a></h3>
           </form>
         </div>

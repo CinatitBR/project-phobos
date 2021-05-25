@@ -72,14 +72,14 @@ html {
   gap: 20px;
 }
 
-.fields .field label {
+/* .fields .field label {
   font-size: 18px;
   color: var(--secondary-text);
 
   display: flex;
   flex-direction: column;
   gap: 5px;
-}
+} */
 
 .fields .field label input {
   font-size: 24px;

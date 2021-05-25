@@ -1,6 +1,9 @@
+import Label from '../components/Label'
+
 import logo from '../assets/logo.svg'
 import planets from '../assets/planets.svg'
 import phoebeAstronaut from '../assets/phoebe-astronaut.svg'
+
 import './index.css'
 
 const RegisterView = () => {
@@ -20,27 +23,21 @@ const RegisterView = () => {
             <div className="fields">
 
               <div className="field">
-                <label>
-                  Email
-
+                <Label label="Email">
                   <input type="email" />
-                </label>
+                </Label>
               </div>
 
               <div className="field">
-                <label>
-                  Username
-
+                <Label label="Username">
                   <input type="text" />
-                </label>
+                </Label>
               </div>
 
               <div className="field">
-                <label>
-                  Password
-
+                <Label label="Password">
                   <input type="text" />
-                </label>
+                </Label >
               </div>
 
             </div>

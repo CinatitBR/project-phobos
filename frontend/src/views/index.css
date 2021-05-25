@@ -18,11 +18,6 @@ html {
   background-size: cover;
 }
 
-body {
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 #wrapper {
   height: 100vh;
 
@@ -129,7 +124,7 @@ button[type="submit"] {
 
 #ilustration #planets {
   position: absolute;
-  left: 700px;
+  left: 600px;
   top: 50%;
   transform: translate(-50%, -50%);
 }
@@ -138,6 +133,81 @@ button[type="submit"] {
 #ilustration #phoebeAstronaut {
   position: absolute;
   top: 45%;
-  left: 320px;
+  left: 220px;
   transform: translate(-50%, -50%) rotate(15deg);
+}
+
+/* Media query */
+@media only screen and (max-width: 1024px) {
+  /* Wrapper */
+  #wrapper {
+    display: block;
+  }
+
+  /* Content */
+  #content {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+
+  #content #logo {
+    margin-right: auto;
+    position: static;
+  }
+
+  /* Ilustration */
+  #ilustration {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  #ilustration #planets {
+    width: 100px;
+    left: 50%;
+    top: 20px;
+    transform: none;
+  }
+  
+  #ilustration #phoebeAstronaut {
+    width: 80px;
+
+    top: auto;
+    bottom: -10px;
+    left: 50%;
+    transform: rotate(15deg);
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  html {
+    background-image: none;
+    background-color: var(--background-light);
+  }
+
+  /* Content */
+  #content {
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    border-radius: 0;
+    position: relative;
+  }
+
+  #content #logo {
+    width: 50px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+  }
+
+  /* Ilustration */
+  #ilustration {
+    display: none;
+  }
 }

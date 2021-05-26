@@ -1,6 +1,6 @@
 import SplitScreen from '../../components/SplitScreen'
 import FormAuthWrapper from '../../components/FormAuthWrapper'
-import SplitPaneRight from '../../components/SplitPaneRight'
+import IlustrationWrapper from '../../components/IlustrationWrapper'
 import FormRegister from '../../components/FormRegister'
 
 import planets from '../../assets/planets.svg'
@@ -16,12 +16,12 @@ const Register = () => {
         <FormRegister />
       </FormAuthWrapper>
 
-      <SplitPaneRight>
+      <IlustrationWrapper>
 
         <img id="planets" src={planets} alt="Planets" />
         <img id="phoebeAstronaut" src={phoebeAstronaut} alt="Phoebe astronaut" />
 
-      </SplitPaneRight>
+      </IlustrationWrapper>
 
     </SplitScreen>
   )

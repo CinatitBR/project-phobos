@@ -6,10 +6,12 @@ import './index.css'
 const FormRegister = () => {
   return (
     <form id="formRegister">
-      <h1 id="title">
-        Board this 
-        <span className="big">Spacecraft!</span>
-      </h1>
+      <header>
+        <h1 id="title">
+          Board this 
+          <span className="big">Spacecraft!</span>
+        </h1>
+      </header>
 
       <div id="fields">
         <div className="field">

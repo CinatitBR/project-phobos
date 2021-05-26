@@ -1,0 +1,17 @@
+#splitPaneRight {
+  overflow: hidden;
+  position: relative;
+}
+
+@media only screen and (max-width: 1024px) {
+  #splitPaneRight {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  #splitPaneRight {
+    display: none;
+  }
+}

@@ -1,4 +1,4 @@
-#splitPaneLeft {
+#formAuthWrapper {
   padding: 10px;
   background: var(--background-light);
   position: relative;
@@ -9,21 +9,21 @@
   align-items: center;
 }
 
-#splitPaneLeft #logo {
+#formAuthWrapper #logo {
   cursor: pointer;
   position: absolute;
   top: 20px;
   left: 20px;
 }
 
-#splitPaneLeft #inner {
+#formAuthWrapper #inner {
   width: 100%;
   max-width: 450px;
   padding: 10px;
 }
 
 @media only screen and (max-width: 1024px) {
-  #splitPaneLeft {
+  #formAuthWrapper {
     width: 100%;
     max-width: 700px;
     border-radius: 16px;
@@ -34,14 +34,14 @@
     z-index: 9999;
   }
 
-  #splitPaneLeft #logo {
+  #formAuthWrapper #logo {
     margin-right: auto;
     position: static;
   }
 }
 
 @media only screen and (max-width: 750px) {
-  #splitPaneLeft {
+  #formAuthWrapper {
     width: 100%;
     max-width: none;
     height: 100vh;
@@ -49,7 +49,7 @@
     position: relative;
   }
 
-  #splitPaneLeft #logo {
+  #formAuthWrapper #logo {
     width: 50px;
     position: absolute;
     left: 20px;

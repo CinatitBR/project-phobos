@@ -1,5 +1,5 @@
 import SplitScreen from '../../components/SplitScreen'
-import SplitPaneLeft from '../../components/SplitPaneLeft'
+import FormAuthWrapper from '../../components/FormAuthWrapper'
 import SplitPaneRight from '../../components/SplitPaneRight'
 import FormRegister from '../../components/FormRegister'
 
@@ -12,9 +12,9 @@ const Register = () => {
   return (
     <SplitScreen>
 
-      <SplitPaneLeft>
+      <FormAuthWrapper>
         <FormRegister />
-      </SplitPaneLeft>
+      </FormAuthWrapper>
 
       <SplitPaneRight>
 

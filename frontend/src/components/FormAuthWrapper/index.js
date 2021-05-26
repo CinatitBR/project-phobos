@@ -1,9 +1,9 @@
 import logo from '../../assets/logo.svg'
 import './index.css'
 
-const SplitPaneLeft = ({ children }) => {
+const FormAuthWrapper = ({ children }) => {
   return (
-    <section id="splitPaneLeft">
+    <section id="formAuthWrapper">
       <img id="logo" src={logo} alt="Phobos logo" />
 
       <section id="inner">
@@ -14,4 +14,4 @@ const SplitPaneLeft = ({ children }) => {
   )
 }
 
-export default SplitPaneLeft
+export default FormAuthWrapper

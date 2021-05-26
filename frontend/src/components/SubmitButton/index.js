@@ -1,8 +1,8 @@
 import './index.css'
 
-const SubmitButton = ({text}) => {
+const SubmitButton = ({children}) => {
   return (
-    <button type="submit">{text}</button>
+    <button type="submit">{children}</button>
   )
 }
 

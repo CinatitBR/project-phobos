@@ -25,7 +25,7 @@ const FormRegister = () => {
         </div>
       </div>
 
-      <SubmitButton text="Create account" />
+      <SubmitButton>Create account</SubmitButton>
       <h3 id="suggestion">Already on board? <a href="#">Login</a></h3>
     </form>
   )

@@ -1,31 +1,11 @@
-html {
-  background: url("../assets/background-universe.svg") no-repeat center center fixed; 
-  background-size: cover;
-}
-
-#wrapper {
-  height: 100vh;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-
-/* Ilustration */
-#ilustration {
-  overflow: hidden;
-
-  position: relative;
-}
-
-#ilustration #planets {
+#planets {
   position: absolute;
   left: 600px;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
-#ilustration #phoebeAstronaut {
+#phoebeAstronaut {
   position: absolute;
   top: 45%;
   left: 220px;
@@ -34,42 +14,19 @@ html {
 
 /* Media query */
 @media only screen and (max-width: 1024px) {
-  /* Wrapper */
-  #wrapper {
-    display: block;
-  }
-
-  /* Ilustration */
-  #ilustration {
-    width: 100vw;
-    height: 100vh;
-  }
-
-  #ilustration #planets {
+  #planets {
     width: 100px;
     left: 50%;
     top: 20px;
     transform: none;
   }
   
-  #ilustration #phoebeAstronaut {
+  #phoebeAstronaut {
     width: 80px;
 
     top: auto;
     bottom: -10px;
     left: 50%;
     transform: rotate(15deg);
-  }
-}
-
-@media only screen and (max-width: 750px) {
-  html {
-    background-image: none;
-    background-color: var(--background-light);
-  }
-
-  /* Ilustration */
-  #ilustration {
-    display: none;
   }
 }

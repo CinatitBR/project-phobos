@@ -1,4 +1,6 @@
+import SplitPane from '../components/SplitPane'
 import SplitPaneLeft from '../components/SplitPaneLeft'
+import SplitPaneRight from '../components/SplitPaneRight'
 import FormRegister from '../components/FormRegister'
 
 import planets from '../assets/planets.svg'
@@ -8,20 +10,20 @@ import './index.css'
 
 const RegisterView = () => {
   return (
-    <div id="wrapper">
+    <SplitPane>
 
       <SplitPaneLeft>
         <FormRegister />
       </SplitPaneLeft>
 
-      <section id="ilustration">
+      <SplitPaneRight>
 
         <img id="planets" src={planets} alt="Planets" />
         <img id="phoebeAstronaut" src={phoebeAstronaut} alt="Phoebe astronaut" />
 
-      </section>
+      </SplitPaneRight>
 
-    </div>
+    </SplitPane>
   )
 }
 

@@ -1,15 +1,15 @@
-#formRegister #title {
+#registerForm #title {
   color: var(--primary-green);
   font-size: 30px;
   text-align: center;
 }
 
-#formRegister #title .big {
+#registerForm #title .big {
   display: block;
   font-size: 45px;
 }
 
-#formRegister #fields {
+#registerForm #fields {
   width: 100%;
   margin-top: 30px;
 
@@ -18,13 +18,13 @@
   gap: 20px;
 }
 
-#formRegister #suggestion {
+#registerForm #suggestion {
   font-size: 18px;
   color: var(--secondary-text);
   margin-top: 10px
 }
 
-#formRegister #suggestion a {
+#registerForm #suggestion a {
   color: var(--primary-green);
   text-decoration: none;
 }

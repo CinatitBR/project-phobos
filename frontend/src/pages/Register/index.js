@@ -1,7 +1,7 @@
 import SplitScreen from '../../components/SplitScreen'
 import FormAuthWrapper from '../../components/FormAuthWrapper'
 import IlustrationWrapper from '../../components/IlustrationWrapper'
-import FormRegister from '../../components/FormRegister'
+import RegisterForm from '../../components/RegisterForm'
 
 import planets from '../../assets/planets.svg'
 import phoebeAstronaut from '../../assets/phoebe-astronaut.svg'
@@ -13,7 +13,7 @@ const Register = () => {
     <SplitScreen>
 
       <FormAuthWrapper>
-        <FormRegister />
+        <RegisterForm />
       </FormAuthWrapper>
 
       <IlustrationWrapper>

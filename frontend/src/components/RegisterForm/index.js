@@ -3,9 +3,9 @@ import SubmitButton from '../SubmitButton'
 
 import './index.css'
 
-const FormRegister = () => {
+const RegisterForm = () => {
   return (
-    <form id="formRegister">
+    <form id="registerForm">
       <header>
         <h1 id="title">
           Board this 
@@ -33,4 +33,4 @@ const FormRegister = () => {
   )
 }
 
-export default FormRegister
+export default RegisterForm

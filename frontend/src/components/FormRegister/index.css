@@ -1,0 +1,30 @@
+#formRegister #title {
+  color: var(--primary-green);
+  font-size: 30px;
+  text-align: center;
+}
+
+#formRegister #title .big {
+  display: block;
+  font-size: 45px;
+}
+
+#formRegister #fields {
+  width: 100%;
+  margin-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#formRegister #suggestion {
+  font-size: 18px;
+  color: var(--secondary-text);
+  margin-top: 10px
+}
+
+#formRegister #suggestion a {
+  color: var(--primary-green);
+  text-decoration: none;
+}

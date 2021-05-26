@@ -1,5 +1,6 @@
-import FormInput from '../components/FormInput'
-import SubmitButton from '../components/SubmitButton'
+// import FormInput from '../components/FormInput'
+// import SubmitButton from '../components/SubmitButton'
+import FormRegister from '../components/FormRegister'
 
 import logo from '../assets/logo.svg'
 import planets from '../assets/planets.svg'
@@ -13,8 +14,12 @@ const RegisterView = () => {
 
       <section id="content">
         <img id="logo" src={logo} alt="Phobos logo" />
+
+        <section id="contentInner">
+          <FormRegister />
+        </section>
         
-        <div id="contentInner">
+        {/* <div id="contentInner">
           <h1 id="formTitle">
             Board this 
             <span className="big">Spacecraft!</span>
@@ -28,7 +33,7 @@ const RegisterView = () => {
               </div>
 
               <div className="field">
-              <FormInput label="Username" type="text" />
+                <FormInput label="Username" type="text" />
               </div>
 
               <div className="field">
@@ -40,7 +45,7 @@ const RegisterView = () => {
             <SubmitButton text="Create account" />
             <h3 id="suggestion">Already on board? <a href="#">Login</a></h3>
           </form>
-        </div>
+        </div> */}
 
       </section>
 

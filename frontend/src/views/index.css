@@ -51,7 +51,7 @@ html {
   padding: 10px;
 }
 
-#contentInner #formTitle {
+/* #contentInner #formTitle {
   color: var(--primary-green);
   font-size: 30px;
   text-align: center;
@@ -60,17 +60,17 @@ html {
 #contentInner #formTitle .big {
   display: block;
   font-size: 45px;
-}
+} */
 
 /* Form */
-.fields {
+/* .fields {
   width: 100%;
   margin-top: 30px;
 
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
+} */
 
 /* .fields .field label {
   font-size: 18px;
@@ -104,7 +104,7 @@ html {
   cursor: pointer;
 } */
 
-#suggestion {
+/* #suggestion {
   font-size: 18px;
   color: var(--secondary-text);
   margin-top: 10px
@@ -113,7 +113,7 @@ html {
 #suggestion a {
   color: var(--primary-green);
   text-decoration: none;
-}
+} */
 
 /* Ilustration */
 #ilustration {
@@ -128,7 +128,6 @@ html {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-
 
 #ilustration #phoebeAstronaut {
   position: absolute;

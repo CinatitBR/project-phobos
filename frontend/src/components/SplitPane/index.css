@@ -1,0 +1,17 @@
+html {
+  background: url("../../assets/background-universe.svg") no-repeat center center fixed; 
+  background-size: cover;
+}
+
+#splitPane {
+  height: 100vh;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media only screen and (max-width: 1024px) {
+  #splitPane {
+    display: block;
+  }
+}

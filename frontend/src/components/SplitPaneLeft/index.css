@@ -1,0 +1,58 @@
+#splitPaneLeft {
+  padding: 10px;
+  background: var(--background-light);
+  position: relative;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#splitPaneLeft #logo {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+#splitPaneLeft #inner {
+  width: 100%;
+  max-width: 450px;
+  padding: 10px;
+}
+
+@media only screen and (max-width: 1024px) {
+  #splitPaneLeft {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+
+  #splitPaneLeft #logo {
+    margin-right: auto;
+    position: static;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  #splitPaneLeft {
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    border-radius: 0;
+    position: relative;
+  }
+
+  #splitPaneLeft #logo {
+    width: 50px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+  }
+}

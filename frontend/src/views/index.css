@@ -25,95 +25,6 @@ html {
   grid-template-columns: 1fr 1fr;
 }
 
-/* Content */
-#content {
-  padding: 10px;
-  background: var(--background-light);
-  position: relative;
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#content #logo {
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-}
-
-/* Content inner */
-#contentInner {
-  width: 100%;
-  max-width: 450px;
-  padding: 10px;
-}
-
-/* #contentInner #formTitle {
-  color: var(--primary-green);
-  font-size: 30px;
-  text-align: center;
-}
-
-#contentInner #formTitle .big {
-  display: block;
-  font-size: 45px;
-} */
-
-/* Form */
-/* .fields {
-  width: 100%;
-  margin-top: 30px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-} */
-
-/* .fields .field label {
-  font-size: 18px;
-  color: var(--secondary-text);
-
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-} */
-
-/* .fields .field label input {
-  font-size: 24px;
-  color: var(--white);
-  background: var(--background-dark);
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-} */
-
-/* button[type="submit"] {
-  margin-top: 30px;
-  width: 100%;
-
-  font-size: 25px;
-  color: var(--white);
-  background: var(--primary-green);
-  border-radius: 5px;
-  padding: 10px;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-} */
-
-/* #suggestion {
-  font-size: 18px;
-  color: var(--secondary-text);
-  margin-top: 10px
-}
-
-#suggestion a {
-  color: var(--primary-green);
-  text-decoration: none;
-} */
 
 /* Ilustration */
 #ilustration {
@@ -143,23 +54,6 @@ html {
     display: block;
   }
 
-  /* Content */
-  #content {
-    width: 100%;
-    max-width: 700px;
-    border-radius: 16px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-  }
-
-  #content #logo {
-    margin-right: auto;
-    position: static;
-  }
-
   /* Ilustration */
   #ilustration {
     width: 100vw;
@@ -187,22 +81,6 @@ html {
   html {
     background-image: none;
     background-color: var(--background-light);
-  }
-
-  /* Content */
-  #content {
-    width: 100%;
-    max-width: none;
-    height: 100vh;
-    border-radius: 0;
-    position: relative;
-  }
-
-  #content #logo {
-    width: 50px;
-    position: absolute;
-    left: 20px;
-    top: 20px;
   }
 
   /* Ilustration */

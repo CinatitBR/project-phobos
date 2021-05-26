@@ -3,7 +3,7 @@ html {
   background-size: cover;
 }
 
-#splitPane {
+#splitScreen {
   height: 100vh;
 
   display: grid;
@@ -11,7 +11,7 @@ html {
 }
 
 @media only screen and (max-width: 1024px) {
-  #splitPane {
+  #splitScreen {
     display: block;
   }
 }

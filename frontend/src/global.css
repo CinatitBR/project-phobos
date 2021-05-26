@@ -1,0 +1,14 @@
+:root {
+  --white: #FFFFFF;
+  --background-dark: #141740;
+  --background-light: #3E4076;
+  --primary-green: #65D8AC;
+  --secondary-text: #CBD0E1;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Source Sans Pro', sans-serif;
+}

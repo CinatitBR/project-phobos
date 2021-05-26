@@ -1,5 +1,4 @@
-import Label from '../components/Label'
-import Input from '../components/Input'
+import FormInput from '../components/FormInput'
 import SubmitButton from '../components/SubmitButton'
 
 import logo from '../assets/logo.svg'
@@ -25,21 +24,15 @@ const RegisterView = () => {
             <div className="fields">
 
               <div className="field">
-                <Label label="Email">
-                  <Input type="email" />
-                </Label>
+                <FormInput label="Email" type="email" />
               </div>
 
               <div className="field">
-                <Label label="Username">
-                  <Input type="text" />
-                </Label>
+              <FormInput label="Username" type="text" />
               </div>
 
               <div className="field">
-                <Label label="Password">
-                  <Input type="text" />
-                </Label >
+                <FormInput label="Password" type="text" />
               </div>
 
             </div>

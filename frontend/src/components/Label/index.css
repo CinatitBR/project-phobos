@@ -1,8 +1,0 @@
-label {
-  font-size: 18px;
-  color: var(--secondary-text);
-
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}

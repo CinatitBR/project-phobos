@@ -1,7 +1,7 @@
 import express from 'express'
 import handleUpload from './middlewares/handleUpload.js'
 import pdfController from './controllers/pdfController.js'
-import userController from './controllers/userController.js'
+import authController from './controllers/authController.js'
 import validationMiddleware from './middlewares/validationMiddleware.js'
 import registerSchema from '../../shared/src/validations/registerSchema.js'
 
@@ -13,6 +13,6 @@ router.get('/', (req, res) => {
 
 router.post('/pdf/upload', handleUpload('pdf'), pdfController.upload)
 
-router.post('/user/register', validationMiddleware(registerSchema), userController.register)
+router.post('/auth/register', validationMiddleware(registerSchema), authController.register)
 
 export default router

@@ -1,6 +1,6 @@
 import FormTitle from '../FormTitle'
 import FormFields from '../FormFields'
-import FormInput from '../FormInput'
+import FormField from '../FormField'
 import SubmitButton from '../SubmitButton'
 import FormSuggestion from '../FormSuggestion'
 import FormLink from '../FormLink'
@@ -16,8 +16,8 @@ const LoginForm = () => {
       </header>
 
       <FormFields>
-        <FormInput label="Email" type="text" />
-        <FormInput label="Password" type="password" />
+        <FormField label="Email" type="text" />
+        <FormField label="Password" type="password" />
       </FormFields>
 
       <SubmitButton>Login</SubmitButton>

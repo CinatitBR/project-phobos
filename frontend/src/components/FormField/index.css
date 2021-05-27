@@ -1,0 +1,17 @@
+#formField label {
+  font-size: 18px;
+  color: var(--secondary-text);
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#formField label input {
+  font-size: 24px;
+  color: var(--white);
+  background: var(--background-dark);
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+}

@@ -1,8 +1,8 @@
 import './index.css'
 
-const FormInput = ({ label, type }) => {
+const FormField = ({ label, type }) => {
   return (
-    <div id="formInput">
+    <div id="formField">
       <label>
         {label}
 
@@ -12,4 +12,4 @@ const FormInput = ({ label, type }) => {
   )
 }
 
-export default FormInput
+export default FormField

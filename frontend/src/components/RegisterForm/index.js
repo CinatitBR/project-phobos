@@ -1,4 +1,4 @@
-import FormInput from '../FormInput'
+import FormField from '../FormField'
 import SubmitButton from '../SubmitButton'
 
 import './index.css'
@@ -15,15 +15,15 @@ const RegisterForm = () => {
 
       <div id="fields">
         <div className="field">
-          <FormInput label="Email" type="email" />
+          <FormField label="Email" type="email" />
         </div>
 
         <div className="field">
-          <FormInput label="Username" type="text" />
+          <FormField label="Username" type="text" />
         </div>
 
         <div className="field">
-          <FormInput label="Password" type="text" />
+          <FormField label="Password" type="text" />
         </div>
       </div>
 

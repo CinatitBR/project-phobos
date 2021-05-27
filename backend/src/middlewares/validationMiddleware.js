@@ -7,9 +7,10 @@ const validation = (schema) => async (req, res, next) => {
     return next()
   }
   catch (error) {
-    const errorMessage = error.message
+    const { path, message } = error
+    const responseError = { field: path, message }
 
-    return res.status(400).json({ errorMessage })
+    return res.status(400).json(responseError)
   }
 
 }

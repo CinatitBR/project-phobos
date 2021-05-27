@@ -3,6 +3,9 @@ import FormAuthWrapper from '../../components/FormAuthWrapper'
 import LoginForm from '../../components/LoginForm'
 import IlustrationWrapper from '../../components/IlustrationWrapper'
 
+import planetsColonized from '../../assets/planets-colonized.svg'
+import rocket from '../../assets/rocket.svg'
+
 import './index.css'
 
 const Login = () => {
@@ -13,7 +16,8 @@ const Login = () => {
       </FormAuthWrapper>
 
       <IlustrationWrapper>
-        <h1>Olá, tudo bem</h1>
+        <img id="planetsColonized" src={planetsColonized} alt="Planets colonized" />
+        <img id="rocket" src={rocket} alt="rocket" />
       </IlustrationWrapper>
     </SplitScreen>
   )

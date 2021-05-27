@@ -1,0 +1,17 @@
+#planetsColonized, #rocket {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#planetsColonized {
+  width: 500px;
+  left: calc(50% + 80px);
+  top: calc(50% + 40px);
+}
+
+#rocket {
+  width: 300px;
+  left: calc(50% - 240px);
+}

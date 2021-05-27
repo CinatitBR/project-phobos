@@ -1,34 +1,28 @@
+import FormTitle from '../FormTitle'
+import FormFields from '../FormFields'
 import FormField from '../FormField'
 import SubmitButton from '../SubmitButton'
-
-import './index.css'
+import FormSuggestion from '../FormSuggestion'
+import FormLink from '../FormLink'
 
 const RegisterForm = () => {
   return (
     <form id="registerForm">
       <header>
-        <h1 id="title">
-          Board this 
-          <span className="big">Spacecraft!</span>
-        </h1>
+        <FormTitle small>Board this</FormTitle>
+        <FormTitle>Spacecraft!</FormTitle>
       </header>
 
-      <div id="fields">
-        <div className="field">
-          <FormField label="Email" type="email" />
-        </div>
-
-        <div className="field">
-          <FormField label="Username" type="text" />
-        </div>
-
-        <div className="field">
-          <FormField label="Password" type="text" />
-        </div>
-      </div>
+      <FormFields>
+        <FormField label="Email" type="email" />
+        <FormField label="Username" type="text" />
+        <FormField label="Password" type="text" />
+      </FormFields>
 
       <SubmitButton>Create account</SubmitButton>
-      <h3 id="suggestion">Already on board? <a href="#">Login</a></h3>
+      <FormSuggestion>
+        Already on board? <FormLink href="/login">Login</FormLink>
+      </FormSuggestion>
     </form>
   )
 }

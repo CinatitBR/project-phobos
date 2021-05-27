@@ -5,8 +5,6 @@ import SubmitButton from '../SubmitButton'
 import FormSuggestion from '../FormSuggestion'
 import FormLink from '../FormLink'
 
-import './index.css'
-
 const LoginForm = () => {
   return (
     <form id="loginForm">

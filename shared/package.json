@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "dependencies": {
+    "yup": "^0.32.9"
+  }
+}

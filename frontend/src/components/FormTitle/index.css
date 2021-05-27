@@ -1,0 +1,9 @@
+#formTitle {
+  color: var(--primary-green);
+  font-size: 45px;
+  text-align: center;
+}
+
+#formTitle .small {
+  font-size: 25px;
+}

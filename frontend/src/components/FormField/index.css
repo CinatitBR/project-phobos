@@ -15,3 +15,8 @@
   border: none;
   border-radius: 5px;
 }
+
+#formField label #error {
+  color: var(--primary-red);
+  font-size: 16px;
+}

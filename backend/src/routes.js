@@ -7,8 +7,6 @@ import pdfController from './controllers/pdfController.js'
 import authController from './controllers/authController.js'
 import userController from './controllers/userController.js'
 
-import registerSchema from '../../shared/src/validations/registerSchema.js'
-
 const router = express.Router()
 
 router.get('/', (req, res) => {
@@ -16,7 +14,9 @@ router.get('/', (req, res) => {
 })
 
 router.post('/user/find-by-email', userController.findByEmail)
+
 router.post('/pdf/upload', handleUpload('pdf'), pdfController.upload)
-router.post('/auth/register', validationMiddleware(registerSchema), authController.register)
+
+router.post('/auth/register', validationMiddleware({schema: 'register'}), authController.register)
 
 export default router

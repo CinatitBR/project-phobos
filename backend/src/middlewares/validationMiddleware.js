@@ -1,23 +1,16 @@
-const validation = (schema) => async (req, res, next) => {
+import validate from '../../../shared/src/validate.js'
+
+const validationMiddleware = ({schema}) => async (req, res, next) => {
   const data = req.body
+  const schemaValidation = validate[schema]
 
-  try {
-    await schema.validate(data, { abortEarly: false })
+  const errors = await schemaValidation.validateAll(data)
 
-    return next()
-  }
-  catch (error) {
-    const errors = error.inner
-
-    const fieldErrors = errors.map(error => {
-      const { path: field, message } = error
-
-      return {field, message}
-    })
-
-    return res.status(400).json(fieldErrors)
+  if (errors) {
+    return res.status(400).json(errors)
   }
 
+  return next()
 }
 
-export default validation
+export default validationMiddleware

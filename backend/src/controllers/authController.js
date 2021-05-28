@@ -1,14 +1,16 @@
 import userModel from '../models/userModel.js'
 
-const register = (req, res) => {
+const register = async (req, res) => {
   try {
     const { email, username, password } = req.body
 
-    userModel.create({email, username, password})
-    res.sendStatus(201)
+    await userModel.create({email, username, password})
+    return res.sendStatus(201)
   }
   catch (e) {
-    res
+    console.log(e)
+    
+    return res
       .status(500)
       .json({message: 'Oh, no! There was an error. Please, try again'})
   }

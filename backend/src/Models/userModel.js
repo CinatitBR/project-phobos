@@ -14,6 +14,22 @@ const create = async ({ email, username, password }) => {
   }
 }
 
-const userModel = { create }
+const findByEmail = async (email) => {
+  try {
+    const sql = `
+      SELECT * FROM user 
+      WHERE email = ?
+    `
+
+    const [rows, fields] = await db.query(sql, email)
+
+    return rows
+  }
+  catch (e) {
+    throw new Error(e)
+  }
+}
+
+const userModel = { create, findByEmail }
 
 export default userModel

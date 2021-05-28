@@ -1,3 +1,5 @@
+import * as yup from 'yup'
+
 const getInnerErrors = (validationError) => {
   const errors = {}
 
@@ -11,9 +13,9 @@ const getInnerErrors = (validationError) => {
 }
 
 const createValidation = (schema) => ({
-  validateAll: async (data) => {
+  validateAll: async (value) => {
     try {
-      await schema.validate(data, {abortEarly: false})
+      await schema.validate(value, {abortEarly: false})
 
       return null
     }
@@ -21,6 +23,19 @@ const createValidation = (schema) => ({
       const errors = getInnerErrors(validationError)
 
       return errors
+    }
+  },
+  validateOne: async (field, value) => {
+    try {
+      await yup.reach(schema, field).validate(value)
+
+      return null
+    }
+    catch(validationError) {
+      const { message } = validationError
+      const error = {[field]: message}
+
+      return error
     }
   }
 })

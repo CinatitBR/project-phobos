@@ -2,15 +2,20 @@ const validation = (schema) => async (req, res, next) => {
   const data = req.body
 
   try {
-    await schema.validate(data)
+    await schema.validate(data, { abortEarly: false })
 
     return next()
   }
   catch (error) {
-    const { path, message } = error
-    const responseError = { field: path, message }
+    const errors = error.inner
 
-    return res.status(400).json(responseError)
+    const fieldErrors = errors.map(error => {
+      const { path: field, message } = error
+
+      return {field, message}
+    })
+
+    return res.status(400).json(fieldErrors)
   }
 
 }

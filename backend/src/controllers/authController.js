@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt'
 import userModel from '../models/userModel.js'
 
 const register = async (req, res) => {
@@ -5,8 +6,13 @@ const register = async (req, res) => {
     const { email, username, password } = req.body
 
     const trimmedUsername = username.trim()
+    const hashedPassword = await bcrypt.hash(password, 10)
 
-    await userModel.create({email, username: trimmedUsername, password})
+    await userModel.create({
+      email, 
+      username: trimmedUsername, 
+      password: hashedPassword
+    })
     return res.sendStatus(201)
   }
   catch (e) {

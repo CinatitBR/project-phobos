@@ -19,7 +19,7 @@ const registerSchema = yup.object({
     async email => !(await emailExists(email))
   ),
   username: yup.string().trim().max(255).required(),
-  password: yup.string().trim().max(255).required()
+  password: yup.string().max(255).required()
 })
 
 const registerValidation = createValidation(registerSchema)

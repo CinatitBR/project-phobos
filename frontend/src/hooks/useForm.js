@@ -20,12 +20,8 @@ const useForm = (initialValues) => {
 
     setTouched({
       ...touched,
-      [name]: true
+      [name]: false
     })
-  }
-
-  const handleBlur = async (e) => {
-    const { name, value } = e.target
 
     const error = await validate.register
       .validateOne(name, value)
@@ -36,6 +32,15 @@ const useForm = (initialValues) => {
     }
 
     setErrors({...errors, [name]: null})
+  }
+
+  const handleBlur = async (e) => {
+    const { name } = e.target
+
+    setTouched({
+      ...touched,
+      [name]: true
+    })
   }
 
   return { 

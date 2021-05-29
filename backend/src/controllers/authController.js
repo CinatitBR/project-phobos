@@ -4,7 +4,9 @@ const register = async (req, res) => {
   try {
     const { email, username, password } = req.body
 
-    await userModel.create({email, username, password})
+    const trimmedUsername = username.trim()
+
+    await userModel.create({email, username: trimmedUsername, password})
     return res.sendStatus(201)
   }
   catch (e) {

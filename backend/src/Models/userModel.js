@@ -23,7 +23,8 @@ const findByEmail = async (email) => {
 
     const [rows, fields] = await db.query(sql, email)
 
-    return rows
+    const user = rows[0]
+    return user
   }
   catch (e) {
     throw new Error(e)

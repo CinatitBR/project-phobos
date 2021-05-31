@@ -1,16 +1,15 @@
 import axios from 'axios'
 import bcrypt from 'bcrypt'
 
-const getInnerErrors = (validationError) => {
-  const errors = {}
-
-  for (const error of validationError.inner) {
-    const { path: field, message } = error
-
-    errors[field] = message
+const handleValidationError = async validateExpression => {
+  try {
+    await validateExpression
   }
+  catch (validationError) {
+    const { message: errorMessage } = validationError
 
-  return errors
+    return errorMessage
+  }
 }
 
 const emailExists = async email => {
@@ -25,7 +24,6 @@ const emailExists = async email => {
 }
 
 const isPasswordCorrect = async (password, emailRelated) => {
-  console.log(emailRelated)
   const response = await axios.post(
     'http://localhost:5000/user/find-by-email', 
     { email: emailRelated }
@@ -38,4 +36,8 @@ const isPasswordCorrect = async (password, emailRelated) => {
   return match
 }
 
-export { getInnerErrors, emailExists, isPasswordCorrect }
+export { 
+  handleValidationError,
+  emailExists, 
+  isPasswordCorrect,
+}

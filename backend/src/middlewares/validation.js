@@ -7,29 +7,9 @@ const register = async (req, res, next) => {
   const { email, username, password } = req.body
   const errors = {}
 
-  try {
-    await registerValidation.email().validate(email)
-  } 
-  catch (validationError) {
-    const { message } = validationError
-    errors.email = message
-  }
-
-  try {
-    await registerValidation.username().validate(username)
-  } 
-  catch (validationError) {
-    const { message } = validationError
-    errors.username = message
-  }
-
-  try {
-    await registerValidation.username().validate(password)
-  } 
-  catch (validationError) {
-    const { message } = validationError
-    errors.password = message
-  }
+  errors.email = await registerValidation.email(email)
+  errors.username = await registerValidation.username(username)
+  errors.password = await registerValidation.password(password)
 
   if (!isEmpty(errors)) {
     return res.status(400).json(errors)
@@ -42,23 +22,13 @@ const login = async (req, res, next) => {
   const { email, password } = req.body
   const errors = {}
 
-  try {
-    await loginValidation.email(email)
-  } 
-  catch (validationError) {
-    const { message } = validationError
-    errors.email = message
+  errors.email = await loginValidation.email(email)
 
+  if (errors.email) {
     return res.status(400).json(errors)
   }
 
-  try {
-    await loginValidation.password(email, password)
-  } 
-  catch (validationError) {
-    const { message } = validationError
-    errors.username = message
-  }
+  errors.password = await loginValidation.password(email, password)
 
   if (!isEmpty(errors)) {
     return res.status(400).json(errors)

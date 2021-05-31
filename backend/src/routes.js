@@ -20,5 +20,6 @@ router.post('/pdf/upload', handleUpload('pdf'), pdfController.upload)
 
 router.post('/auth/register', validationMiddleware({schema: 'register'}), authController.register)
 router.post('/auth/login', checkCredentials, authController.login)
+router.get('/auth/refresh-token', authController.refreshToken)
 
 export default router

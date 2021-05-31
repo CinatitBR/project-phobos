@@ -29,36 +29,36 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email } = req.body
-    const { id, username } = await userModel.findByEmail(email)
+    const { id: userId, username } = await userModel.findByEmail(email)
 
-    const payload = {id, username}
+    const user = {userId, username}
     const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
     const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET
 
     // Generate tokens
     const accessToken = jwt.sign(
-      payload, 
+      {}, 
       accessTokenSecret, 
       {expiresIn: '20m'}
     )
     const refreshToken = jwt.sign(
-      payload,
+      {},
       refreshTokenSecret,
       {expiresIn: '1y'}
     )
 
     // Store refresh token in database
-    await refreshTokenModel.create(id, refreshToken)
+    await refreshTokenModel.create(userId, refreshToken)
 
     // Set the refresh token in a HttpOnly cookie
     // cookie expires in 1 year
-    res.cookie('refresh_token', refreshToken, { 
+    res.cookie('refreshToken', refreshToken, { 
       maxAge: 31536000000,
       httpOnly: true
     })
 
-    // Send access token
-    return res.json({accessToken})
+    // Send access token and user data
+    return res.json({ accessToken, user })
   }
   catch (e) {
     console.log(e)
@@ -69,6 +69,40 @@ const login = async (req, res) => {
   }
 }
 
-const authController = { register, login }
+const refreshToken = async (req, res) => {
+  const { refreshToken } = req.cookies
+  const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET
+
+  if (!refreshToken) {
+    return res.sendStatus(401)
+  }
+
+  // Check if token exists in database
+  const refreshTokenExists = await refreshTokenModel.find(refreshToken)
+
+  if (!refreshTokenExists) {
+    return res.sendStatus(403)
+  }
+
+  // Check if token is valid
+  try {
+    jwt.verify(refreshToken, refreshTokenSecret)
+  }
+  catch (e) {
+    return res.sendStatus(403)
+  }
+
+  // Create new access token
+  const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
+  const accessToken = jwt.sign(
+    {}, 
+    accessTokenSecret, 
+    {expiresIn: '20m'}
+  )
+
+  return res.json({accessToken})
+}
+
+const authController = { register, login, refreshToken }
 
 export default authController

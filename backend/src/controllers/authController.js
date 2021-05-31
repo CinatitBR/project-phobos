@@ -74,7 +74,7 @@ const logout = async (req, res) => {
   const authHeader = req.headers['authorization']
 
   if (!authHeader) {
-    res.sendStatus(401)
+    return res.sendStatus(401)
   }
 
   // Check if access token is valid

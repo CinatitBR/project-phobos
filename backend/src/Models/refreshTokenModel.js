@@ -14,6 +14,20 @@ const create = async (userId, refreshToken) => {
   }
 }
 
+const destroy = async (refreshToken) => {
+  try {
+    const query = `
+      DELETE FROM refresh_token 
+      WHERE refresh_token = ?
+    `
+
+    await db.query(query, refreshToken)
+  }
+  catch (e) {
+    throw new Error(e)
+  }
+}
+
 const find = async (refreshToken) => {
   try {
     const query = `
@@ -30,6 +44,6 @@ const find = async (refreshToken) => {
   }
 }
 
-const refreshTokenModel = { create, find }
+const refreshTokenModel = { create, destroy, find }
 
 export default refreshTokenModel

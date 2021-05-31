@@ -9,7 +9,7 @@ const emailExists = async (email) => {
 
   const user = response.data
 
-  return user.length > 0
+  return user
 }
 
 const registerSchema = yup.object({

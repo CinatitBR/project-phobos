@@ -14,6 +14,22 @@ const create = async (userId, refreshToken) => {
   }
 }
 
-const refreshTokenModel = { create }
+const find = async (refreshToken) => {
+  try {
+    const query = `
+      SELECT * FROM refresh_token
+      WHERE refresh_token = ?
+    `
+
+    const [rows, fields] = await db.query(query, refreshToken)
+
+    return rows[0]
+  }
+  catch (e) {
+    throw new Error(e)
+  }
+}
+
+const refreshTokenModel = { create, find }
 
 export default refreshTokenModel

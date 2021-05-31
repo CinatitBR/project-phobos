@@ -69,6 +69,31 @@ const login = async (req, res) => {
   }
 }
 
+const logout = async (req, res) => {
+  const { refreshToken } = req.cookies
+  const authHeader = req.headers['authorization']
+
+  if (!authHeader) {
+    res.sendStatus(401)
+  }
+
+  // Check if access token is valid
+  const accessToken = authHeader.split('Bearer ')[1]
+  const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET 
+
+  try {
+    jwt.verify(accessToken, accessTokenSecret)
+  }
+  catch (e) {
+    return res.sendStatus(403)
+  }
+
+  // Remove refresh token from database
+  await refreshTokenModel.destroy(refreshToken)
+
+  res.sendStatus(200)
+}
+
 const refreshToken = async (req, res) => {
   const { refreshToken } = req.cookies
   const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET
@@ -103,6 +128,6 @@ const refreshToken = async (req, res) => {
   return res.json({accessToken})
 }
 
-const authController = { register, login, refreshToken }
+const authController = { register, login, logout, refreshToken }
 
 export default authController

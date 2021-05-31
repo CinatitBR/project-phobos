@@ -1,27 +1,18 @@
 import * as yup from 'yup'
-import axios from 'axios'
-import createValidation from '../utils/createValidation.js'
+import { emailExists } from '../utils/helper.js'
 
-const emailExists = async (email) => {
-  const response = await axios.post('http://localhost:5000/user/find-by-email', {
-    email: email
-  })
-
-  const user = response.data
-
-  return user
-}
-
-const registerSchema = yup.object({
-  email: yup.string().email().required().test(
+const email = () => yup
+  .string()
+  .email()
+  .required()
+  .test(
     'email-exists',
     'This email already exists',
     async email => !(await emailExists(email))
-  ),
-  username: yup.string().trim().max(255).required(),
-  password: yup.string().max(255).required()
-})
+  )
 
-const registerValidation = createValidation(registerSchema)
+const username = () => yup.string().trim().max(255).required()
+const password = () => yup.string().max(255).required()
 
+const registerValidation = { email, username, password }
 export default registerValidation

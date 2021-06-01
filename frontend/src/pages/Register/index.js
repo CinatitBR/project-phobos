@@ -3,6 +3,9 @@ import FormAuthWrapper from '../../components/FormAuthWrapper'
 import IlustrationWrapper from '../../components/IlustrationWrapper'
 import RegisterForm from '../../components/RegisterForm'
 
+import Modal from '../../components/Modal'
+import Portal from '../../components/Portal'
+
 import planets from '../../assets/planets.svg'
 import phoebeAstronaut from '../../assets/phoebe-astronaut.svg'
 
@@ -23,6 +26,10 @@ const Register = () => {
 
       </IlustrationWrapper>
 
+
+      <Portal> 
+        <Modal />
+      </Portal>
     </SplitScreen>
   )
 }

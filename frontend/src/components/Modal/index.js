@@ -1,4 +1,4 @@
-import FormTitle from '../FormTitle'
+import Title from '../Title'
 
 import './index.css'
 
@@ -7,8 +7,8 @@ const Modal = () => {
     <div className="overlay">
 
       <div className="modal">
-        <FormTitle>Account created</FormTitle>
-        <FormTitle>successfully!</FormTitle>
+        <Title>Account created</Title>
+        <Title>successfully!</Title>
       </div>
 
     </div>

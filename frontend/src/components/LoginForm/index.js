@@ -1,4 +1,4 @@
-import FormTitle from '../FormTitle'
+import Title from '../Title'
 import FormFields from '../FormFields'
 import FormField from '../FormField'
 import SubmitButton from '../SubmitButton'
@@ -9,8 +9,8 @@ const LoginForm = () => {
   return (
     <form id="loginForm">
       <header>
-        <FormTitle>Welcome again!</FormTitle>
-        <FormTitle small>We are happy you came back :)</FormTitle>
+        <Title>Welcome again!</Title>
+        <Title fontSize="30px">We are happy you came back :)</Title>
       </header>
 
       <FormFields>

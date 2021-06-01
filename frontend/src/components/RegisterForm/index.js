@@ -1,7 +1,7 @@
 import useForm from '../../hooks/useForm'
 import registerValidation from '../../../../shared/src/validations/registerValidation'
 
-import FormTitle from '../FormTitle'
+import Title from '../Title'
 import FormFields from '../FormFields'
 import FormField from '../FormField'
 import SubmitButton from '../SubmitButton'
@@ -28,8 +28,8 @@ const RegisterForm = () => {
   return (
     <form id="registerForm" onSubmit={handleSubmit}>
       <header>
-        <FormTitle small>Board this</FormTitle>
-        <FormTitle>Spacecraft!</FormTitle>
+        <Title>Board this</Title>
+        <Title fontSize="45px">Spacecraft!</Title>
       </header>
 
       <FormFields>

@@ -2,7 +2,7 @@
   "type": "module",
   "dependencies": {
     "axios": "^0.21.1",
-    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "yup": "^0.32.9"
   }
 }

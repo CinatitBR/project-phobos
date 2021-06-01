@@ -1,5 +1,5 @@
 import axios from 'axios'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 
 const handleValidationError = async validateExpression => {
   try {

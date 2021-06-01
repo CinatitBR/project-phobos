@@ -9,10 +9,6 @@ import userController from './controllers/userController.js'
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  res.send('Hello')
-})
-
 router.post('/user/find-by-email', userController.findByEmail)
 
 router.post('/pdf/upload', handleUpload('pdf'), pdfController.upload)

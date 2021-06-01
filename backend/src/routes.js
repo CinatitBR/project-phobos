@@ -1,6 +1,6 @@
 import express from 'express'
 
-import handleUpload from './middlewares/handleUpload.js'
+import upload from './middlewares/upload.js'
 import validation from './middlewares/validation.js'
 
 import pdfController from './controllers/pdfController.js'
@@ -11,7 +11,7 @@ const router = express.Router()
 
 router.post('/user/find-by-email', userController.findByEmail)
 
-router.post('/pdf/upload', handleUpload('pdf'), pdfController.upload)
+router.post('/pdf/upload', upload('pdf'), pdfController.upload)
 
 router.post('/auth/register', validation.register, authController.register)
 router.post('/auth/login', validation.login, authController.login)

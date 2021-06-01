@@ -1,4 +1,5 @@
 import useForm from '../../hooks/useForm'
+import registerValidation from '../../../../shared/src/validations/registerValidation'
 
 import FormTitle from '../FormTitle'
 import FormFields from '../FormFields'
@@ -6,6 +7,12 @@ import FormField from '../FormField'
 import SubmitButton from '../SubmitButton'
 import FormSuggestion from '../FormSuggestion'
 import FormLink from '../FormLink'
+
+const initialValues = {
+  email: '', 
+  username: '', 
+  password: ''
+}
 
 const RegisterForm = () => {
 
@@ -16,11 +23,7 @@ const RegisterForm = () => {
     handleSubmit, 
     handleChange, 
     handleBlur  
-  } = useForm({
-    email: '', 
-    username: '', 
-    password: ''
-  })
+  } = useForm({initialValues, validate: registerValidation})
 
   return (
     <form id="registerForm" onSubmit={handleSubmit}>

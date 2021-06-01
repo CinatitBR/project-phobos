@@ -1,7 +1,7 @@
 import Title from '../Title'
 import FormFields from '../FormFields'
 import FormField from '../FormField'
-import SubmitButton from '../SubmitButton'
+import Button from '../Button'
 import FormSuggestion from '../FormSuggestion'
 import FormLink from '../FormLink'
 
@@ -18,7 +18,7 @@ const LoginForm = () => {
         <FormField label="Password" type="password" />
       </FormFields>
 
-      <SubmitButton>Login</SubmitButton>
+      <Button>Login</Button>
       <FormSuggestion>
         Need an account? <FormLink href="/register">Create Account</FormLink>
       </FormSuggestion>

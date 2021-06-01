@@ -4,7 +4,7 @@ import registerValidation from '../../../../shared/src/validations/registerValid
 import Title from '../Title'
 import FormFields from '../FormFields'
 import FormField from '../FormField'
-import SubmitButton from '../SubmitButton'
+import Button from '../Button'
 import FormSuggestion from '../FormSuggestion'
 import FormLink from '../FormLink'
 
@@ -67,7 +67,7 @@ const RegisterForm = () => {
         />
       </FormFields>
 
-      <SubmitButton>Create account</SubmitButton>
+      <Button>Create account</Button>
       <FormSuggestion>
         Already on board? <FormLink href="/login">Login</FormLink>
       </FormSuggestion>

@@ -7,8 +7,10 @@ const Modal = () => {
     <div className="overlay">
 
       <div className="modal">
-        <Title>Account created</Title>
-        <Title>successfully!</Title>
+        <header>
+          <Title>Account created</Title>
+          <Title>successfully!</Title>
+        </header>
       </div>
 
     </div>

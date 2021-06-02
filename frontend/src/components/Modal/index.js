@@ -4,7 +4,10 @@ import { FaSignInAlt } from 'react-icons/fa'
 
 import './index.css'
 
-const Modal = () => {
+const Modal = ({ isOpen }) => {
+
+  if (!isOpen) return null
+
   return (
     <div className="overlay">
 

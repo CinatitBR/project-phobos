@@ -1,12 +1,24 @@
 import { useState } from 'react'
 
-const useForm = ({ initialValues, validate }) => {
+const isErrorsEmpty = errors => {
+  for (const [key, value] of Object.entries(errors)) {
+    if (value) return false
+  }
+
+  return true
+} 
+
+const useForm = ({ initialValues, validate, onSubmit }) => {
   const [values, setValues] = useState(initialValues)
   const [touched, setTouched] = useState({})
   const [errors, setErrors] = useState({})
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    if (!isErrorsEmpty(errors)) return
+
+    onSubmit()
   }
 
   const handleChange = async (e) => {

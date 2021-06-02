@@ -16,8 +16,7 @@ const initialValues = {
   password: ''
 }
 
-const RegisterForm = () => {
-
+const RegisterForm = ({ onShowModal }) => {
   const { 
     values,
     touched,
@@ -25,7 +24,11 @@ const RegisterForm = () => {
     handleSubmit, 
     handleChange, 
     handleBlur  
-  } = useForm({initialValues, validate: registerValidation})
+  } = useForm({
+    initialValues, 
+    validate: registerValidation,
+    onSubmit: () => onShowModal()
+  })
 
   return (
     <form id="registerForm" onSubmit={handleSubmit}>

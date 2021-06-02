@@ -1,12 +1,18 @@
+import classNames from 'classnames'
+
 import './index.css'
 
-const Button = ({ children, fullWidth, ...rest }) => {
-  const className = fullWidth 
-    ? {className: 'fullWidth'}
-    : undefined
+const Button = ({ children, fullWidth, className, ...rest }) => {
+  const classNameAttribute = classNames(
+    { fullWidth },
+    className
+  )
 
   return (
-    <button {...className} {...rest}>
+    <button 
+      className={classNameAttribute}
+      {...rest}
+    >
       {children}
     </button>
   )

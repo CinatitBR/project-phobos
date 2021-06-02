@@ -13,7 +13,7 @@ const Modal = () => {
           <Title>Account created</Title>
           <Title>successfully!</Title>
         </header>
-        
+
         <IconButton 
           finalIcon={<FaSignInAlt />}
         >

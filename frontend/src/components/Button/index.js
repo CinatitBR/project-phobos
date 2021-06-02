@@ -1,8 +1,8 @@
 import './index.css'
 
-const Button = ({ children, type, ...rest }) => {
+const Button = ({ children, ...rest }) => {
   return (
-    <button type={type} style={{...rest}}>{children}</button>
+    <button {...rest}>{children}</button>
   )
 }
 

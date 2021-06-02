@@ -1,6 +1,5 @@
 button {
   margin-top: 30px;
-  width: 100%;
 
   font-size: 25px;
   color: var(--white);
@@ -10,4 +9,8 @@ button {
   text-align: center;
   border: none;
   cursor: pointer;
+}
+
+button.fullWidth {
+  width: 100%;
 }

@@ -1,8 +1,14 @@
 import './index.css'
 
-const Button = ({ children, ...rest }) => {
+const Button = ({ children, fullWidth, ...rest }) => {
+  const className = fullWidth 
+    ? {className: 'fullWidth'}
+    : undefined
+
   return (
-    <button {...rest}>{children}</button>
+    <button {...className} {...rest}>
+      {children}
+    </button>
   )
 }
 

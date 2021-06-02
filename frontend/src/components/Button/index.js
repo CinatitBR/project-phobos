@@ -5,16 +5,18 @@ import './index.css'
 const Button = ({ 
   children, 
   fullWidth, 
+  disabled,
   className, 
   ...rest 
 }) => {
   const classNameAttribute = classNames(
-    { fullWidth },
+    { fullWidth, disabled },
     className
   )
 
   return (
     <button 
+      disabled
       className={classNameAttribute}
       {...rest}
     >

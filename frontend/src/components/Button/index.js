@@ -16,7 +16,7 @@ const Button = ({
 
   return (
     <button 
-      disabled
+      disabled={disabled}
       className={classNameAttribute}
       {...rest}
     >

@@ -8,6 +8,8 @@ import Button from '../Button'
 import FormSuggestion from '../FormSuggestion'
 import FormLink from '../FormLink'
 
+import './index.css'
+
 const initialValues = {
   email: '', 
   username: '', 
@@ -67,10 +69,12 @@ const RegisterForm = () => {
         />
       </FormFields>
 
-      <Button>Create account</Button>
-      <FormSuggestion>
-        Already on board? <FormLink href="/login">Login</FormLink>
-      </FormSuggestion>
+      <div className="formFooter">
+        <Button fullWidth>Create account</Button>
+        <FormSuggestion>
+          Already on board? <FormLink href="/login">Login</FormLink>
+        </FormSuggestion>
+      </div>
     </form>
   )
 }

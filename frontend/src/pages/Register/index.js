@@ -27,9 +27,9 @@ const Register = () => {
       </IlustrationWrapper>
 
 
-      <Portal> 
+      {/* <Portal> 
         <Modal />
-      </Portal>
+      </Portal> */}
     </SplitScreen>
   )
 }

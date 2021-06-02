@@ -14,11 +14,13 @@ import './index.css'
 const Register = () => {
   const [showModal, setShowModal] = useState(false)
 
+  const toggleModal = () => setShowModal(!showModal)
+
   return (
     <SplitScreen>
 
       <FormAuthWrapper>
-        <RegisterForm onShowModal={() => setShowModal(true)} />
+        <RegisterForm onShowModal={toggleModal} />
       </FormAuthWrapper>
 
       <IlustrationWrapper>
@@ -26,9 +28,8 @@ const Register = () => {
         <img id="phoebeAstronaut" src={phoebeAstronaut} alt="Phoebe astronaut" />
       </IlustrationWrapper>
 
-
       <Portal> 
-        <Modal isOpen={showModal} />
+        <Modal show={showModal} onClose={toggleModal} />
       </Portal>
     </SplitScreen>
   )

@@ -15,9 +15,8 @@ const Modal = () => {
         </header>
 
         <IconButton 
-          finalIcon={<FaSignInAlt />}
-        >
-          Testando
+          finalIcon={<FaSignInAlt />}>
+          Log in to account
         </IconButton>
       </div>
 

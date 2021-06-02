@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import Button from '../Button'
 
 import './index.css'
@@ -6,10 +7,16 @@ const IconButton = ({
   children, 
   startIcon, 
   finalIcon,
+  className,
   ...rest 
 }) => {
+  const classNameAttribute = classNames(
+    'iconButton',
+    className
+  )
+
   return (
-    <Button className="iconButton" {...rest}>
+    <Button className={classNameAttribute} {...rest}>
       {startIcon && startIcon}
 
       {children}

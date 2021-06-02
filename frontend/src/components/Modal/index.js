@@ -1,26 +1,35 @@
 import Title from '../Title'
 import IconButton from '../IconButton'
-import { FaSignInAlt } from 'react-icons/fa'
+import { FaSignInAlt, FaTimes } from 'react-icons/fa'
 
 import './index.css'
 
-const Modal = ({ isOpen }) => {
+const Modal = ({ show, onClose }) => {
 
-  if (!isOpen) return null
+  if (!show) return null
 
   return (
-    <div className="overlay">
+    <div className="overlay" onClick={onClose}>
 
       <div className="modal">
-        <header>
-          <Title>Account created</Title>
-          <Title>successfully!</Title>
-        </header>
+        <FaTimes 
+          className="closeButton" 
+          size="25px" 
+          onClick={onClose}
+        />
 
-        <IconButton 
-          finalIcon={<FaSignInAlt />}>
-          Log in to account
-        </IconButton>
+        <div className="wrapper">
+          <header>
+            <Title>Account created</Title>
+            <Title>successfully!</Title>
+          </header>
+
+          <IconButton 
+            finalIcon={<FaSignInAlt />}>
+            Log in to account
+          </IconButton>
+        </div>
+
       </div>
 
     </div>

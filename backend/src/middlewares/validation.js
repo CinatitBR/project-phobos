@@ -25,16 +25,11 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   const { email, password } = req.body
-  const errors = {}
 
-  errors.email = await loginValidation.email(email)
+  // Get errors
+  const errors = await loginValidation({email, password})
 
-  if (errors.email) {
-    return res.status(400).json(errors)
-  }
-
-  errors.password = await loginValidation.password(email, password)
-
+  // Check if there are errors
   if (!isObjectEmpty(errors)) {
     return res.status(400).json(errors)
   }

@@ -32,13 +32,12 @@ const useForm = ({
 
     const errors = await validate(values)
 
-    setErrors({ ...errors })
+    setErrors(errors)
     setTouched(touchAllFields(values))
 
     if (!isObjectEmpty(errors)) return
 
-    onSubmit()
-    console.log(values)
+    onSubmit(values, setErrors)
   }
 
   const handleChange = e => {

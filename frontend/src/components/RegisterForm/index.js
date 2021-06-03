@@ -1,5 +1,6 @@
 import useForm from '../../hooks/useForm'
 import registerValidation from '../../../../shared/src/validations/registerValidation'
+import AuthAPI from '../../apis/AuthAPI'
 
 import Title from '../Title'
 import FormFields from '../FormFields'
@@ -17,21 +18,23 @@ const initialValues = {
 }
 
 const RegisterForm = ({ onShowModal }) => {
-  const { 
-    values,
-    touched,
-    errors,
-    handleSubmit, 
-    handleChange, 
-    handleBlur  
-  } = useForm({
+  const form = useForm({
     initialValues, 
     validate: registerValidation,
-    onSubmit: () => onShowModal()
+    onSubmit: async (values, setErrors) => {
+      try {
+        await AuthAPI.register(values)
+
+        onShowModal()
+      }
+      catch (error) {
+        setErrors(error.response.data)
+      }
+    }
   })
 
   return (
-    <form id="registerForm" onSubmit={handleSubmit}>
+    <form id="registerForm" onSubmit={form.handleSubmit}>
       <header>
         <Title>Board this</Title>
         <Title fontSize="45px">Spacecraft!</Title>
@@ -41,34 +44,34 @@ const RegisterForm = ({ onShowModal }) => {
         <FormField 
           label="Email" 
           type="email" 
-          value={values.email} 
+          value={form.values.email} 
           name="email" 
-          onChange={handleChange}
-          onBlur={handleBlur}
-          touched={touched.email}
-          error={errors.email}
+          onChange={form.handleChange}
+          onBlur={form.handleBlur}
+          touched={form.touched.email}
+          error={form.errors.email}
         />
 
         <FormField 
           label="Username"
           type="text" 
-          value={values.username} 
+          value={form.values.username} 
           name="username" 
-          onChange={handleChange}
-          onBlur={handleBlur}
-          touched={touched.username}
-          error={errors.username}
+          onChange={form.handleChange}
+          onBlur={form.handleBlur}
+          touched={form.touched.username}
+          error={form.errors.username}
         />
 
         <FormField 
           label="Password" 
           type="text" 
-          value={values.password} 
+          value={form.values.password} 
           name="password" 
-          onChange={handleChange}
-          onBlur={handleBlur}
-          touched={touched.password}
-          error={errors.password}
+          onChange={form.handleChange}
+          onBlur={form.handleBlur}
+          touched={form.touched.password}
+          error={form.errors.password}
         />
       </FormFields>
 

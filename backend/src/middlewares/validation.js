@@ -2,7 +2,7 @@ import registerValidation from '../../../shared/src/validations/registerValidati
 import loginValidation from '../../../shared/src/validations/loginValidation.js'
 
 const isObjectEmpty = obj => {
-  for (const [key, value] of Object.entries(obj)) {
+  for (const value of Object.values(obj)) {
     if (value) return false
   }
 
@@ -11,12 +11,11 @@ const isObjectEmpty = obj => {
 
 const register = async (req, res, next) => {
   const { email, username, password } = req.body
-  const errors = {}
 
-  errors.email = await registerValidation.email(email)
-  errors.username = await registerValidation.username(username)
-  errors.password = await registerValidation.password(password)
+  // Get errors
+  const errors = await registerValidation({email, username, password})
 
+  // Check if there are errors
   if (!isObjectEmpty(errors)) {
     return res.status(400).json(errors)
   }

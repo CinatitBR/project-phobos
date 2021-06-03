@@ -42,9 +42,14 @@ const isPasswordCorrect = async (password, emailRelated) => {
     'http://localhost:5000/user/find-by-email', 
     { email: emailRelated }
   )
+  const user = response.data
+  
+  // If user doesn't exist, 
+  // finish password validation with success
+  if (!user) return true
 
-  const {password: hashedPassword} = response.data
-
+  // Get hashed password and compare
+  const {password: hashedPassword} = user
   const match = await bcrypt.compare(password, hashedPassword)
 
   return match

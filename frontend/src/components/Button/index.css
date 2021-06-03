@@ -7,6 +7,12 @@ button {
   text-align: center;
   border: none;
   cursor: pointer;
+
+  transition: filter 350ms;
+}
+
+button:hover {
+  filter: brightness(90%);
 }
 
 button.fullWidth {

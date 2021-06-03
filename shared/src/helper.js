@@ -1,14 +1,26 @@
 import axios from 'axios'
 import bcrypt from 'bcryptjs'
 
-const handleValidationError = async validateExpression => {
+const getInnerErrors = (validationError) => {
+  const errors = {}
+
+  for (const error of validationError.inner) {
+    const { path: field, message } =  error
+    
+    errors[field] = message
+  }
+
+  return errors
+}
+
+const handleValidationError = async validationExpression => {
   try {
-    await validateExpression
+    await validationExpression
   }
   catch (validationError) {
-    const { message: errorMessage } = validationError
+    const errors = getInnerErrors(validationError)
 
-    return errorMessage
+    return errors
   }
 }
 
@@ -37,7 +49,8 @@ const isPasswordCorrect = async (password, emailRelated) => {
 }
 
 export { 
+  getInnerErrors,
   handleValidationError,
   emailExists, 
-  isPasswordCorrect,
+  isPasswordCorrect
 }

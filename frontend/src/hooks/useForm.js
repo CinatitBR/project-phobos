@@ -1,49 +1,67 @@
 import { useState } from 'react'
 
-const isErrorsEmpty = errors => {
-  for (const [key, value] of Object.entries(errors)) {
+const isObjectEmpty = object => {
+  for (const value of Object.values(object)) {
     if (value) return false
   }
 
   return true
 } 
 
-const useForm = ({ initialValues, validate, onSubmit }) => {
+const touchAllFields = values => {
+  const newTouched = {}
+
+  for (const key of Object.keys(values)) {
+    newTouched[key] = true
+  }
+
+  return newTouched
+}
+
+const useForm = ({ 
+  initialValues, 
+  validate, 
+  onSubmit 
+}) => {
   const [values, setValues] = useState(initialValues)
   const [touched, setTouched] = useState({})
   const [errors, setErrors] = useState({})
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async e => {
     e.preventDefault()
 
-    if (!isErrorsEmpty(errors)) return
+    const errors = await validate(values)
+
+    setErrors({ ...errors })
+    setTouched(touchAllFields(values))
+
+    if (!isObjectEmpty(errors)) return
 
     onSubmit()
   }
 
-  const handleChange = async (e) => {
+  const handleChange = e => {
     const {name, value} = e.target
-
-    setValues({
-      ...values,
-      [name]: value
-    })
 
     setTouched({
       ...touched,
       [name]: false
     })
 
-    const error = await validate[name](value)
-
-    setErrors({
-      ...errors,
-      [name]: error ? error : null
+    setValues({
+      ...values,
+      [name]: value
     })
   }
 
-  const handleBlur = async (e) => {
+  const handleBlur = async e => {
     const { name } = e.target
+    const newErrors = await validate(values)
+
+    setErrors({ 
+      ...errors,
+      [name]: newErrors[name]
+    })
 
     setTouched({
       ...touched,
@@ -57,7 +75,7 @@ const useForm = ({ initialValues, validate, onSubmit }) => {
     errors,
     handleSubmit, 
     handleChange, 
-    handleBlur 
+    handleBlur
   }
 }
 

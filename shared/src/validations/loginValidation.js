@@ -1,5 +1,5 @@
 import * as yup from 'yup'
-import { handleValidationError, emailExists, isPasswordCorrect } from '../utils/helper.js'
+import { handleValidationError, emailExists, isPasswordCorrect } from '../helper.js'
 
 const email = email => handleValidationError(
   yup

@@ -38,6 +38,7 @@ const useForm = ({
     if (!isObjectEmpty(errors)) return
 
     onSubmit()
+    console.log(values)
   }
 
   const handleChange = e => {

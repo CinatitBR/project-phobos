@@ -16,6 +16,8 @@ const getInnerErrors = (validationError) => {
 const handleValidationError = async validationExpression => {
   try {
     await validationExpression
+
+    return {}
   }
   catch (validationError) {
     const errors = getInnerErrors(validationError)

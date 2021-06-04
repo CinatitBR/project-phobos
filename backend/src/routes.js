@@ -17,5 +17,6 @@ router.post('/auth/register', validation.register, authController.register)
 router.post('/auth/login', validation.login, authController.login)
 router.get('/auth/logout', authController.logout)
 router.get('/auth/refresh-token', authController.refreshToken)
+router.get('/auth/is-authenticated', authController.isAuthenticated)
 
 export default router

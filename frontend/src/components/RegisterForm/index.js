@@ -1,6 +1,6 @@
 import useForm from '../../hooks/useForm'
 import registerValidation from '../../../../shared/src/validations/registerValidation'
-import AuthAPI from '../../apis/AuthAPI'
+import authAPI from '../../apis/authAPI'
 
 import Title from '../Title'
 import FormFields from '../FormFields'
@@ -23,7 +23,7 @@ const RegisterForm = ({ onShowModal }) => {
     validate: registerValidation,
     onSubmit: async (values, setErrors) => {
       try {
-        await AuthAPI.register(values)
+        await authAPI.register(values)
 
         onShowModal()
       }

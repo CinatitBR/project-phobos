@@ -4,20 +4,29 @@ const axiosInstance = axios.create({
   baseURL: 'http://localhost:5000'
 })
 
-const register = registerData => 
+const setAuthHeader = value => 
   axiosInstance
-    .post(
-      '/auth/register',
-      registerData
-    )
+    .defaults
+    .headers
+    .common['Authorization'] = value 
 
-const login = loginData => 
+
+const register = ({ email, username, password }) => 
   axiosInstance
-    .post(
-      '/auth/login',
-      loginData
-    )
+    .request({
+      method: 'post',
+      url: '/auth/register',
+      data: { email, username, password }
+    })
 
-const AuthAPI = { register, login }
+const login = ({ email, password }) => 
+  axiosInstance
+    .request({
+      method: 'post',
+      url: '/auth/login',
+      data: { email, password }
+    })
 
-export default AuthAPI
+const authAPI = { setAuthHeader, register, login }
+
+export default authAPI

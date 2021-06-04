@@ -11,6 +11,13 @@ const register = registerData =>
       registerData
     )
 
-const AuthAPI = { register }
+const login = loginData => 
+  axiosInstance
+    .post(
+      '/auth/login',
+      loginData
+    )
+
+const AuthAPI = { register, login }
 
 export default AuthAPI

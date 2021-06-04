@@ -5,12 +5,14 @@ import Button from '../Button'
 import FormSuggestion from '../FormSuggestion'
 import FormLink from '../FormLink'
 
+import './index.css'
+
 const LoginForm = () => {
   return (
     <form id="loginForm">
       <header>
-        <Title>Welcome again!</Title>
-        <Title fontSize="30px">We are happy you came back :)</Title>
+        <Title fontSize="45px">Welcome again!</Title>
+        <Title fontSize="20px">We are happy you came back :)</Title>
       </header>
 
       <FormFields>
@@ -18,10 +20,13 @@ const LoginForm = () => {
         <FormField label="Password" type="password" />
       </FormFields>
 
-      <Button>Login</Button>
-      <FormSuggestion>
-        Need an account? <FormLink href="/register">Create Account</FormLink>
-      </FormSuggestion>
+      <div id="formFooter">
+        <Button fullWidth>Login</Button>
+
+        <FormSuggestion>
+          Need an account? <FormLink href="/register">Create Account</FormLink>
+        </FormSuggestion>
+      </div>
     </form>
   )
 }

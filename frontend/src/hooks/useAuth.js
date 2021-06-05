@@ -1,5 +1,5 @@
 import { useContext, createContext } from "react"
-import { useProvideAuth } from './useProvideAuth'
+import useProvideAuth from './useProvideAuth'
 
 const authContext = createContext()
 

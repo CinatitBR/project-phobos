@@ -10,7 +10,6 @@ const setAuthHeader = value =>
     .headers
     .common['Authorization'] = value 
 
-
 const register = ({ email, username, password }) => 
   axiosInstance
     .request({
@@ -27,6 +26,13 @@ const login = ({ email, password }) =>
       data: { email, password }
     })
 
-const authAPI = { setAuthHeader, register, login }
+const isAuthenticated = () =>
+  axiosInstance 
+    .request({
+      method: 'get',
+      url: '/auth/is-authenticated',
+    })
+
+const authAPI = { setAuthHeader, register, login, isAuthenticated }
 
 export default authAPI

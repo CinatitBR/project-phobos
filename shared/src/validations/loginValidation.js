@@ -7,11 +7,11 @@ const loginValidation = loginData => handleValidationError(
       .string()
       .email()
       .required()
-      .test(
-        'email-not-registered',
-        'This email has not been registered yet',
-        async email => await emailExists(email)
-      ),
+      .test({
+        name: 'email-not-registered',
+        message: 'This email has not been registered yet',
+        test: async email => await emailExists(email)
+      }),
 
     password: yup
       .string()

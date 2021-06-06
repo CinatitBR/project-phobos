@@ -10,13 +10,11 @@ import Login from './pages/Login'
 import './global.css'
 
 // A wrapper on the Route component that will render children...
-// ... only if user is logged in, otherwise will ... 
-// ... redirect to another route. 
+// ... only if user is logged in, otherwise will redirect to ...
+// ... another route. 
 const PrivateRoute = ({ children, ...rest }) => {
   const auth = useAuth()
   const location = useLocation()
-
-  console.log(auth)
 
   return (
     <Route {...rest}>

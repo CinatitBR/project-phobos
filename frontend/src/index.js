@@ -39,7 +39,7 @@ ReactDOM.render(
       <ProvideAuth>
         <Switch>
           
-          <PrivateRoute exact path="/protected">
+          <PrivateRoute exact path="/">
             <ProtectedPage />
           </PrivateRoute>
 

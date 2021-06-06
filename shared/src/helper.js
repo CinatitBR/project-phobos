@@ -4,8 +4,6 @@ import bcrypt from 'bcryptjs'
 const getInnerErrors = (validationError) => {
   const errors = {}
   
-  console.log(validationError.inner)
-
   for (const error of validationError.inner) {
     const { path: field, message } =  error
     

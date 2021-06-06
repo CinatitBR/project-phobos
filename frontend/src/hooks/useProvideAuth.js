@@ -10,7 +10,9 @@ const useProvideAuth = () => {
       await authAPI.register({ email, username, password })
     }
     catch (error) {
-      return error.response.data
+      const errors = error.response.data
+      
+      throw errors
     }
   }
 
@@ -24,7 +26,9 @@ const useProvideAuth = () => {
       authAPI.setAuthHeader(`Bearer ${accessToken}`)
     }
     catch (error) {
-      return error.response.data
+      const errors = error.response.data
+
+      throw errors
     }
   }
 

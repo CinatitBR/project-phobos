@@ -3,11 +3,14 @@ import bcrypt from 'bcryptjs'
 
 const getInnerErrors = (validationError) => {
   const errors = {}
+  
+  console.log(validationError.inner)
 
   for (const error of validationError.inner) {
     const { path: field, message } =  error
     
-    errors[field] = message
+    // If a field has multiple errors, get only the first error
+    if (!errors[field]) errors[field] = message
   }
 
   return errors

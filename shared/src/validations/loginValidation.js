@@ -16,11 +16,12 @@ const loginValidation = loginData => handleValidationError(
     password: yup
       .string()
       .required()
-      .test(
-        'check-password',
-        'The password is incorrect',
-        async (password, context) => await isPasswordCorrect(password, context.parent.email)
-      )
+      .test({
+        name: 'check-password',
+        message: 'The password is incorrect',
+        test: async (password, context) => await 
+          isPasswordCorrect(password, context.parent.email)
+      })
   })
     .validate(loginData, { abortEarly: false })
 )

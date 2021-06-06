@@ -1,4 +1,6 @@
+import { useLocation, useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
+import useAuth from '../../hooks/useAuth'
 import loginValidation from '../../../../shared/src/validations/loginValidation'
 
 import Title from '../Title'
@@ -16,11 +18,25 @@ const initialValues = {
 }
 
 const LoginForm = () => {
+  const auth = useAuth()
+  const history = useHistory()
+  const location = useLocation()
+  const { from } = location.state || { from: '/' } 
+
   const form = useForm({
     initialValues,
+
     validate: loginValidation,
-    onSubmit: (values, setErrors) => {
-      console.log(values)
+
+    onSubmit: async (values, setErrors) => {
+      try {
+        await auth.login(values)
+
+        history.replace(from)
+      }
+      catch (errors) {
+        setErrors(errors)
+      }
     }
   })
 

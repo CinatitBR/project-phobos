@@ -27,6 +27,13 @@ const login = ({ email, password }) =>
       data: { email, password }
     })
 
+const refreshToken = () => 
+  axiosInstance
+    .request({
+      method: 'get',
+      url: '/auth/refresh-token',
+    })
+
 const isAuthenticated = () =>
   axiosInstance 
     .request({
@@ -34,6 +41,6 @@ const isAuthenticated = () =>
       url: '/auth/is-authenticated',
     })
 
-const authAPI = { setAuthHeader, register, login, isAuthenticated }
+const authAPI = { setAuthHeader, register, login, refreshToken, isAuthenticated }
 
 export default authAPI

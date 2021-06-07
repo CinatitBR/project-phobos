@@ -103,14 +103,15 @@ const refreshToken = async (req, res) => {
     return res.sendStatus(401)
   }
 
-  // Check if token exists in database
-  const refreshTokenExists = await refreshTokenModel.find(refreshToken)
+  // Check if refresh token exists in database.
+  // If refresh token exists in database, method will return a user. 
+  const user = await userModel.findByRefreshToken(refreshToken)
 
-  if (!refreshTokenExists) {
+  if (!user) {
     return res.sendStatus(403)
   }
 
-  // Check if token is valid
+  // Check if refresh token is valid
   try {
     jwt.verify(refreshToken, refreshTokenSecret)
   }
@@ -126,7 +127,7 @@ const refreshToken = async (req, res) => {
     {expiresIn: '20m'}
   )
 
-  return res.json({accessToken})
+  return res.json({ accessToken, user })
 }
 
 const isAuthenticated = (req, res) => {

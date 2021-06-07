@@ -34,6 +34,7 @@ const login = async (req, res) => {
 
     const user = {userId, username}
 
+    // Create tokens
     const { accessToken, accessTokenExpiration } = token.createAccessToken()
     const { refreshToken, refreshTokenExpiration } = token.createRefreshToken()
 
@@ -112,15 +113,14 @@ const refreshToken = async (req, res) => {
     return res.sendStatus(403)
   }
 
-  // Create new access token
-  const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
-  const accessToken = jwt.sign(
-    {}, 
-    accessTokenSecret, 
-    {expiresIn: '20m'}
-  )
+  // Create access token
+  const { accessToken, accessTokenExpiration } = token.createAccessToken()
 
-  return res.json({ accessToken, user })
+  return res.json({ 
+    accessToken, 
+    expiresIn: accessTokenExpiration, 
+    user 
+  })
 }
 
 const authController = { 

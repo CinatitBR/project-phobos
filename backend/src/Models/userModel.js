@@ -31,6 +31,26 @@ const findByEmail = async (email) => {
   }
 }
 
-const userModel = { create, findByEmail }
+const findByRefreshToken = async (refreshToken) => {
+  try {
+    const sql = `
+      SELECT user.id, user.username 
+      FROM user
+      INNER JOIN refresh_token
+      ON user.id = refresh_token.user_id
+      WHERE refresh_token = ?
+    `
+
+    const [rows, fields] = await db.query(sql, refreshToken)
+
+    const user = rows[0]
+    return user
+  }
+  catch (e) {
+    throw new Error(e)
+  }
+}
+
+const userModel = { create, findByEmail, findByRefreshToken }
 
 export default userModel

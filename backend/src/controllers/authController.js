@@ -130,35 +130,11 @@ const refreshToken = async (req, res) => {
   return res.json({ accessToken, user })
 }
 
-const isAuthenticated = (req, res) => {
-  const authHeader = req.headers['authorization']
-
-  // If authorization header doesn't exist ...
-  // ... user is not authenticated
-  if (!authHeader) {
-    return res.json({ auth: false })
-  }
-
-  const accessToken = authHeader.split('Bearer ')[1]
-  const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET 
-
-  // Check if access token is valid
-  try {
-    jwt.verify(accessToken, accessTokenSecret)
-
-    return res.json({ auth: true })
-  }
-  catch (e) {
-    return res.json({ auth: false })
-  }
-}
-
 const authController = { 
   register, 
   login, 
   logout, 
-  refreshToken,
-  isAuthenticated
+  refreshToken
 }
 
 export default authController

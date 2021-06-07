@@ -9,28 +9,55 @@ import Login from './pages/Login'
 
 import './global.css'
 
-// A wrapper on the Route component that will render children...
-// ... only if user is logged in, otherwise will redirect to ...
-// ... another route. 
-const PrivateRoute = ({ children, ...rest }) => {
+// A wrapper on the Route component that will render children ...
+// ... based on a condition - public, unauth or auth
+const CustomRoute = ({ 
+  condition = 'public', 
+  children, 
+  ...rest 
+}) => {
   const auth = useAuth()
   const location = useLocation()
 
-  return (
-    <Route {...rest}>
-      {auth.user ? (
-        children
-      ) : (
-        <Redirect 
-          to={{ 
-            pathname: '/login', 
-            state: { from: location } 
-          }} 
-        />
-      ) 
-      }
-    </Route>
-  )
+  switch (condition) {
+    case 'auth':
+      return (
+        <Route {...rest}>
+          {auth.user ? (
+            children
+          ) : (
+            <Redirect 
+              to={{ 
+                pathname: '/login', 
+                state: { from: location } 
+              }} 
+            />
+          ) 
+          }
+        </Route>
+      )
+
+    case 'unauth':
+      return (
+        <Route {...rest}>
+          {auth.user ? (
+            <Redirect 
+              to="/"
+            />
+          ) : (
+            children
+          )
+          }
+        </Route>
+      )
+
+    default:
+      return (
+        <Route {...rest}>
+          {children}
+        </Route>
+      )
+  }
 }
 
 ReactDOM.render(
@@ -39,17 +66,17 @@ ReactDOM.render(
       <ProvideAuth>
         <Switch>
           
-          <PrivateRoute exact path="/">
+          <CustomRoute condition="auth" exact path="/">
             <ProtectedPage />
-          </PrivateRoute>
+          </CustomRoute>
 
-          <Route exact path="/register">
+          <CustomRoute condition="unauth" exact path="/register"> 
             <Register />
-          </Route>
+          </CustomRoute>
 
-          <Route exact path="/login">
+          <CustomRoute condition="unauth" exact path="/login">
             <Login />
-          </Route>
+          </CustomRoute>
 
         </Switch>
       </ProvideAuth>

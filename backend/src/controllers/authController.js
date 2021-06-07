@@ -32,33 +32,40 @@ const login = async (req, res) => {
     const { id: userId, username } = await userModel.findByEmail(email)
 
     const user = {userId, username}
+
     const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
+    const accessTokenExpiration = process.env.ACCESS_TOKEN_EXPIRATION
+
     const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET
+    const refreshTokenExpiration = process.env.REFRESH_TOKEN_EXPIRATION
 
     // Generate tokens
     const accessToken = jwt.sign(
       {}, 
       accessTokenSecret, 
-      {expiresIn: '20m'}
+      {expiresIn: accessTokenExpiration}
     )
     const refreshToken = jwt.sign(
       {},
       refreshTokenSecret,
-      {expiresIn: '1y'}
+      {expiresIn: refreshTokenExpiration}
     )
 
     // Store refresh token in database
     await refreshTokenModel.create(userId, refreshToken)
 
-    // Set the refresh token in a HttpOnly cookie
-    // cookie expires in 1 year
+    // Set the refresh token in a HttpOnly cookie.
     res.cookie('refreshToken', refreshToken, { 
-      maxAge: 31536000000,
+      maxAge: refreshTokenExpiration,
       httpOnly: true
     })
 
     // Send access token and user data
-    return res.json({ accessToken, user })
+    return res.json({ 
+      accessToken, 
+      expiresIn: accessTokenExpiration, 
+      user 
+    })
   }
   catch (e) {
     console.log(e)

@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import authAPI from '../apis/authAPI'
 
 // Provider hook that creates auth object and handles state
 const useProvideAuth = () => {
   const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   const register = async ({ email, username, password }) => {
     try {
@@ -32,7 +33,28 @@ const useProvideAuth = () => {
     }
   }
 
-  const auth = { user, register, login }
+  const refreshToken = async () => {
+    try {
+      const response = await authAPI.refreshToken()
+  
+      const { accessToken, user } = response.data
+  
+      setUser(user)
+      authAPI.setAuthHeader(`Bearer ${accessToken}`)
+    }
+    catch (error) {
+      setUser(false)
+    }
+    finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    refreshToken()
+  }, [])
+
+  const auth = { user, loading, register, login }
   return auth
 }
 

@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import token from '../utils/token.js'
 import userModel from '../models/userModel.js'
 import refreshTokenModel from '../models/refreshTokenModel.js'
 
@@ -33,23 +34,8 @@ const login = async (req, res) => {
 
     const user = {userId, username}
 
-    const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
-    const accessTokenExpiration = process.env.ACCESS_TOKEN_EXPIRATION
-
-    const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET
-    const refreshTokenExpiration = process.env.REFRESH_TOKEN_EXPIRATION
-
-    // Generate tokens
-    const accessToken = jwt.sign(
-      {}, 
-      accessTokenSecret, 
-      {expiresIn: accessTokenExpiration}
-    )
-    const refreshToken = jwt.sign(
-      {},
-      refreshTokenSecret,
-      {expiresIn: refreshTokenExpiration}
-    )
+    const { accessToken, accessTokenExpiration } = token.createAccessToken()
+    const { refreshToken, refreshTokenExpiration } = token.createRefreshToken()
 
     // Store refresh token in database
     await refreshTokenModel.create(userId, refreshToken)

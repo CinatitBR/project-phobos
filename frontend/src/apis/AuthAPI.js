@@ -34,13 +34,6 @@ const refreshToken = () =>
       url: '/auth/refresh-token',
     })
 
-const isAuthenticated = () =>
-  axiosInstance 
-    .request({
-      method: 'get',
-      url: '/auth/is-authenticated',
-    })
-
-const authAPI = { setAuthHeader, register, login, refreshToken, isAuthenticated }
+const authAPI = { setAuthHeader, register, login, refreshToken }
 
 export default authAPI

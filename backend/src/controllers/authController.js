@@ -64,29 +64,21 @@ const login = async (req, res) => {
 }
 
 const logout = async (req, res) => {
-  const { refreshToken } = req.cookies
-  const authHeader = req.headers['authorization']
-
-  // Check if authorization header exists
-  if (!authHeader) {
-    return res.sendStatus(401)
-  }
-
-  const accessToken = authHeader.split('Bearer ')[1]
-  const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET 
-
-  // Check if access token is valid
   try {
-    jwt.verify(accessToken, accessTokenSecret)
+    const { refreshToken } = req.cookies
+  
+    // Remove refresh token from database
+    await refreshTokenModel.destroy(refreshToken)
+  
+    res.sendStatus(200)
   }
   catch (e) {
-    return res.sendStatus(403)
+    console.log(e)
+    
+    return res
+      .status(500)
+      .json({message: 'Oh, no! There was an error. Please, try again'})
   }
-
-  // Remove refresh token from database
-  await refreshTokenModel.destroy(refreshToken)
-
-  res.sendStatus(200)
 }
 
 const refreshToken = async (req, res) => {
@@ -102,7 +94,7 @@ const refreshToken = async (req, res) => {
   const user = await userModel.findByRefreshToken(refreshToken)
 
   if (!user) {
-    return res.sendStatus(403)
+    return res.sendStatus(401)
   }
 
   // Check if refresh token is valid
@@ -110,7 +102,7 @@ const refreshToken = async (req, res) => {
     jwt.verify(refreshToken, refreshTokenSecret)
   }
   catch (e) {
-    return res.sendStatus(403)
+    return res.sendStatus(401)
   }
 
   // Create access token

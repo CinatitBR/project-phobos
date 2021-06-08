@@ -16,6 +16,7 @@ const register = async (req, res) => {
       username: trimmedUsername, 
       password: hashedPassword
     })
+
     return res.sendStatus(201)
   }
   catch (e) {
@@ -93,6 +94,7 @@ const refreshToken = async (req, res) => {
   const { refreshToken } = req.cookies
   const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET
 
+  // If refreshToken doesn't exist, send code 401
   if (!refreshToken) {
     return res.sendStatus(401)
   }

@@ -66,10 +66,18 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
   try {
     const { refreshToken } = req.cookies
+
+    // If refreshToken doesn't exist, send code 401
+    if (!refreshToken) {
+      return res.sendStatus(401)
+    }
   
     // Remove refresh token from database
     await refreshTokenModel.destroy(refreshToken)
-  
+    
+    // Clear refreshToken cookie
+    res.clearCookie('refreshToken', { httpOnly: true })
+
     res.sendStatus(200)
   }
   catch (e) {

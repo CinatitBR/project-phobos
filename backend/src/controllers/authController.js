@@ -68,7 +68,7 @@ const logout = async (req, res) => {
   try {
     const { refreshToken } = req.cookies
 
-    // If refreshToken doesn't exist, send code 401
+    // If refreshToken cookie doesn't exist, send code 401
     if (!refreshToken) {
       return res.sendStatus(401)
     }
@@ -94,7 +94,7 @@ const refreshToken = async (req, res) => {
   const { refreshToken } = req.cookies
   const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET
 
-  // If refreshToken doesn't exist, send code 401
+  // If refreshToken cookie doesn't exist, send code 401
   if (!refreshToken) {
     return res.sendStatus(401)
   }

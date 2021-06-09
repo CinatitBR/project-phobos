@@ -20,16 +20,10 @@ const useProvideAuth = () => {
   const login = async ({ email, password }) => {
     try {
       const response = await authAPI.login({ email, password })
-      const { accessToken, expiresIn, user } = response.data
+      const { accessToken, user } = response.data
 
       setUser(user)
       authAPI.setAuthHeader(`Bearer ${accessToken}`)
-
-      // Make a silent refresh to get a new access token ... 
-      // ... 1 millisecond before it expires
-      setTimeout(() => {
-        refreshToken()
-      }, (expiresIn * 1000) - 1000)
     }
     catch (error) {
       const errors = error.response.data
@@ -41,16 +35,10 @@ const useProvideAuth = () => {
   const refreshToken = async () => {
     try {
       const response = await authAPI.refreshToken()
-      const { accessToken, expiresIn, user } = response.data
+      const { accessToken, user } = response.data
   
       setUser(user)
       authAPI.setAuthHeader(`Bearer ${accessToken}`)
-
-      // Make a silent refresh to get a new access token ... 
-      // ... 1 millisecond before it expires
-      setTimeout(() => {
-        refreshToken()
-      }, (expiresIn * 1000) - 1000)
     }
     catch (error) {
       setUser(null)

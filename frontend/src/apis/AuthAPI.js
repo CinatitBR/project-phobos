@@ -34,6 +34,33 @@ const refreshToken = () =>
       url: '/auth/refresh-token',
     })
 
+
+// Response interceptor to handle expired access tokens
+axiosInstance.interceptors.response.use(undefined, async (error) => {
+  // Return any error which is not due to authentication
+  if (error.response.status !== 401) {
+    throw error
+  }
+
+  const requestUrl = error.config.url
+  const requestMethod = error.config.method
+
+  // Log out user if token refresh didn't work
+  if (requestUrl === '/auth/refresh-token') {
+    throw new Error('Log out user')
+  }
+
+  // Get new access token and set authorization header
+  const { accessToken } = await refreshToken()
+  setAuthHeader(`Bearer ${accessToken}`)
+
+  // Retry request using new auth header
+  return axiosInstance({
+    method: requestMethod,
+    url: requestUrl
+  })
+})
+
 const authAPI = { setAuthHeader, register, login, refreshToken }
 
 export default authAPI

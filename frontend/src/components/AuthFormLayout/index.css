@@ -1,0 +1,97 @@
+html {
+  background: url("../../assets/background-universe.svg") no-repeat center center fixed; 
+  background-size: cover;
+}
+
+#authFormLayout {
+  height: 100vh;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media only screen and (max-width: 1024px) {
+  #authFormLayout {
+    display: block;
+  }
+}
+
+/* Content */
+#authFormLayout #content {
+  padding: 10px;
+  background: var(--background-light);
+  position: relative;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#authFormLayout #content #logo {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+#authFormLayout #content #formWrapper {
+  width: 100%;
+  max-width: 450px;
+  padding: 10px;
+}
+
+@media only screen and (max-width: 1024px) {
+  #authFormLayout #content {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+
+  #authFormLayout #content #logo {
+    margin-right: auto;
+    position: static;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  #authFormLayout #content {
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    border-radius: 0;
+    position: relative;
+  }
+
+  #authFormLayout #content #logo {
+    width: 50px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+  }
+}
+
+/* Illustration */
+#authFormLayout #illustration {
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+  #authFormLayout #illustration {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  #authFormLayout #illustration {
+    display: none;
+  }
+}

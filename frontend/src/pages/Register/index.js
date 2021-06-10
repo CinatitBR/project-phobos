@@ -1,8 +1,6 @@
 import { useState } from 'react'
 
-import SplitScreen from '../../components/SplitScreen'
-import FormAuthWrapper from '../../components/FormAuthWrapper'
-import IlustrationWrapper from '../../components/IlustrationWrapper'
+import AuthFormLayout from '../../components/AuthFormLayout'
 import RegisterForm from '../../components/RegisterForm'
 import Portal from '../../components/Portal'
 import Modal from '../../components/Modal'
@@ -17,21 +15,20 @@ const Register = () => {
   const toggleModal = () => setShowModal(!showModal)
 
   return (
-    <SplitScreen>
-
-      <FormAuthWrapper>
-        <RegisterForm onShowModal={toggleModal} />
-      </FormAuthWrapper>
-
-      <IlustrationWrapper>
+    <>
+      <AuthFormLayout form={<RegisterForm onShowModal={toggleModal} />}>
         <img id="planets" src={planets} alt="Planets" />
-        <img id="phoebeAstronaut" src={phoebeAstronaut} alt="Phoebe astronaut" />
-      </IlustrationWrapper>
+        <img
+          id="phoebeAstronaut"
+          src={phoebeAstronaut}
+          alt="Phoebe astronaut"
+        />
+      </AuthFormLayout>
 
-      <Portal> 
+      <Portal>
         <Modal show={showModal} onClose={toggleModal} />
       </Portal>
-    </SplitScreen>
+    </>
   )
 }
 

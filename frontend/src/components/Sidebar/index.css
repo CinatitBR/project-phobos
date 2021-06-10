@@ -34,16 +34,6 @@
   margin-left: 14px;
 }
 
-#sidebar #topWrapper #links .sidebarLink {
-  font-size: 25px;
-  color: var(--primary-green);
-  text-decoration: none;
-  
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 /* Bottom wrapper */
 #sidebar #bottomWrapper {
   display: flex;

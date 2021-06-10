@@ -1,6 +1,6 @@
 import IconButton from "../../components/IconButton"
 import ProfileDisplay from "../ProfileDisplay"
-import { Link } from "react-router-dom"
+import SidebarLink from '../SidebarLink'
 import { FaFileAlt, FaSearch, FaSignOutAlt } from "react-icons/fa"
 import useAuth from '../../hooks/useAuth'
 
@@ -29,9 +29,11 @@ const Sidebar = () => {
           </IconButton>
 
           <nav id="links">
-            <Link className="sidebarLink" to="#">
-              <FaSearch /> Home
-            </Link>
+            <SidebarLink 
+              name="Home" 
+              icon={<FaSearch />} 
+              to="/" 
+            />
           </nav>
         </div>
 

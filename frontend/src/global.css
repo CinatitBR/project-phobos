@@ -20,7 +20,7 @@
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-html {
+body {
   background: var(--background-dark);
   color: var(--primary-text);
 }

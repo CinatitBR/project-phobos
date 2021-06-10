@@ -1,13 +1,11 @@
-html {
-  background: url("../../assets/background-universe.svg") no-repeat center center fixed; 
-  background-size: cover;
-}
-
 #authFormLayout {
   height: 100vh;
 
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  background: url("../../assets/background-universe.svg") no-repeat center center fixed; 
+  background-size: cover;
 }
 
 @media only screen and (max-width: 1024px) {

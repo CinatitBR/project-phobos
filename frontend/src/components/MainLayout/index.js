@@ -5,7 +5,7 @@ import Home from '../../pages/Home'
 
 import './index.css' 
 
-function Layout() {
+function MainLayout() {
   return (
     <div id="app">
       <Sidebar/>
@@ -21,4 +21,4 @@ function Layout() {
   )
 }
 
-export default Layout
+export default MainLayout

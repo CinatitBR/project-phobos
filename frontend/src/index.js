@@ -1,21 +1,23 @@
 import { StrictMode } from 'react'
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route, Redirect, useLocation } from 'react-router-dom'
+import ReactDOM from 'react-dom'
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Redirect,
+  useLocation,
+} from 'react-router-dom'
 import useAuth, { ProvideAuth } from './hooks/useAuth'
 
 import Register from './pages/Register'
 import Login from './pages/Login'
-import Layout from './components/Layout'
+import MainLayout from './components/MainLayout'
 
 import './global.css'
 
 // A wrapper on the Route component that will render children ...
 // ... based on a condition - public, unauth or auth
-const CustomRoute = ({ 
-  condition = 'public', 
-  children, 
-  ...rest 
-}) => {
+const CustomRoute = ({ condition = 'public', children, ...rest }) => {
   const auth = useAuth()
   const location = useLocation()
 
@@ -26,37 +28,23 @@ const CustomRoute = ({
           {auth.user ? (
             children
           ) : (
-            <Redirect 
-              to={{ 
-                pathname: '/login', 
-                state: { from: location } 
-              }} 
+            <Redirect
+              to={{
+                pathname: '/login',
+                state: { from: location },
+              }}
             />
-          ) 
-          }
+          )}
         </Route>
       )
 
     case 'unauth':
       return (
-        <Route {...rest}>
-          {auth.user ? (
-            <Redirect 
-              to="/"
-            />
-          ) : (
-            children
-          )
-          }
-        </Route>
+        <Route {...rest}>{auth.user ? <Redirect to="/" /> : children}</Route>
       )
 
     default:
-      return (
-        <Route {...rest}>
-          {children}
-        </Route>
-      )
+      return <Route {...rest}>{children}</Route>
   }
 }
 
@@ -65,22 +53,20 @@ ReactDOM.render(
     <BrowserRouter>
       <ProvideAuth>
         <Switch>
-
           <CustomRoute path="/" condition="auth">
-            <Layout />
+            <MainLayout />
           </CustomRoute>
 
-          <CustomRoute path="/register" exact condition="unauth"> 
+          <CustomRoute path="/register" exact condition="unauth">
             <Register />
           </CustomRoute>
 
           <CustomRoute path="/login" exact condition="unauth">
             <Login />
           </CustomRoute>
-
         </Switch>
       </ProvideAuth>
     </BrowserRouter>
   </StrictMode>,
   document.getElementById('root')
-);
+)

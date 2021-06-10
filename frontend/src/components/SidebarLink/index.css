@@ -1,9 +1,13 @@
 .sidebarLink {
   font-size: 25px;
-  color: var(--primary-green);
+  color: var(--white);
   text-decoration: none;
   
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.active {
+  color: var(--primary-green);
 }

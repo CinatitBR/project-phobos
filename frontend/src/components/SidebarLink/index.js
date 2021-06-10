@@ -1,15 +1,17 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import './index.css'
 
 function SidebarLink({ icon, name, to, ...rest }) {
   return (
-    <Link 
+    <NavLink 
       className="sidebarLink" 
+      exact
       to={to}
+      activeClassname="active"
       {...rest}>
       {icon} {name}
-    </Link>
+    </NavLink>
   )
 }
 

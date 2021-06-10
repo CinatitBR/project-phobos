@@ -1,0 +1,17 @@
+#profileDisplay {
+  width: 250px;
+
+  font-size: 18px;
+  color: var(--primary-text);
+  background: var(--background-dark);
+  padding: 10px 20px;
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#profileDisplay h2 {
+  font-size: 25px;
+  color: var(--white);
+}

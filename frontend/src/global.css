@@ -1,10 +1,15 @@
 :root {
   --white: #FFFFFF;
-  --background-dark: #141740;
-  --background-light: #3E4076;
+
+  --primary-text: #9093A7;
   --primary-green: #65D8AC;
   --primary-green-dark: rgb(73, 197, 149);
   --primary-red: #F27972;
+  --primary-purple: #B283E4;
+
+  --background-dark: #141740;
+  --background-light: #3E4076;
+
   --secondary-text: #CBD0E1;
 }
 
@@ -13,4 +18,13 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Source Sans Pro', sans-serif;
+}
+
+html {
+  background: var(--background-dark);
+  color: var(--primary-text);
+}
+
+:focus {
+  outline: none;
 }

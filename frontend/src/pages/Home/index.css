@@ -1,0 +1,26 @@
+/* Find */
+#find {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Wrapper */
+#wrapper {
+  padding: 40px;
+  width: min(1200px, 100%);
+  margin: 0 auto;
+}
+
+/* Divider */
+#wrapper .divider {
+  background: var(--primary-purple);
+  width: 33%;
+  height: 5px;
+  margin: 30px auto;
+  border-radius: 4px;
+}
+
+/* highlight */
+.highlight {
+  color: var(--primary-green);
+}

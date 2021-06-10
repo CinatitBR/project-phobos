@@ -1,0 +1,25 @@
+#documentPreview {
+  padding: 15px 30px;
+  background: var(--background-light);
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+#documentPreview header #title {
+  font-size: 25px;
+  color: var(--white);
+}
+
+#documentPreview header #pageNumber {
+  font-size: 18px;
+  color: var(--primary-purple);
+}
+
+#documentPreview #body {
+  font-size: 16px;
+  text-align: justify;
+}

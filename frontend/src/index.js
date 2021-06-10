@@ -1,11 +1,11 @@
-import React from 'react'
+import { StrictMode } from 'react'
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route, Redirect, useLocation } from 'react-router-dom'
-
 import useAuth, { ProvideAuth } from './hooks/useAuth'
-import ProtectedPage from './pages/ProtectedPage'
+
 import Register from './pages/Register'
 import Login from './pages/Login'
+import Layout from './components/Layout'
 
 import './global.css'
 
@@ -61,26 +61,26 @@ const CustomRoute = ({
 }
 
 ReactDOM.render(
-  <React.StrictMode>
+  <StrictMode>
     <BrowserRouter>
       <ProvideAuth>
         <Switch>
-          
-          <CustomRoute condition="auth" exact path="/">
-            <ProtectedPage />
+
+          <CustomRoute path="/" condition="auth">
+            <Layout />
           </CustomRoute>
 
-          <CustomRoute condition="unauth" exact path="/register"> 
+          <CustomRoute path="/register" exact condition="unauth"> 
             <Register />
           </CustomRoute>
 
-          <CustomRoute condition="unauth" exact path="/login">
+          <CustomRoute path="/login" exact condition="unauth">
             <Login />
           </CustomRoute>
 
         </Switch>
       </ProvideAuth>
     </BrowserRouter>
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById('root')
 );

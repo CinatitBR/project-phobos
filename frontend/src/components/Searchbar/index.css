@@ -1,0 +1,9 @@
+#searchBar {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 18px;
+  background: var(--background-light);
+  color: var(--primary-green);
+  border-radius: 16px;
+  border: none;
+}

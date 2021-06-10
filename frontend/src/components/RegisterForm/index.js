@@ -67,7 +67,7 @@ const RegisterForm = ({ onShowModal }) => {
 
         <FormField 
           label="Password" 
-          type="text" 
+          type="password" 
           value={form.values.password} 
           name="password" 
           onChange={form.handleChange}

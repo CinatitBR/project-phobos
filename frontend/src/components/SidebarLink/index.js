@@ -8,7 +8,7 @@ function SidebarLink({ icon, name, to, ...rest }) {
       className="sidebarLink" 
       exact
       to={to}
-      activeClassname="active"
+      activeClassName="active"
       {...rest}>
       {icon} {name}
     </NavLink>

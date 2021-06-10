@@ -1,6 +1,5 @@
 import DocumentPreviewList from '../../components/DocumentPreviewList'
 import Searchbar from '../../components/Searchbar'
-import Sidebar from '../../components/Sidebar'
 
 import './index.css'
 

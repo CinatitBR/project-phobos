@@ -53,7 +53,7 @@ ReactDOM.render(
     <BrowserRouter>
       <ProvideAuth>
         <Switch>
-          <CustomRoute path="/" condition="auth">
+          <CustomRoute path="/" exact condition="auth">
             <MainLayout />
           </CustomRoute>
 

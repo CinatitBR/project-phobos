@@ -32,6 +32,19 @@ const useProvideAuth = () => {
     }
   }
 
+  const logout = async () => {
+    try {
+      await authAPI.logout()
+
+      setUser(null)
+    }
+    catch (error) {
+      const errors = error.response.data
+
+      throw errors
+    }
+  }
+
   const refreshToken = async () => {
     try {
       const response = await authAPI.refreshToken()
@@ -52,7 +65,13 @@ const useProvideAuth = () => {
     refreshToken()
   }, [])
 
-  const auth = { user, loading, register, login }
+  const auth = { 
+    user, 
+    loading, 
+    register, 
+    login, 
+    logout 
+  }
   return auth
 }
 

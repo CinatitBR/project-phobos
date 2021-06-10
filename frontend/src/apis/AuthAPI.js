@@ -27,6 +27,13 @@ const login = ({ email, password }) =>
       data: { email, password }
     })
 
+const logout = () => 
+  axiosInstance
+    .request({
+      method: 'get',
+      url: '/auth/logout'
+    })
+
 const refreshToken = () => 
   axiosInstance
     .request({
@@ -47,7 +54,7 @@ axiosInstance.interceptors.response.use(undefined, async (error) => {
 
   // Log out user if token refresh didn't work
   if (requestUrl === '/auth/refresh-token') {
-    throw new Error('Log out user')
+    throw new Error('Log out')
   }
 
   // Get new access token and set authorization header
@@ -61,6 +68,12 @@ axiosInstance.interceptors.response.use(undefined, async (error) => {
   })
 })
 
-const authAPI = { setAuthHeader, register, login, refreshToken }
+const authAPI = { 
+  setAuthHeader, 
+  register, 
+  login, 
+  logout,
+  refreshToken 
+}
 
 export default authAPI

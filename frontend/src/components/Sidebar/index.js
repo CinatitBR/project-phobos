@@ -1,13 +1,27 @@
 import IconButton from "../../components/IconButton"
 import ProfileDisplay from "../ProfileDisplay"
-import SidebarLink from '../SidebarLink'
-import { FaFileAlt, FaSearch, FaSignOutAlt } from "react-icons/fa"
+import SidebarLinkList from '../SidebarLinkList'
+import { FaFileAlt, FaSearch, FaSignOutAlt, FaFolderOpen } from "react-icons/fa"
 import useAuth from '../../hooks/useAuth'
 
 import "./index.css"
 
 const Sidebar = () => {
   const auth = useAuth()
+
+  const sidebarLinks = [
+    {
+      name: 'Home', 
+      icon: <FaSearch />, 
+      to: '/',
+    },
+
+    {
+      name: 'Explore',
+      icon: <FaFolderOpen />,
+      to: '#'
+    }
+  ]
 
   const handleLogout = async () => {
     try {
@@ -28,13 +42,7 @@ const Sidebar = () => {
             Add document
           </IconButton>
 
-          <nav id="links">
-            <SidebarLink 
-              name="Home" 
-              icon={<FaSearch />} 
-              to="/" 
-            />
-          </nav>
+          <SidebarLinkList className="links" sidebarLinks={sidebarLinks} />
         </div>
 
         <div id="bottomWrapper">

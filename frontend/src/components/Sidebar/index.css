@@ -29,7 +29,7 @@
 }
 
 /* Top wrapper */
-#sidebar #topWrapper #links {
+#sidebar #topWrapper .links {
   margin-top: 35px;
   margin-left: 14px;
 }

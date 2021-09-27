@@ -30,6 +30,26 @@ const findByFilename = async (filename) => {
   }
 }
 
-const pdfModel = { create, findByFilename }
+const search = async (keyword) => {
+  const sql = `
+    SELECT pdf.title as pdf_title, pdf.filename as filename, page.number, 
+    SUBSTRING(body, 1, LEAST(char_length(body), 400)) as text
+    FROM page
+    INNER JOIN pdf
+    ON page.pdf_id = pdf.id
+    WHERE MATCH(body) AGAINST(?)  
+  `
+
+  try {
+    const [rows, fields] = await db.query(sql, keyword)
+
+    return rows
+  }
+  catch(e) {
+    throw new Error(e)
+  }
+}
+
+const pdfModel = { create, findByFilename, search }
 
 export default pdfModel

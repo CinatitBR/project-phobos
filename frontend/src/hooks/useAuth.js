@@ -9,7 +9,7 @@ const useAuth = () => {
   return useContext(authContext);
 }
 
-// Provider component that wraps your app and makes auth object ...
+// Provider component that wraps the app and makes auth object ...
 // ... available to any child component that calls useAuth().
 const ProvideAuth = ({ children }) => {
   const auth = useProvideAuth()

@@ -35,8 +35,25 @@ const upload = async (req, res) => {
   res.json({message: 'deu certinho bosta mano pqp'})
 }
 
+const search = async (req, res) => {
+  try {
+    const { keyword } = req.body
+
+    const documentPreviews = await pdfModel.search(keyword)
+    res.json(documentPreviews)
+  }
+  catch(e) {
+    console.log(e)
+    
+    return res
+      .status(500)
+      .json({message: 'Oh, no! There was an error. Please, try again'})
+  }
+}
+
 const pdfController = {
-  upload
+  upload,
+  search
 }
 
 export default pdfController

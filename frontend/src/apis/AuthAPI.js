@@ -41,6 +41,13 @@ const refreshToken = () =>
       url: '/auth/refresh-token',
     })
 
+const search = ({ keyword }) => 
+  axiosInstance
+    .request({
+      method: 'post',
+      url: '/pdf/search',
+      data: { keyword }
+    })
 
 // Response interceptor to handle expired access tokens
 axiosInstance.interceptors.response.use(undefined, async (error) => {
@@ -73,7 +80,8 @@ const authAPI = {
   register, 
   login, 
   logout,
-  refreshToken 
+  refreshToken,
+  search
 }
 
 export default authAPI

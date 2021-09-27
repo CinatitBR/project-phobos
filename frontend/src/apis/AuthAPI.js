@@ -41,7 +41,7 @@ const refreshToken = () =>
       url: '/auth/refresh-token',
     })
 
-const search = ({ keyword }) => 
+const search = (keyword) => 
   axiosInstance
     .request({
       method: 'post',

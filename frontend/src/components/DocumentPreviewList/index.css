@@ -3,3 +3,7 @@
   flex-direction: column;
   gap: 20px;
 }
+
+.highlight {
+  color: --primary-green;
+}

@@ -1,15 +1,8 @@
-import { useState } from 'react'
-
 import './index.css'
 
-const Searchbar = ({ onChange }) => {
-  const [keyword, setKeyword] = useState('')
-
+const Searchbar = ({ onChange, keyword }) => {
   const handleChange = (event) => {
-    const keyword = event.target.value
-
-    setKeyword(keyword)
-    onChange(keyword)
+    onChange(event.target.value)
   }
 
   return (

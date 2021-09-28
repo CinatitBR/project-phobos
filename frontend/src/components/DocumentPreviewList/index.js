@@ -2,14 +2,25 @@ import DocumentPreview from '../DocumentPreview'
 
 import './index.css'
 
-function DocumentPreviewList({ documentPreviews }) {
+function DocumentPreviewList({ documentPreviews, keyword }) {
   return (
     <section id="documentPreviewList">
-      {documentPreviews.map(({ id, pdf_title, number, text }) => (
-        <DocumentPreview key={id} title={pdf_title} pageNumber={number}>
-          {text}
-        </DocumentPreview>
-      ))}
+      {documentPreviews.map(({ id, pdf_title, number, text }) => {
+        // Highlight searched keyword
+        const highlightedText = text.split(' ').map((word, index) => {
+          if (keyword.toLowerCase().split(' ').includes(word.toLowerCase())) {
+            return <span key={index} className="highlight">{word} </span>
+          }
+
+          return <span key={index}>{word} </span>
+        })
+
+        return (
+          <DocumentPreview key={id} title={pdf_title} pageNumber={number}>
+            {highlightedText}
+          </DocumentPreview>
+        )
+      })}
     </section>
   )
 }

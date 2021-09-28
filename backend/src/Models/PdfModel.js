@@ -32,7 +32,7 @@ const findByFilename = async (filename) => {
 
 const search = async (keyword) => {
   const sql = `
-    SELECT pdf.title as pdf_title, pdf.filename as filename, page.number, 
+    SELECT page.id, pdf.title as pdf_title, pdf.filename as filename, page.number, 
     SUBSTRING(body, 1, LEAST(char_length(body), 400)) as text
     FROM page
     INNER JOIN pdf

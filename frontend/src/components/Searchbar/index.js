@@ -1,26 +1,16 @@
-import { useState, useEffect } from 'react'
-import authAPI from '../../apis/authAPI'
+import { useState } from 'react'
 
 import './index.css'
 
-const Searchbar = () => {
+const Searchbar = ({ onChange }) => {
   const [keyword, setKeyword] = useState('')
-  // const [documentPreviews, setDocumentPreviews] = useState([])
 
   const handleChange = (event) => {
-    setKeyword(event.target.value)
-  }
-  
-  useEffect(() => {
-    const getDocumentPreviews = async () => {
-      const response = await authAPI.search(keyword)
-      const documentPreviews = response.data
-  
-      console.log(documentPreviews)
-    }
+    const keyword = event.target.value
 
-    getDocumentPreviews()
-  }, [keyword])
+    setKeyword(keyword)
+    onChange(keyword)
+  }
 
   return (
     <input 

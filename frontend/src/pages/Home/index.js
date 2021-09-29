@@ -11,11 +11,9 @@ const Home = () => {
 
   const onKeywordChange = async (keyword) => {
     setKeyword(keyword)
-    
+
     const response = await authAPI.search(keyword)
     setDocumentPreviews(response.data)
-  
-    console.log(response.data)
   }
 
   return (

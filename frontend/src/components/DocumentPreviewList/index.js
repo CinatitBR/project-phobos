@@ -5,7 +5,7 @@ import './index.css'
 function DocumentPreviewList({ documentPreviews, keyword }) {
   return (
     <section id="documentPreviewList">
-      {documentPreviews.map(({ id, pdf_title, number, text }) => {
+      {documentPreviews.map(({ id, filename, pdf_title, number, text }) => {
         // Highlight searched keyword
         const highlightedText = text.split(' ').map((word, index) => {
           if (keyword.toLowerCase().split(' ').includes(word.toLowerCase())) {
@@ -16,7 +16,7 @@ function DocumentPreviewList({ documentPreviews, keyword }) {
         })
 
         return (
-          <DocumentPreview key={id} title={pdf_title} pageNumber={number}>
+          <DocumentPreview key={id} filename={filename} pdfId={id} title={pdf_title} pageNumber={number}>
             {highlightedText}
           </DocumentPreview>
         )

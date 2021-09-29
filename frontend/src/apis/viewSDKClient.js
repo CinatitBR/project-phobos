@@ -15,22 +15,23 @@ const viewSDKClient = {
 
   ready: function () { return this.readyPromise },
 
-  previewFile: function ({ divId, viewerConfig, fileName, fileId, fileUrl }) {
+  previewFile: async function ({ viewerConfig, fileName, fileUrl, pageNumber }) {
     const config = {
       /* Pass your registered client id */
       clientId: clientId,
     }
 
-    if (divId) { /* Optional only for Light Box embed mode */
+    /* Optional only for Light Box embed mode */
+    // if (divId) { 
       /* Pass the div id in which PDF should be rendered */
-      config.divId = divId;
-    }
+      // config.divId = divId;
+    // }
 
     /* Initialize the AdobeDC View object */
     this.adobeDCView = new window.AdobeDC.View(config)
 
     /* Invoke the file preview API on Adobe DC View object */
-    this.adobeDCView.previewFile({
+    const previewFilePromise = await this.adobeDCView.previewFile({
       /* Pass information on how to access the file */
       content: {
         /* Location of file where it is hosted */
@@ -52,10 +53,13 @@ const viewSDKClient = {
         /* file name */
         fileName: fileName,
         /* file ID (optional) */
-        id: fileId,
+        // id: fileId,
       }
     }, viewerConfig)
 
+    // Open PDF on the specified page number
+    const apis = await previewFilePromise.getAPIs()
+    await apis.gotoLocation(pageNumber)
   },
 
   previewFileUsingFilePromise: function (divId, filePromise, fileName) {

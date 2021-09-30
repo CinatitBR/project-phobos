@@ -3,7 +3,7 @@ import { FaTimes } from 'react-icons/fa'
 
 import './index.css'
 
-const Modal = ({ show, onClose, children, ...rest }) => {
+const Modal = ({ show, onClose, title, children, ...rest }) => {
   if (!show) return null
 
   return (
@@ -11,11 +11,17 @@ const Modal = ({ show, onClose, children, ...rest }) => {
       <div className="overlay">
 
         <div id="modal" {...rest}>
-          <FaTimes 
-            className="closeButton" 
-            size="25px" 
-            onClick={onClose}
-          />
+          <header>
+            {title &&
+              <h3 className="title">{title && title}</h3>
+            }
+
+            <FaTimes 
+              className="closeButton" 
+              size="25px" 
+              onClick={onClose}
+            />
+          </header>
 
           <div className="wrapper">
             {children}

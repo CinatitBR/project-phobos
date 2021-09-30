@@ -4,9 +4,9 @@ import FileLoading from '../FileLoading'
 
 import style from './style.module.css'
 
-const AddDocumentModal = () => {
+const AddDocumentModal = ({ show, onClose }) => {
   return (
-    <Modal className={style.addDocumentModal} title="Upload document" show={true}>
+    <Modal className={style.addDocumentModal} title="Upload document" show={show} onClose={onClose}>
       <div className={style.wrapper}>
         <FileDropBox />
       

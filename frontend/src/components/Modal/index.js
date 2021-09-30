@@ -1,16 +1,21 @@
+import classNames from 'classnames'
 import Portal from '../Portal'
 import { FaTimes } from 'react-icons/fa'
 
 import './index.css'
 
-const Modal = ({ show, onClose, title, children, ...rest }) => {
+const Modal = ({ show, onClose, title, children, className, ...rest }) => {
   if (!show) return null
 
   return (
     <Portal>
       <div className="overlay">
 
-        <div id="modal" {...rest}>
+        <div 
+          id="modal" 
+          className={classNames({ show }, className)} 
+          {...rest}
+        >
           <header>
             {title &&
               <h3 className="title">{title && title}</h3>

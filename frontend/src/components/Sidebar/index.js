@@ -1,14 +1,15 @@
+import { useState } from 'react'
 import IconButton from '../../components/IconButton'
 import ProfileDisplay from '../ProfileDisplay'
 import SidebarLinkList from '../SidebarLinkList'
 import AddDocumentModal from '../AddDocumentModal'
-
-import { FaFileAlt, FaSearch, FaSignOutAlt, FaFolderOpen } from "react-icons/fa"
+import { FaFileAlt, FaSearch, FaSignOutAlt, FaFolderOpen } from 'react-icons/fa'
 import useAuth from '../../hooks/useAuth'
 
 import './index.css'
 
 const Sidebar = () => {
+  const [showModal, setShowModal] = useState(false)
   const auth = useAuth()
 
   const sidebarLinks = [
@@ -17,7 +18,6 @@ const Sidebar = () => {
       icon: <FaSearch />, 
       to: '/',
     },
-
     {
       name: 'Explore',
       icon: <FaFolderOpen />,
@@ -34,13 +34,18 @@ const Sidebar = () => {
     }
   }
 
+  const toggleModal = () => setShowModal(!showModal)
+
   return (
     <section id="sidebar">
       <h1 id="logo">Phobos</h1>
 
       <div id="content">
         <div id="topWrapper">
-          <IconButton startIcon={<FaFileAlt size={30} />}>
+          <IconButton 
+            startIcon={<FaFileAlt size={30} />} 
+            onClick={toggleModal}
+          >
             Add document
           </IconButton>
 
@@ -59,7 +64,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <AddDocumentModal />
+      <AddDocumentModal show={showModal} onClose={toggleModal} />
     </section>
   )
 }

@@ -12,13 +12,22 @@
   border-radius: 16px;
 
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
 
   display: flex;
   flex-direction: column;
-  /* gap: 10px; */
+
+  opacity: 0;
+  animation: modal-animation forwards 500ms ease;
+}
+
+@keyframes modal-animation {
+  100% {
+    opacity: 1;
+    top: 50%;
+  }
 }
 
 #modal header {

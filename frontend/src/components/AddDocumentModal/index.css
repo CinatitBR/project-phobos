@@ -1,0 +1,126 @@
+.AddDocumentModal .body {
+  margin-top: 15px;
+
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+/* fileDropBox */
+#fileDropBox {
+  width: 550px;
+
+  color: var(--moon-crater);
+  background: var(--background-dark);
+  border: 3px dashed var(--moon-crater);
+  padding: 15px 0;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+#fileDropBox .suggestion {
+  color: var(--moon-crater);
+}
+
+#fileDropBox .suggestion p {
+  font-size: 30px;
+}
+
+#fileDropBox .suggestion .pseudo { 
+  display: flex;
+  justify-content: center;
+
+  position: relative;
+}
+
+#fileDropBox .suggestion .pseudo::before {
+  display: block;
+  content: "";
+  width: 100%;
+  border-bottom: solid 3px var(--moon-crater);
+  border-radius: 5px;
+
+  position: absolute;
+  top: 50%;
+}
+
+#fileDropBox .suggestion .content {
+  background-color: var(--background-dark);
+  padding: 0 8px;
+
+  font-size: 18px;
+  font-style: italic;
+
+  position: relative;
+}
+
+/* fileLoadingList */
+.fileLoadingList {
+  width: 280px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* fileLoading */
+.fileLoading {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.fileLoading .fileIcon {
+  color: #F19691;
+  font-size: 45px;
+}
+
+.fileLoading .content {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* fileLoading info */
+.fileLoading .content .info {
+  color: var(--secondary-text);
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.fileLoading .content .filename {
+  font-size: 20px;
+  color: var(--white);
+}
+
+.fileLoading .content .fileSize {
+  color: var(--secondary-text);
+}
+
+.fileLoading .content .closeIcon {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+/* loadingBar */
+.loadingBar {
+  width: 100%;
+  height: 4px;
+  border-radius: 8px;
+  background: var(--secondary-text);
+}
+
+.loadingBar .loadingBarInner {
+  width: 45%;
+  height: 100%;
+  border-radius: 8px;
+  background: var(--primary-green);
+}

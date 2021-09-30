@@ -1,41 +1,29 @@
-import { useHistory } from 'react-router-dom'
-import Title from '../Title'
-import IconButton from '../IconButton'
-import { FaSignInAlt, FaTimes } from 'react-icons/fa'
+import Portal from '../Portal'
+import { FaTimes } from 'react-icons/fa'
 
 import './index.css'
 
-const Modal = ({ show, onClose }) => {
-  const history = useHistory()
-
+const Modal = ({ show, onClose, children, ...rest }) => {
   if (!show) return null
 
   return (
-    <div className="overlay" onClick={onClose}>
+    <Portal>
+      <div className="overlay">
 
-      <div className="modal">
-        <FaTimes 
-          className="closeButton" 
-          size="25px" 
-          onClick={onClose}
-        />
+        <div id="modal" {...rest}>
+          <FaTimes 
+            className="closeButton" 
+            size="25px" 
+            onClick={onClose}
+          />
 
-        <div className="wrapper">
-          <header>
-            <Title>Account created</Title>
-            <Title>successfully!</Title>
-          </header>
-
-          <IconButton 
-            onClick={() => history.push('/login')}
-            finalIcon={<FaSignInAlt />}>
-            Log in to account
-          </IconButton>
+          <div className="wrapper">
+            {children}
+          </div>
         </div>
 
       </div>
-
-    </div>
+    </Portal>
   )
 }
 

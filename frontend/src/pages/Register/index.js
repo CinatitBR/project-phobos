@@ -2,8 +2,11 @@ import { useState } from 'react'
 
 import AuthFormLayout from '../../components/AuthFormLayout'
 import RegisterForm from '../../components/RegisterForm'
-import Portal from '../../components/Portal'
 import Modal from '../../components/Modal'
+import { useHistory } from 'react-router-dom'
+import Title from '../../components/Title'
+import IconButton from '../../components/IconButton'
+import { FaSignInAlt } from 'react-icons/fa'
 
 import planets from '../../assets/planets.svg'
 import phoebeAstronaut from '../../assets/phoebe-astronaut.svg'
@@ -11,6 +14,7 @@ import './index.css'
 
 const Register = () => {
   const [showModal, setShowModal] = useState(false)
+  const history = useHistory()
 
   const toggleModal = () => setShowModal(!showModal)
 
@@ -25,9 +29,18 @@ const Register = () => {
         />
       </AuthFormLayout>
 
-      <Portal>
-        <Modal show={showModal} onClose={toggleModal} />
-      </Portal>
+      <Modal show={showModal} onClose={toggleModal} style={{ width: 'min(600px, 100%)' }}>
+        <header>
+          <Title>Account created</Title>
+          <Title>successfully!</Title>
+        </header>
+
+          <IconButton 
+            onClick={() => history.push('/login')}
+            finalIcon={<FaSignInAlt />}>
+            Log in to account
+          </IconButton>
+      </Modal>
     </>
   )
 }

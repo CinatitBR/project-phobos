@@ -6,8 +6,7 @@
   background: rgb(1, 1, 1, 0.3);
 }
 
-.modal {
-  width: min(600px, 100%);
+#modal {
   background: var(--background-light);
   padding: 30px;
   border-radius: 16px;
@@ -18,7 +17,7 @@
   transform: translate(-50%, -50%);
 }
 
-.modal .wrapper {
+#modal .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,7 +25,7 @@
   gap: 50px;
 }
 
-.modal .closeButton {
+#modal .closeButton {
   display: block;
   color: var(--secondary-text);
   cursor: pointer;

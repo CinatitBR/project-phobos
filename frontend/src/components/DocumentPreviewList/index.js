@@ -17,7 +17,7 @@ function DocumentPreviewList({ documentPreviews, keyword }) {
 
         return (
           <DocumentPreview key={id} filename={filename} pdfId={id} title={pdf_title} pageNumber={number}>
-            {highlightedText}
+            ...{highlightedText}...
           </DocumentPreview>
         )
       })}

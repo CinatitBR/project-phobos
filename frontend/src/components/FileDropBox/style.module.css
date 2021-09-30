@@ -4,6 +4,7 @@
   color: var(--moon-crater);
   background: var(--background-dark);
   border: 3px dashed var(--moon-crater);
+  border-radius: 10px;
   padding: 15px 0;
 
   display: flex;

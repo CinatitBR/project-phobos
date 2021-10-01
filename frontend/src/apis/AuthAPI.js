@@ -41,13 +41,23 @@ const refreshToken = () =>
       url: '/auth/refresh-token',
     })
 
-const search = (keyword) => 
+const search = keyword => 
   axiosInstance
     .request({
       method: 'post',
       url: '/pdf/search',
       data: { keyword }
     })
+
+const uploadFile = formData => 
+  axiosInstance.post('/pdf/upload', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    onUploadProgress: data => {
+      console.log(data)
+    }
+  })
 
 // Response interceptor to handle expired access tokens
 axiosInstance.interceptors.response.use(undefined, async (error) => {
@@ -81,7 +91,8 @@ const authAPI = {
   login, 
   logout,
   refreshToken,
-  search
+  search,
+  uploadFile
 }
 
 export default authAPI

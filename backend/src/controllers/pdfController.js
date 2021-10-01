@@ -1,7 +1,7 @@
 import path from 'path'
 import PDFParser from 'pdf2json'
 import pdfModel from '../models/pdfModel.js'
-import preparePdfData from '../utils/preparePdfData.js'
+import getPages from '../utils/getPages.js'
 import pageModel from '../models/pageModel.js'
 
 const pdfParser = new PDFParser(null, 1);
@@ -11,18 +11,21 @@ const upload = async (req, res) => {
   const { filename } = req.file
   const { id: pdfId } = await pdfModel.findByFilename(filename)
 
+  // Get PDF file path
   const storagePath = process.env.STORAGE_PATH
   const userFolder = `user${userId}`
-
   const filePath = path.join(storagePath, userFolder, 'pdf', filename)
   
   pdfParser.on("pdfParser_dataError", (errData) => { 
     console.error(errData.parserError)
   })
 
+  // Parse PDF to json object (pdfData)
   pdfParser.on("pdfParser_dataReady", async (pdfData) => {
-    const { pages } = preparePdfData(pdfData)
-    
+    // Get PDF pages data
+    const pages = getPages(pdfData)
+
+    // Add pages to database
     for (const page of pages) {
       const { number, body } = page
 
@@ -30,6 +33,7 @@ const upload = async (req, res) => {
     }
   })
 
+  // Start PDF parsing
   pdfParser.loadPDF(filePath)
 
   res.json({message: 'deu certinho bosta mano pqp'})

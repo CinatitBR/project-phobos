@@ -5,9 +5,11 @@ import pdfModel from '../models/pdfModel.js'
 
 const mimeExtensions = { 'application/pdf': 'pdf' }
 
+// Store uploaded PDF file on storage
 const upload = extension => {
   const allowedExtension = extension
 
+  // Filter file extension
   const fileFilter = (req, file, cb) => {
     const { mimetype } = file
     const fileExtension = mimeExtensions[mimetype]
@@ -22,6 +24,7 @@ const upload = extension => {
     cb(null, true)
   }
 
+  // Define where file should be stored
   const setDestination = (req, file, cb) => {
     const { userId } = req.body
     const { mimetype } = file
@@ -35,6 +38,7 @@ const upload = extension => {
     cb(null, filePath)
   }
   
+  // Define storage filename
   const setFilename = async (req, file, cb) => {
     const { userId } = req.body
     const { mimetype, originalname } = file
@@ -58,6 +62,7 @@ const upload = extension => {
     filename: setFilename
   })
 
+  // Create multer middleware
   const upload = multer({ storage, fileFilter })
   return upload.single(extension)
 }

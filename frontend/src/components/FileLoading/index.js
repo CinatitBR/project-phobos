@@ -2,7 +2,7 @@ import { FaFilePdf, FaTimes } from 'react-icons/fa'
 
 import style from './style.module.css'
 
-const FileLoading = () => {
+const FileLoading = ({ progress }) => {
   return (
     <article className={style.fileLoading}>
       <FaFilePdf className={style.fileIcon} />
@@ -16,8 +16,8 @@ const FileLoading = () => {
           <FaTimes className={style.closeIcon} />
         </div>
 
-        <div className={style.loadingBar}>
-          <div className={style.loadingBarInner}></div>
+        <div className={style.progressBar}>
+          <div className={style.progressBarInner} style={{ width: `${progress}%` }}></div>
         </div>
       </div>
     </article>

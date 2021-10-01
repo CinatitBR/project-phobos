@@ -5,7 +5,7 @@ import useAuth from '../../hooks/useAuth'
 
 import style from './style.module.css'
 
-const FileDropBox = () => {
+const FileDropBox = ({ onProgressChange }) => {
   const auth = useAuth()
   const userId = auth.user.id
   
@@ -34,7 +34,7 @@ const FileDropBox = () => {
 
     // Upload file to server
     try {
-      await authAPI.uploadFile(formData)
+      await authAPI.uploadFile(formData, onProgressChange)
       console.log('upload successful')
     }
     catch (errors) {

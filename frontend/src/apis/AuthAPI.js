@@ -49,13 +49,13 @@ const search = keyword =>
       data: { keyword }
     })
 
-const uploadFile = formData => 
+const uploadFile = (formData, onProgressChange) => 
   axiosInstance.post('/pdf/upload', formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
     },
     onUploadProgress: data => {
-      console.log(data)
+      onProgressChange(Math.round((100 * data.loaded) / data.total))
     }
   })
 

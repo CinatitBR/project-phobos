@@ -1,3 +1,4 @@
+import fs from 'fs'
 import path from 'path'
 import PDFParser from 'pdf2json'
 import pdfModel from '../models/pdfModel.js'
@@ -9,37 +10,36 @@ const pdfParser = new PDFParser(null, 1);
 // Handle PDF parsing and add pages to database
 const upload = async (req, res) => {
   const { userId } = req.body
-  const { filename } = req.file
+  const { filename, size } = req.file
   const { id: pdfId } = await pdfModel.findByFilename(filename)
 
   // Get PDF file path
   const storagePath = process.env.STORAGE_PATH
   const userFolder = `user${userId}`
   const filePath = path.join(storagePath, userFolder, 'pdf', filename)
-  
-  // Event called on PDF parsing error
-  pdfParser.on("pdfParser_dataError", (errData) => { 
-    console.error(errData.parserError)
-  })
 
-  // PDF parsing to json object is finished (pdfData)
-  pdfParser.on("pdfParser_dataReady", async (pdfData) => {
-    // Get PDF pages data
-    const pages = getPages(pdfData)
+  // ---------------
+  const pdfStream = fs.createReadStream(filePath)
 
-    // Add pages to database
-    for (const page of pages) {
-      const { number, body } = page
+  // Parse PDF to JSON object
+  pdfStream.pipe(pdfParser)
+    .on('pdfParser_dataReady', async pdfData => { // Parsing is finished
+      // Get PDF pages data
+      const pages = getPages(pdfData)
 
-      await pageModel.create({ pdfId, number, body })
-    }
+      // Add pages to database
+      for (const page of pages) {
+        const { number, body } = page
 
-    // Send successful response
-    res.sendStatus(201)
-  })
+        await pageModel.create({ pdfId, number, body })
+      }
 
-  // Start PDF parsing
-  pdfParser.loadPDF(filePath)
+      // Send successful response
+      return res.sendStatus(201)
+    })
+    .on('pdfParser_dataError', errData => { // Parsing error
+      console.error('errData.parserError')
+    })
 }
 
 const search = async (req, res) => {

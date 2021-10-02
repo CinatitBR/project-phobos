@@ -5,11 +5,11 @@ import useAuth from '../../hooks/useAuth'
 
 import style from './style.module.css'
 
-const FileDropBox = ({ onProgressChange }) => {
+const FileDropBox = ({ onFileUpload, onProgressChange }) => {
   const auth = useAuth()
   const userId = auth.user.id
   
-  const uploadFile = async e => {
+  const handleFileUpload = async e => {
     // Prevent default behavior (Prevent file from being opened)
     e.preventDefault()
 
@@ -26,6 +26,9 @@ const FileDropBox = ({ onProgressChange }) => {
       console.log('This is not a PDF')
       return
     }
+
+    // Set file state
+    onFileUpload(file)
 
     // Create formData to send to server
     const formData = new FormData()
@@ -50,7 +53,7 @@ const FileDropBox = ({ onProgressChange }) => {
   return (
     <div 
       className={style.fileDropBox} 
-      onDrop={uploadFile} 
+      onDrop={handleFileUpload} 
       onDragOver={handleDragOver}
     >
       <FaUpload size="100px" className={style.uploadIcon} />

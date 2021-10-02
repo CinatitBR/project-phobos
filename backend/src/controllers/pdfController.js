@@ -29,7 +29,7 @@ const upload = async (req, res) => {
 
       // Add pages to database
       for (const page of pages) {
-        const { number, body } = page
+        const {number, body} = page
 
         await pageModel.create({ pdfId, number, body })
       }

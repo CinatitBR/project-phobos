@@ -1,7 +1,13 @@
 .fileLoading {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+
   display: flex;
   flex-direction: row;
   gap: 4px;
+
+  background-color: var(--background-dark);
 }
 
 .fileIcon {
@@ -27,7 +33,7 @@
 }
 
 .wrapper .filename {
-  font-size: 20px;
+  font-size: 16px;
   color: var(--white);
 }
 
@@ -43,15 +49,14 @@
 /* progressBar */
 .progressBar {
   width: 100%;
-  height: 4px;
+  height: 6px;
   border-radius: 8px;
   background: var(--secondary-text);
 }
 
 .progressBar .progressBarInner {
-  /* width: 45%; */
   height: 100%;
   border-radius: 8px;
   background: var(--primary-green);
-  transition: width 500ms;
+  transition: width 800ms;
 }

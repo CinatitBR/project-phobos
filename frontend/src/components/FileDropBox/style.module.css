@@ -1,20 +1,28 @@
 .fileDropBox {
-  width: 550px;
+  width: 100%;
 
   color: var(--moon-crater);
   background: var(--background-dark);
   border: 3px dashed var(--moon-crater);
   border-radius: 10px;
   padding: 15px 0;
+  margin: 10px 0;
 
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 30px;
+  gap: 15px;
 }
 
+.fileDropBox.drag {
+  border: 3px dashed var(--primary-green);
+}
+
+/* suggestion */
 .suggestion {
   color: var(--moon-crater);
+  cursor: default;
+  opacity: 0.7;
 }
 
 .suggestion p {
@@ -47,4 +55,9 @@
   font-style: italic;
 
   position: relative;
+}
+
+/* uploadIcon */
+.uploadIcon {
+  opacity: 0.7;
 }

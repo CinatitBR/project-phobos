@@ -1,15 +1,16 @@
-.wrapper {
-  margin-top: 15px;
+.addDocumentModal {
+  width: min(100%, 800px);
+}
 
+.wrapper {
   width: 100%;
   display: flex;
-  flex-direction: row;
-  gap: 20px;
+  flex-direction: column;
 }
 
 /* fileLoadingList */
 .fileLoadingList {
-  width: 280px;
+  width: 100%;
 
   display: flex;
   flex-direction: column;

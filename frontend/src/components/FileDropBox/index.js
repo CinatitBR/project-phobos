@@ -1,9 +1,12 @@
+import { useState } from 'react'
+import classNames from 'classnames'
 import Button from '../Button'
 import { FaUpload } from 'react-icons/fa'
 
 import style from './style.module.css'
 
 const FileDropBox = ({ onFileUpload }) => {
+  const [isDragActive, setIsDragActive] = useState(false)
   
   const handleDrop = async e => {
     // Prevent default behavior (Prevent file from being opened)
@@ -29,11 +32,18 @@ const FileDropBox = ({ onFileUpload }) => {
     e.preventDefault()
   }
 
+  // Toggle isDragActive
+  const toggleDrag = () => {
+    setIsDragActive(!isDragActive)
+  }
+
   return (
     <div 
-      className={style.fileDropBox} 
+      className={classNames(style.fileDropBox, { [style.drag]: isDragActive })} 
       onDrop={handleDrop} 
       onDragOver={handleDragOver}
+      onDragEnter={toggleDrag}
+      onDragLeave={toggleDrag}
     >
       <FaUpload size="100px" className={style.uploadIcon} />
 

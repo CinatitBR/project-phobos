@@ -1,48 +1,27 @@
 import Button from '../Button'
 import { FaUpload } from 'react-icons/fa'
-import authAPI from '../../apis/authAPI'
-import useAuth from '../../hooks/useAuth'
 
 import style from './style.module.css'
 
-const FileDropBox = ({ onFileUpload, onProgressChange }) => {
-  const auth = useAuth()
-  const userId = auth.user.id
+const FileDropBox = ({ onFileUpload }) => {
   
-  const handleFileUpload = async e => {
+  const handleDrop = async e => {
     // Prevent default behavior (Prevent file from being opened)
     e.preventDefault()
 
-    // Check if item is a file
-    if (e.dataTransfer.items[0].kind !== 'file') {
-      console.log('This is not a file')
-      return
+    const { items } = e.dataTransfer
+
+    // Get file objects of uploaded PDFs
+    const uploadedFiles = []
+
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i]
+
+      if (item.kind === 'file' && item.type === 'application/pdf')
+        uploadedFiles.push(item.getAsFile())
     }
 
-    const file = e.dataTransfer.items[0].getAsFile()
-
-    // Check if file is a PDF
-    if (file.type !== 'application/pdf') {
-      console.log('This is not a PDF')
-      return
-    }
-
-    // Set file state
-    onFileUpload(file)
-
-    // Create formData to send to server
-    const formData = new FormData()
-    formData.append('userId', userId)
-    formData.append('pdf', file)
-
-    // Upload file to server
-    try {
-      await authAPI.uploadFile(formData, onProgressChange)
-      console.log('upload successful')
-    }
-    catch (errors) {
-      console.log('upload error')
-    }
+    onFileUpload(uploadedFiles)
   }
 
   const handleDragOver = e => {
@@ -53,7 +32,7 @@ const FileDropBox = ({ onFileUpload, onProgressChange }) => {
   return (
     <div 
       className={style.fileDropBox} 
-      onDrop={handleFileUpload} 
+      onDrop={handleDrop} 
       onDragOver={handleDragOver}
     >
       <FaUpload size="100px" className={style.uploadIcon} />

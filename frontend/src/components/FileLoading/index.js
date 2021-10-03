@@ -2,7 +2,7 @@ import { FaFilePdf, FaTimes } from 'react-icons/fa'
 
 import style from './style.module.css'
 
-const FileLoading = ({ filename, size, progress }) => {
+const FileLoading = ({ filename, size, uploaded, progress }) => {
   return (
     <article className={style.fileLoading}>
       <FaFilePdf className={style.fileIcon} />
@@ -13,7 +13,9 @@ const FileLoading = ({ filename, size, progress }) => {
           
           <span className={style.fileSize}>{size} mb</span>
 
-          <FaTimes className={style.closeIcon} />
+          {uploaded &&
+            <FaTimes className={style.closeIcon} />
+          }
         </div>
 
         <div className={style.progressBar}>

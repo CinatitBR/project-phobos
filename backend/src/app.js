@@ -7,7 +7,7 @@ const app = express()
 const PORT = process.env.SERVER_PORT
 const STORAGE_PATH = process.env.STORAGE_PATH
 
-app.use(cors({ credentials: true, origin: 'http://localhost:3000'}))
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 app.use(cookieParser())
 app.use(express.json())
 app.use('/storage', express.static(STORAGE_PATH))

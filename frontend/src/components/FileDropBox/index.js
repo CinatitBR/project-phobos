@@ -11,6 +11,7 @@ const FileDropBox = ({ onFileUpload }) => {
   const handleDrop = async e => {
     // Prevent default behavior (Prevent file from being opened)
     e.preventDefault()
+    setIsDragActive(false)
 
     const { items } = e.dataTransfer
 
@@ -32,18 +33,13 @@ const FileDropBox = ({ onFileUpload }) => {
     e.preventDefault()
   }
 
-  // Toggle isDragActive
-  const toggleDrag = () => {
-    setIsDragActive(!isDragActive)
-  }
-
   return (
     <div 
       className={classNames(style.fileDropBox, { [style.drag]: isDragActive })} 
       onDrop={handleDrop} 
       onDragOver={handleDragOver}
-      onDragEnter={toggleDrag}
-      onDragLeave={toggleDrag}
+      onDragEnter={() => setIsDragActive(true)}
+      onDragLeave={() => setIsDragActive(false)}
     >
       <FaUpload size="100px" className={style.uploadIcon} />
 

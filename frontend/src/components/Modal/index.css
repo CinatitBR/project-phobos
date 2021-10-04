@@ -31,6 +31,8 @@
 }
 
 #modal header {
+  color: var(--white);
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -38,7 +40,6 @@
 
 #modal header .title {
   font-size: 25px;
-  color: var(--white);
 }
 
 #modal .wrapper {
@@ -51,7 +52,6 @@
 
 #modal .closeButton {
   display: block;
-  color: var(--secondary-text);
   cursor: pointer;
   margin-left: auto;
 }

@@ -18,7 +18,7 @@ const Modal = ({ show, onClose, title, children, className, ...rest }) => {
         >
           <header>
             {title &&
-              <h3 className="title">{title && title}</h3>
+              <h3 className="title">{title}</h3>
             }
 
             <FaTimes 

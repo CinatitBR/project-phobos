@@ -2,6 +2,7 @@
   padding: 15px 30px;
   background: var(--background-light);
   border-radius: 16px;
+  cursor: pointer;
 
   display: flex;
   flex-direction: column;

@@ -1,12 +1,15 @@
 import viewSDKClient from '../../apis/viewSDKClient'
+import useAuth from '../../hooks/useAuth'
 import './index.css'
 
 function DocumentPreview({ pdfId, filename, title, pageNumber, children }) {
+  const auth = useAuth()
+  const userId = auth.user.id
 
   // Open PDF using Adobe PDF Embed API
   const previewFile = async () => {
     await viewSDKClient.ready()
-    const fileUrl = `http://localhost:5000/storage/user1/pdf/${filename}`
+    const fileUrl = `http://localhost:5000/storage/user${userId}/pdf/${filename}`
 
     viewSDKClient.previewFile({ 
       fileName: `${title}.pdf`, 

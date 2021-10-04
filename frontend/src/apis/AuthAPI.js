@@ -11,6 +11,7 @@ const setAuthHeader = value =>
     .headers
     .common['Authorization'] = value 
 
+// auth
 const register = ({ email, username, password }) => 
   axiosInstance
     .request({
@@ -41,6 +42,8 @@ const refreshToken = () =>
       url: '/auth/refresh-token',
     })
 
+
+// pdf
 const search = keyword => 
   axiosInstance
     .request({
@@ -60,6 +63,9 @@ const uploadFile = (data, updateProgress) =>
       updateProgress(progress)
     }
   })
+
+const destroy = pdfId => 
+  axiosInstance.post('/pdf/delete', { pdfId })
 
 // Response interceptor to handle expired access tokens
 axiosInstance.interceptors.response.use(undefined, async (error) => {
@@ -94,7 +100,8 @@ const authAPI = {
   logout,
   refreshToken,
   search,
-  uploadFile
+  uploadFile,
+  destroy
 }
 
 export default authAPI

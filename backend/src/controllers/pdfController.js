@@ -35,7 +35,7 @@ const upload = async (req, res) => {
     }
 
     // Send successful response
-    res.sendStatus(201)
+    res.json({ pdfId })
   })
 
   // Start PDF parsing

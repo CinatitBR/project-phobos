@@ -2,7 +2,7 @@ import { FaFilePdf, FaTimes } from 'react-icons/fa'
 
 import style from './style.module.css'
 
-const FileLoading = ({ filename, size, uploaded, progress }) => {
+const FileLoading = ({ id, filename, size, uploaded, progress, onFileDelete }) => {
   return (
     <article className={style.fileLoading}>
       <FaFilePdf className={style.fileIcon} />
@@ -14,7 +14,10 @@ const FileLoading = ({ filename, size, uploaded, progress }) => {
           <span className={style.fileSize}>{size} mb</span>
 
           {uploaded &&
-            <FaTimes className={style.closeIcon} />
+            <FaTimes 
+              className={style.closeIcon} 
+              onClick={() => onFileDelete(id)} 
+            />
           }
         </div>
 

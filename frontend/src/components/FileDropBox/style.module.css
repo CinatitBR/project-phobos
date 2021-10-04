@@ -1,5 +1,6 @@
 .fileDropBox {
   width: 100%;
+  cursor: default;
 
   color: var(--moon-crater);
   background: var(--background-dark);
@@ -21,7 +22,6 @@
 /* suggestion */
 .suggestion {
   color: var(--moon-crater);
-  cursor: default;
   opacity: 0.7;
 }
 

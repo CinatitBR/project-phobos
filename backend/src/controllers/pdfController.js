@@ -58,9 +58,28 @@ const search = async (req, res) => {
   }
 }
 
+const destroy = async (req, res) => {
+  try {
+    const { pdfId } = req.body
+
+    // Delete PDF from database
+    await pdfModel.destroy(pdfId)
+
+    res.sendStatus(200)
+  }
+  catch (e) {
+    console.log(e)
+
+    return res
+      .status(500)
+      .json({ message: 'Oh, no! There was an error. Please, try again' })
+  }
+}
+
 const pdfController = {
   upload,
-  search
+  search,
+  destroy
 }
 
 export default pdfController

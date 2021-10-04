@@ -13,6 +13,7 @@ router.post('/user/find-by-email', userController.findByEmail)
 
 router.post('/pdf/upload', upload('pdf'), pdfController.upload)
 router.post('/pdf/search', pdfController.search)
+router.post('/pdf/delete', pdfController.destroy)
 
 router.post('/auth/register', validation.register, authController.register)
 router.post('/auth/login', validation.login, authController.login)

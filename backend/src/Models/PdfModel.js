@@ -50,6 +50,34 @@ const search = async (keyword) => {
   }
 }
 
-const pdfModel = { create, findByFilename, search }
+const destroy = async (pdfId) => {
+  try {
+    const sql = `
+      START TRANSACTION;
+
+      DELETE FROM page
+      WHERE pdf_id = ${pdfId};
+      
+      DELETE FROM pdf 
+      WHERE id = ${pdfId};
+      
+      COMMIT;
+    `
+
+    await db.query(sql)
+
+    return
+  }
+  catch (e) {
+    throw new Error(e)
+  }
+}
+
+const pdfModel = { 
+  create, 
+  findByFilename, 
+  search,
+  destroy 
+}
 
 export default pdfModel

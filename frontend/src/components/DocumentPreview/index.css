@@ -20,7 +20,16 @@
   color: var(--primary-purple);
 }
 
+/* body */
 #documentPreview #body {
+  color: var(--secondary-text);
   font-size: 16px;
   text-align: justify;
+}
+
+#documentPreview #body .highlight {
+  color: var(--white);
+  background: var(--primary-green);
+  border-radius: 4px;
+  padding: 2px;
 }

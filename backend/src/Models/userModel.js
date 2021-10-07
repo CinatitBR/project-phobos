@@ -7,7 +7,9 @@ const create = async ({ email, username, password }) => {
       VALUES (?, ?, ?)
     `
 
-    await db.query(sql, [email, username, password])
+    const [results, fields] = await db.query(sql, [email, username, password])
+
+    return results
   }
   catch (e) {
     throw new Error(e)

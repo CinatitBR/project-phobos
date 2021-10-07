@@ -1,3 +1,5 @@
+import { mkdirSync } from 'fs'
+import path from 'path'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import token from '../utils/token.js'
@@ -8,14 +10,23 @@ const register = async (req, res) => {
   try {
     const { email, username, password } = req.body
 
+    // Trim username and hash password
     const trimmedUsername = username.trim()
     const hashedPassword = await bcrypt.hash(password, 10)
 
-    await userModel.create({
+    // Add user to database
+    const results = await userModel.create({
       email, 
       username: trimmedUsername, 
       password: hashedPassword
     })
+
+    // Get user id
+    const userId = results.insertId
+
+    // Create user folder
+    const folderPath = path.join(process.env.STORAGE_PATH, `user${userId}`, 'pdf')
+    mkdirSync(folderPath, { recursive: true })
 
     return res.sendStatus(201)
   }

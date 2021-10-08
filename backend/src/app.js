@@ -8,7 +8,7 @@ const PORT = process.env.SERVER_PORT
 const STORAGE_PATH = process.env.STORAGE_PATH
 const corsConfig = cors({
   credentials: true, 
-  origin: 'http://localhost:3000'
+  origin: JSON.parse(process.env.CORS_ORIGIN)
 }) 
 
 app.use(corsConfig)

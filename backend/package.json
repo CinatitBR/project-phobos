@@ -5,8 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "node src/app.js",
-    "startDev": "nodemon -r dotenv/config src/app.js"
+    "start": "nodemon -r dotenv/config src/app.js"
   },
   "dependencies": {
     "axios": "^0.22.0",

@@ -1,5 +1,5 @@
-import registerValidation from '../../../shared/src/validations/registerValidation.js'
-import loginValidation from '../../../shared/src/validations/loginValidation.js'
+import registerValidation from '../validations/registerValidation.js'
+import loginValidation from '../validations/loginValidation.js'
 
 const isObjectEmpty = obj => {
   for (const value of Object.values(obj)) {

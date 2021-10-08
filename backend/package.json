@@ -5,7 +5,8 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "nodemon -r dotenv/config src/app.js"
+    "start": "node src/app.js",
+    "startDev": "nodemon -r dotenv/config src/app.js" 
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

@@ -4,7 +4,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 
 const app = express()
-const PORT = process.env.SERVER_PORT
+const PORT = process.env.PORT
 const STORAGE_PATH = process.env.STORAGE_PATH
 const corsConfig = cors({
   credentials: true, 

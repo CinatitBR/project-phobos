@@ -1,4 +1,4 @@
-const clientId = 'a8905fc2c41740308d6d0da0bda17d68'
+const clientId = process.env.REACT_APP_PDF_EMBED_KEY
 
 const viewSDKClient = {
   readyPromise: new Promise(resolve => {

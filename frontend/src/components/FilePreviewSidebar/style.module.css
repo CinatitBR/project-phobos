@@ -1,0 +1,106 @@
+.filePreviewSidebar {
+  background: var(--background-light);
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.filePreviewSidebar .title {
+  color: var(--primary-green);
+  font-size: 20px;
+  cursor: default;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* fileInfo */
+.fileInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.fileInfo .fileIcon {
+  color: var(--salmon);
+  font-size: 100px;
+}
+
+.fileInfo .filename {
+  color: var(--white);
+  font-size: 25px;
+}
+
+.fileInfo .footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fileInfo .footer .fileSize header {
+  color: var(--white);
+  font-size: 15px;
+}
+
+.fileInfo .footer .fileSize .size {
+  color: var(--secondary-text);
+  font-size: 18px;
+}
+
+/* button */
+.buttonList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+.button {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.button .backgroundIcon {
+  cursor: pointer;
+  color: white;
+  background: var(--background-dark);
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+
+  display: inline-grid;
+  place-items: center;
+
+  border: 2px solid var(--background-dark);
+  transition: border-color 250ms ease;
+}
+
+.button .backgroundIcon:hover {
+  border-color: var(--primary-green);
+}
+
+.button .icon {
+  font-size: 25px;
+}
+
+.button .buttonName {
+  color: var(--primary-green);
+  font-size: 14px;
+  cursor: default;
+}
+
+/* divider */
+.divider {
+  width: auto;
+  height: 3px;
+  background: var(--background-dark);
+  border-radius: 4px;
+  opacity: 0.35;
+}

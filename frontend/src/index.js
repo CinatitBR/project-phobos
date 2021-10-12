@@ -53,9 +53,6 @@ ReactDOM.render(
     <BrowserRouter>
       <ProvideAuth>
         <Switch>
-          <CustomRoute path="/" exact condition="auth">
-            <MainLayout />
-          </CustomRoute>
 
           <CustomRoute path="/register" exact condition="unauth">
             <Register />
@@ -64,6 +61,11 @@ ReactDOM.render(
           <CustomRoute path="/login" exact condition="unauth">
             <Login />
           </CustomRoute>
+          
+          <CustomRoute path="/" condition="auth">
+            <MainLayout />
+          </CustomRoute>
+
         </Switch>
       </ProvideAuth>
     </BrowserRouter>

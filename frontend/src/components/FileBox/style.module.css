@@ -1,0 +1,79 @@
+.fileBox {
+  width: 250px;
+  height: 250px;
+  background: #5861A2;
+  padding: 10px;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fileBoxHeader {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wrapperOptions {
+  border-radius: 2px;
+  display: inline-block;
+  padding: 2px;
+  transition: background 250ms ease;
+}
+
+.wrapperOptions:hover {
+  background: #7278A3;
+}
+
+.options {
+  display: block;
+  color: var(--secondary-text);
+  cursor: pointer;
+}
+
+
+/* fileBoxBody */
+.fileBoxBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.fileIcon {
+  color: var(--salmon);
+  font-size: 55px;
+}
+
+.fileTitle {
+  color: var(--white);
+  font-size: 20px;
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  background: var(--background-light);
+  opacity: 0.35;
+}
+
+/* info */
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fileSize header {
+  color: var(--white);
+  font-size: 14px;
+}
+
+.fileSize .size {
+  color: var(--secondary-text);
+  font-size: 16px;
+}

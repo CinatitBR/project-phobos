@@ -11,7 +11,7 @@
 }
 
 .fileIcon {
-  color: #F19691;
+  color: var(--salmon);
   font-size: 45px;
 }
 

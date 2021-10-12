@@ -1,0 +1,13 @@
+.fileTag {
+  cursor: default;
+  color: var(--white);
+  background: var(--primary-purple);
+  padding: 5px;
+  border-radius: 30px;
+
+  transition: background 250ms ease;
+}
+
+.fileTag:hover {
+  background: #9F68DB;
+}

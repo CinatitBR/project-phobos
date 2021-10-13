@@ -1,9 +1,7 @@
 import { createPortal } from 'react-dom'
 
-const mountPoint = document.querySelector('#react-portal')
-
 const Portal = ({ children }) => {
-  return createPortal(children, mountPoint)
+  return createPortal(children, document.body)
 }
 
 export default Portal

@@ -1,0 +1,28 @@
+.dropdownMenu {
+  background: black;
+  width: 170px;
+  border-radius: 4px;
+  background: var(--background-light);
+  padding: 8px 0;
+
+  position: absolute;
+}
+
+.dropdownItem {
+  color: var(--white);
+  padding: 4px 20px;
+  transition: background 200ms ease;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+
+.dropdownItem .leftIcon {
+  display: flex;
+  margin-right: 8px;
+}
+
+.dropdownItem:hover {
+  background: var(--primary-blue);
+}

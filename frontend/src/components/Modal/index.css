@@ -1,11 +1,3 @@
-.overlay {
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  background: rgb(1, 1, 1, 0.4);
-}
-
 #modal {
   background: var(--background-light);
   padding: 10px;

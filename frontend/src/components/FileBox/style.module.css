@@ -22,6 +22,7 @@
   display: inline-block;
   padding: 2px;
   transition: background 250ms ease;
+  cursor: pointer;
 }
 
 .wrapperOptions:hover {
@@ -31,9 +32,7 @@
 .options {
   display: block;
   color: var(--secondary-text);
-  cursor: pointer;
 }
-
 
 /* fileBoxBody */
 .fileBoxBody {
@@ -60,6 +59,13 @@
   opacity: 0.35;
 }
 
+/* footer */
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 /* info */
 .info {
   display: flex;
@@ -76,4 +82,9 @@
 .fileSize .size {
   color: var(--secondary-text);
   font-size: 16px;
+}
+
+/* hide */
+.hide {
+  visibility: hidden;
 }

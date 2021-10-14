@@ -37,8 +37,6 @@ const FileBox = ({ filename, tagName, fileSize }) => {
       </div>
 
       <footer>
-        <div className={style.divider}></div>
-        
         <div className={style.info}>
           <div className={style.fileSize}>
             <header>Size</header>

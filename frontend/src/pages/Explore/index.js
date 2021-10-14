@@ -6,27 +6,6 @@ import authAPI from '../../apis/authAPI'
 
 import style from './style.module.css'
 
-// const files = [
-//   {
-//     id: 1,
-//     filename: 'Probabilidade.pdf',
-//     tagName: 'Matemática',
-//     size: '10 MB',
-//   },
-//   {
-//     id: 2,
-//     filename: 'Friends Script.pdf',
-//     tagName: 'TV Show',
-//     size: '16 MB',
-//   },
-//   {
-//     id: 3,
-//     filename: 'Biggie smalls.pdf',
-//     tagName: 'Rap',
-//     size: '5 MB',
-//   }
-// ]
-
 const Explore = () => {
   const userId = useAuth().user.id
   const [files, setFiles] = useState([])

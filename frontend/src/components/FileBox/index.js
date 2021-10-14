@@ -21,13 +21,11 @@ const FileBox = ({ filename, tagName, fileSize }) => {
           {[style.hide]: !showOptions}
         )}
       >
-        
         <Dropdown> 
           <span className={style.wrapperOptions}>
             <FaEllipsisV className={style.options}/>
           </span>
         </Dropdown>
-        
       </header>
 
       
@@ -37,8 +35,6 @@ const FileBox = ({ filename, tagName, fileSize }) => {
           {filename}
         </h3>
       </div>
-
-      {/* <div className={style.divider}></div> */}
 
       <footer>
         <div className={style.divider}></div>

@@ -52,6 +52,9 @@ const search = keyword =>
       data: { keyword }
     })
 
+const findAll = userId =>
+    axiosInstance.post('/pdf/find-all', { userId })
+
 const uploadFile = (data, updateProgress) => 
   axiosInstance.post('/pdf/upload', data, {
     headers: {
@@ -100,6 +103,7 @@ const authAPI = {
   logout,
   refreshToken,
   search,
+  findAll,
   uploadFile,
   destroy
 }

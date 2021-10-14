@@ -8,9 +8,9 @@ const FileList = ({ files }) => {
       {files.map(file => 
         <FileBox 
           key={file.id}
-          filename={file.filename}
-          tagName={file.tagName}
-          fileSize={file.size}
+          filename={file.title}
+          tagName={'Math'}
+          fileSize={'50 MB'}
         />  
       )}
     </div>

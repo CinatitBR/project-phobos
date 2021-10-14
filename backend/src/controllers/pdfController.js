@@ -42,6 +42,22 @@ const upload = async (req, res) => {
   pdfParser.loadPDF(filePath)
 }
 
+const findAll = async (req, res) => {
+  try {
+    const { userId } = req.body 
+
+    const files = await pdfModel.findAll(userId)
+
+    res.json({ files })
+  } catch (e) {
+    console.log(e)
+
+    return res
+      .status(500)
+      .json({ message: 'Oh, no! There was an error. Please, try again' })
+  }
+}
+
 const search = async (req, res) => {
   try {
     const { keyword } = req.body
@@ -78,6 +94,7 @@ const destroy = async (req, res) => {
 
 const pdfController = {
   upload,
+  findAll,
   search,
   destroy
 }

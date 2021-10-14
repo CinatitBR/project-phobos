@@ -11,6 +11,7 @@ const router = express.Router()
 
 router.post('/user/find-by-email', userController.findByEmail)
 
+router.post('/pdf/find-all', pdfController.findAll)
 router.post('/pdf/upload', upload('pdf'), pdfController.upload)
 router.post('/pdf/search', pdfController.search)
 router.post('/pdf/delete', pdfController.destroy)

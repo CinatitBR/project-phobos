@@ -14,6 +14,18 @@ const create = async ({ filename, title, userId }) => {
   }
 }
 
+const findAll = async (userId) => {
+  try {
+    const sql = `SELECT * FROM pdf WHERE user_id=?`
+
+    const [rows, fields] = await db.query(sql, userId)
+
+    return rows
+  } catch(e) {
+    throw new Error(e)
+  }
+}
+
 const findByFilename = async (filename) => {
   const sql = `
     SELECT * FROM pdf
@@ -75,6 +87,7 @@ const destroy = async (pdfId) => {
 
 const pdfModel = { 
   create, 
+  findAll,
   findByFilename, 
   search,
   destroy 

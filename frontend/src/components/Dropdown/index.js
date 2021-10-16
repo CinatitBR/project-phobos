@@ -1,5 +1,4 @@
 import { cloneElement, useState, useRef } from 'react'
-import Portal from '../Portal'
 import Overlay from '../Overlay'
 import { FaExternalLinkAlt, FaArrowDown, FaTrashAlt } from 'react-icons/fa'
 

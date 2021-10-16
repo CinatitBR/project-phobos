@@ -38,9 +38,9 @@ const upload = extension => {
     cb(null, filePath)
   }
   
-  // Define storage filename
+  // Define storage filename and add file to database
   const setFilename = async (req, file, cb) => {
-    const { userId } = req.body
+    const { userId, tag } = req.body
     const { mimetype, originalname } = file
   
     const fileExtension = mimeExtensions[mimetype] 
@@ -48,7 +48,8 @@ const upload = extension => {
     const title = path.parse(originalname).name
   
     try {
-      await pdfModel.create({filename, title,  userId})
+      // Add file to database
+      await pdfModel.create({userId, filename, title, tag})
   
       cb(null, filename)
     }

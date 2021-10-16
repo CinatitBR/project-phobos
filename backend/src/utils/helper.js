@@ -1,7 +1,15 @@
-import axios from 'axios'
 import bcrypt from 'bcrypt'
+import userModel from '../models/userModel.js'
 
-const getInnerErrors = (validationError) => {
+const isObjectEmpty = obj => {
+  for (const value of Object.values(obj)) {
+    if (value) return false
+  }
+
+  return true
+}
+
+const getInnerErrors = validationError => {
   const errors = {}
   
   for (const error of validationError.inner) {
@@ -14,7 +22,7 @@ const getInnerErrors = (validationError) => {
   return errors
 }
 
-const handleValidationError = async validationExpression => {
+const getValidationErrors = async validationExpression => {
   try {
     await validationExpression
 
@@ -28,29 +36,26 @@ const handleValidationError = async validationExpression => {
 }
 
 const emailExists = async email => {
-  const response = await axios.post(
-    'http://localhost:5000/user/find-by-email', 
-    { email: email }
-  )
+  const user = await userModel.findByEmail(email)
 
-  const user = response.data
-
-  return user ? true : false
+  return (user ? true : false)
 }
 
 const isPasswordCorrect = async (password, emailRelated) => {
-  const response = await axios.post(
-    'http://localhost:5000/user/find-by-email', 
-    { email: emailRelated }
-  )
-  const user = response.data
+  // const response = await axios.post(
+  //   'http://localhost:5000/user/find-by-email', 
+  //   { email: emailRelated }
+  // )
+  // const user = response.data
+
+  const user = await userModel.findByEmail(emailRelated)
   
   // If user doesn't exist, 
-  // finish password validation with success
+  // finish password validation returning true
   if (!user) return true
 
   // Get hashed password and compare
-  const {password: hashedPassword} = user
+  const hashedPassword = user.password
   const match = await bcrypt.compare(password, hashedPassword)
 
   return match
@@ -58,7 +63,8 @@ const isPasswordCorrect = async (password, emailRelated) => {
 
 export { 
   getInnerErrors,
-  handleValidationError,
+  getValidationErrors,
   emailExists, 
-  isPasswordCorrect
+  isPasswordCorrect,
+  isObjectEmpty
 }

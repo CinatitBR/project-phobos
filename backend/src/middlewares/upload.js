@@ -1,11 +1,10 @@
 import path from 'path'
 import multer from 'multer'
 import { v4 as uuidv4 } from 'uuid'
-import pdfModel from '../models/pdfModel.js'
 
 const mimeExtensions = { 'application/pdf': 'pdf' }
 
-// Store uploaded PDF file on storage
+// Store uploaded PDF on storage
 const upload = extension => {
   const allowedExtension = extension
 
@@ -38,24 +37,13 @@ const upload = extension => {
     cb(null, filePath)
   }
   
-  // Define storage filename and add file to database
+  // Define storage filename
   const setFilename = async (req, file, cb) => {
-    const { userId, tag } = req.body
-    const { mimetype, originalname } = file
-  
+    const { mimetype } = file
     const fileExtension = mimeExtensions[mimetype] 
     const filename = `${uuidv4()}.${fileExtension}`
-    const title = path.parse(originalname).name
   
-    try {
-      // Add file to database
-      await pdfModel.create({userId, filename, title, tag})
-  
-      cb(null, filename)
-    }
-    catch (e) {
-      cb(e)
-    }
+    cb(null, filename)
   }
 
   const storage = multer.diskStorage({

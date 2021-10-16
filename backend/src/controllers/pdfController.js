@@ -4,18 +4,16 @@ import pdfModel from '../models/pdfModel.js'
 import getPages from '../utils/getPages.js'
 import pageModel from '../models/pageModel.js'
 
-// Handle PDF parsing and add pages to database
+// Add PDF to database and handle parsing
 const upload = async (req, res) => {
   const pdfParser = new PDFParser(null, 1)
 
-  const { userId } = req.body
-  const { filename } = req.file
-  const { id: pdfId } = await pdfModel.findByFilename(filename)
+  const { userId, tag } = req.body
+  const { filename, originalname, path: filePath } = req.file
+  const title = path.parse(originalname).name
 
-  // Get PDF file path
-  const storagePath = process.env.STORAGE_PATH
-  const userFolder = `user${userId}`
-  const filePath = path.join(storagePath, userFolder, 'pdf', filename)
+  // Add file to database
+  const pdfId = await pdfModel.create({userId, filename, title, tag})
   
   // PDF parsing error
   pdfParser.on('pdfParser_dataError', errData => { 
@@ -38,7 +36,7 @@ const upload = async (req, res) => {
     res.json({ pdfId })
   })
 
-  // Start PDF parsing
+  // Start PDF parsing to json object
   pdfParser.loadPDF(filePath)
 }
 

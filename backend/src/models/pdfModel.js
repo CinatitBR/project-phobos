@@ -4,7 +4,7 @@ const create = async ({ userId, filename, title, tag}) => {
   try {
     const sql = `
       INSERT INTO pdf (user_id, filename, title, tag)
-      VALUES (?, ?, ?)
+      VALUES (?, ?, ?, ?)
     `
 
     const [results, fields] = await db.query(sql, [userId, filename, title, tag])

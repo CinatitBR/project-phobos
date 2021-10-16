@@ -22,9 +22,10 @@ const getInnerErrors = validationError => {
   return errors
 }
 
-const getValidationErrors = async validationExpression => {
+// Validate schema and get validation errors
+const validate = async (schema, data) => {
   try {
-    await validationExpression
+    await schema.validate(data, {abortEarly: false})
 
     return {}
   }
@@ -63,7 +64,7 @@ const isPasswordCorrect = async (password, emailRelated) => {
 
 export { 
   getInnerErrors,
-  getValidationErrors,
+  validate,
   emailExists, 
   isPasswordCorrect,
   isObjectEmpty

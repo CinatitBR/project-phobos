@@ -1,4 +1,4 @@
-import { cloneElement, useState, useRef, useEffect } from 'react'
+import { cloneElement, useState, useRef } from 'react'
 import Portal from '../Portal'
 import Overlay from '../Overlay'
 import { FaExternalLinkAlt, FaArrowDown, FaTrashAlt } from 'react-icons/fa'
@@ -28,62 +28,57 @@ const Dropdown = ({ children }) => {
   })
 
   const processPosition = () => {
-    // Set dropdown position
-    const domRect = target.current.getBoundingClientRect()
-    setPosition({x: domRect.x, y: domRect.y + 25})
-  }
-
-  useEffect(() => {
     // Check if target.current is not null
     if (!target.current) return
 
     // Set dropdown position
-    processPosition()
+    const domRect = target.current.getBoundingClientRect()
 
-    // Set new position on window resize
-    window.addEventListener('resize', processPosition)
-
-    return () => window.removeEventListener('resize', processPosition)
-  }, [])
+    setPosition({
+      x: domRect.x, 
+      y: domRect.y + 25
+    })
+  }
 
   return (
     <>
       {cloneElement(children, {
-        onClick: () => setShow(true),
-        ref: target
+        ref: target,
+        onClick: () => {
+          processPosition()
+
+          setShow(true)
+        }
       })}
 
       {show && 
-        <Portal>
-          <Overlay 
-            onClose={() => setShow(false)}
-            showBackgroundColor={false}
+        <Overlay 
+          onClose={() => setShow(false)}
+          showBackgroundColor={false}
+        >
+
+          <div 
+            className={style.dropdownMenu}
+            style={{ left: `${position.x}px`, top: `${position.y}px` }}
+            onClick={e => e.stopPropagation()} // Prevent overlay click propagation
           >
+            <DropdownItem
+              leftIcon={<FaExternalLinkAlt />} 
+              text="Open"
+            />
+            
+            <DropdownItem 
+              leftIcon={<FaArrowDown />}
+              text="Download"
+            />
 
-            <div 
-              className={style.dropdownMenu}
-              style={{ left: `${position.x}px`, top: `${position.y}px` }}
-              onClick={e => e.stopPropagation()} // Prevent overlay click propagation
-            >
+            <DropdownItem 
+              leftIcon={<FaTrashAlt />}
+              text="Delete"
+            />
+          </div>
 
-              <DropdownItem
-                leftIcon={<FaExternalLinkAlt />} 
-                text="Open"
-              />
-              
-              <DropdownItem 
-                leftIcon={<FaArrowDown />}
-                text="Download"
-              />
-
-              <DropdownItem 
-                leftIcon={<FaTrashAlt />}
-                text="Delete"
-              />
-            </div>
-
-          </Overlay>
-        </Portal>
+        </Overlay>
       }
     </>
   )

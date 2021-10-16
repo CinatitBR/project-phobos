@@ -1,13 +1,13 @@
 import db from '../db.js'
 
-const create = async ({ filename, title, userId }) => {
+const create = async ({ userId, filename, title, tag}) => {
   const sql = `
-    INSERT INTO pdf (filename, title, user_id)
+    INSERT INTO pdf (user_id, filename, title, tag)
     VALUES (?, ?, ?)
   `
 
   try {
-    await db.query(sql, [filename, title, userId])
+    await db.query(sql, [userId, filename, title, tag])
   } 
   catch (e) {
     throw new Error(e)

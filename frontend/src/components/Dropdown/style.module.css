@@ -25,3 +25,9 @@
 .dropdownItem:hover {
   background: var(--primary-blue);
 }
+
+/* default */
+.default {
+  font-style: italic;
+  color: var(--secondary-text);
+}

@@ -1,12 +1,23 @@
 import { cloneElement, useState, useRef } from 'react'
 import Overlay from '../Overlay'
+import classNames from 'classnames'
 
 import style from './style.module.css'
 
-const DropdownItem = ({ leftIcon, text, onClick }) => {
+const DropdownItem = ({ 
+  leftIcon, 
+  text, 
+  onClick, 
+  defaultValue=false
+}) => {
   return (
-    <div className={style.dropdownItem} onClick={onClick}>
-
+    <div 
+      onClick={onClick} 
+      className={classNames(
+        style.dropdownItem, 
+        {[style.default]: defaultValue}
+      )} 
+    >
       {leftIcon && 
         <div className={style.leftIcon}>
           {leftIcon}
@@ -83,9 +94,10 @@ const Dropdown = ({
           >
             {items.map((item, index) =>
               <DropdownItem 
-                key={index}
+                key={index+1}
                 leftIcon={item.leftIcon}
                 text={item.text}
+                defaultValue={item.defaultValue}
                 onClick={() => {
                   setShow(false)
 

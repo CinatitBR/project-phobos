@@ -1,6 +1,5 @@
 import { cloneElement, useState, useRef } from 'react'
 import Overlay from '../Overlay'
-import { FaExternalLinkAlt, FaArrowDown, FaTrashAlt } from 'react-icons/fa'
 
 import style from './style.module.css'
 
@@ -18,7 +17,7 @@ const DropdownItem = ({ leftIcon, text }) => {
   )
 }
 
-const Dropdown = ({ children }) => {
+const Dropdown = ({ children, margin=0, fullWidth=false, items }) => {
   const [show, setShow] = useState(false)
   const target = useRef(null)
   const [position, setPosition] = useState({
@@ -35,7 +34,7 @@ const Dropdown = ({ children }) => {
 
     setPosition({
       x: domRect.x, 
-      y: domRect.y + 25
+      y: domRect.y + target.current.offsetHeight + margin
     })
   }
 
@@ -58,23 +57,19 @@ const Dropdown = ({ children }) => {
 
           <div 
             className={style.dropdownMenu}
-            style={{ left: `${position.x}px`, top: `${position.y}px` }}
+            style={{ 
+              left: `${position.x}px`, 
+              top: `${position.y}px`, 
+              width: fullWidth ? target.current.offsetWidth : '170px'
+            }}
             onClick={e => e.stopPropagation()} // Prevent overlay click propagation
           >
-            <DropdownItem
-              leftIcon={<FaExternalLinkAlt />} 
-              text="Open"
-            />
-            
-            <DropdownItem 
-              leftIcon={<FaArrowDown />}
-              text="Download"
-            />
-
-            <DropdownItem 
-              leftIcon={<FaTrashAlt />}
-              text="Delete"
-            />
+            {items.map(item =>
+              <DropdownItem 
+                leftIcon={item.leftIcon}
+                text={item.text}
+              />
+            )}
           </div>
 
         </Overlay>

@@ -1,13 +1,28 @@
 import { useState } from 'react'
 import FileTag from '../FileTag'
 import Dropdown from '../../components/Dropdown'
-import { FaFilePdf, FaEllipsisV } from 'react-icons/fa'
+import { FaFilePdf, FaEllipsisV, FaExternalLinkAlt, FaArrowDown, FaTrashAlt } from 'react-icons/fa'
 import classNames from 'classnames'
 
 import style from './style.module.css'
 
 const FileBox = ({ filename, tagName, fileSize }) => {
   const [showOptions, setShowOptions] = useState(false)
+
+  const dropdownItems = [
+    {
+      leftIcon: <FaExternalLinkAlt />,
+      text: 'Open'
+    },
+    {
+      leftIcon: <FaArrowDown />,
+      text: 'Download'
+    },
+    {
+      leftIcon: <FaTrashAlt />,
+      text: 'Delete'
+    }
+  ]
 
   return (
     <article 
@@ -21,7 +36,10 @@ const FileBox = ({ filename, tagName, fileSize }) => {
           {[style.hide]: !showOptions}
         )}
       >
-        <Dropdown> 
+        <Dropdown
+          items={dropdownItems}
+          margin={5}
+        > 
           <span className={style.wrapperOptions}>
             <FaEllipsisV className={style.options}/>
           </span>

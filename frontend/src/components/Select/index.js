@@ -7,12 +7,25 @@ import style from './style.module.css'
 
 const Select = ({ label, items, ...props }) => {
   const [selected, setSelected] = useState(null)
-  const [isFocused, setIsFocused] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const formattedItems = items.map(item => {
     return {
       text: item.text, 
-      onClick: () => setSelected(item.text)
+      onClick: () => {
+        setSelected(item.text)
+        setIsOpen(false)
+      }
     }
+  })
+
+  // Add default option to the beginning of the array
+  formattedItems.unshift({  
+    text: label,
+    defaultValue: true,
+    onClick: () => { 
+      setSelected(null)
+      setIsOpen(false)
+    },
   })
 
   return (
@@ -20,21 +33,23 @@ const Select = ({ label, items, ...props }) => {
       margin={5} 
       fullWidth={true}
       items={formattedItems}
-      onClose={() => setIsFocused(false)}
-      onOpen={() => setIsFocused(true)}
+      onClose={() => setIsOpen(false)}
+      onOpen={() => setIsOpen(true)}
     >
       <div 
         className={style.select} 
         {...props}
       >
-        { <span className={style.selected}>{selected}</span> || 
+        {selected ? 
+          <span className={style.selected}>{selected}</span> : 
           label
         }
         
         <FaChevronUp 
           className={classNames(
             style.collapseIcon, 
-            {[style.focus]: isFocused}
+            {[style.open]: isOpen},
+            {[style.selected]: selected}
           )} 
         />
       </div>

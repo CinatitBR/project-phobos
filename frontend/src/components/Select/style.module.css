@@ -13,10 +13,11 @@
 
 .collapseIcon {
   transition: all 250ms ease;
+  transform: rotate(180deg)
 }
 
-.collapseIcon.focus {
-  transform: rotate(180deg);
+.collapseIcon.open {
+  transform: rotate(360deg);
   color: var(--white);
 }
 

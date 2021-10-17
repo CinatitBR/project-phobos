@@ -1,0 +1,25 @@
+.select {
+  font-size: 24px;
+  color: var(--secondary-text);
+  background: var(--background-dark);
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.collapseIcon {
+  transition: all 250ms ease;
+}
+
+.collapseIcon.focus {
+  transform: rotate(180deg);
+  color: var(--white);
+}
+
+.selected {
+  color: var(--white);
+}

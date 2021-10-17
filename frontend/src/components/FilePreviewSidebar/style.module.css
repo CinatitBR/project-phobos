@@ -2,6 +2,9 @@
   background: var(--background-light);
   padding: 20px;
 
+  position: sticky;
+  inset: 0;
+
   display: flex;
   flex-direction: column;
   gap: 20px;

@@ -1,7 +1,7 @@
 .fileBox {
   width: 200px;
   height: 200px;
-  background: #5861A2;
+  background: var(--primary-blue);
   padding: 10px;
   border-radius: 10px;
 

@@ -1,4 +1,4 @@
-#formField label {
+label {
   font-size: 18px;
   color: var(--secondary-text);
 
@@ -7,7 +7,7 @@
   gap: 5px;
 }
 
-#formField label input {
+input {
   font-size: 24px;
   color: var(--white);
   background: var(--background-dark);
@@ -16,7 +16,7 @@
   border-radius: 5px;
 }
 
-#formField label #error {
+.error {
   color: var(--primary-red);
   font-size: 16px;
 }

@@ -1,28 +1,24 @@
-import './index.css'
+import style from './style.module.css'
 
 const FormField = ({ 
-  label, 
-  type, 
-  value, 
-  onChange, 
-  onBlur,
-  name, 
+  label,  
+  type,
   touched, 
-  error 
+  error,
+  ...props
 }) => {
   return (
-    <div id="formField">
+    <div className={style.formField}>
       <label>
         {label}
 
         <input 
-          type={type} 
-          value={value} 
-          name={name} 
-          onChange={onChange}
-          onBlur={onBlur} 
+          {...props} 
         />
-        <span id="error">{touched && error}</span>
+
+        <span className={style.error}>
+          {touched && error}
+        </span>
       </label>
     </div>
   )

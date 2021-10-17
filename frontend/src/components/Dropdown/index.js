@@ -3,12 +3,15 @@ import Overlay from '../Overlay'
 
 import style from './style.module.css'
 
-const DropdownItem = ({ leftIcon, text }) => {
+const DropdownItem = ({ leftIcon, text, onClick }) => {
   return (
-    <div className={style.dropdownItem}>
-      <div className={style.leftIcon}>
-        {leftIcon}
-      </div>
+    <div className={style.dropdownItem} onClick={onClick}>
+
+      {leftIcon && 
+        <div className={style.leftIcon}>
+          {leftIcon}
+        </div>
+      }
       
       <span className={style.text}>
         {text}
@@ -17,7 +20,14 @@ const DropdownItem = ({ leftIcon, text }) => {
   )
 }
 
-const Dropdown = ({ children, margin=0, fullWidth=false, items }) => {
+const Dropdown = ({ 
+  children, 
+  margin=0, 
+  fullWidth=false, 
+  items, 
+  onClose, 
+  onOpen
+}) => {
   const [show, setShow] = useState(false)
   const target = useRef(null)
   const [position, setPosition] = useState({
@@ -44,14 +54,21 @@ const Dropdown = ({ children, margin=0, fullWidth=false, items }) => {
         ref: target,
         onClick: () => {
           processPosition()
-
           setShow(true)
+          
+          // Check if onOpen exists
+          if (onOpen) onOpen()
         }
       })}
 
       {show && 
         <Overlay 
-          onClose={() => setShow(false)}
+          onClose={() => {
+            setShow(false)
+
+            // Check if onClose exists
+            if (onClose) onClose()
+          }}
           showBackgroundColor={false}
         >
 
@@ -64,10 +81,17 @@ const Dropdown = ({ children, margin=0, fullWidth=false, items }) => {
             }}
             onClick={e => e.stopPropagation()} // Prevent overlay click propagation
           >
-            {items.map(item =>
+            {items.map((item, index) =>
               <DropdownItem 
+                key={index}
                 leftIcon={item.leftIcon}
                 text={item.text}
+                onClick={() => {
+                  setShow(false)
+
+                  // Check if onClick exists
+                  if (item.onClick) item.onClick()
+                }}
               />
             )}
           </div>

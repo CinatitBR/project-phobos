@@ -9,11 +9,23 @@ import FileTag from '../FileTag'
 
 import style from './style.module.css'
 
-const FileLoading = ({ id, filename, size, uploaded, progress, onFileDelete }) => {
+const FileLoading = ({ 
+  id, 
+  filename, 
+  size, 
+  uploaded, 
+  progress, 
+  onFileDelete,
+  onFileUpload
+}) => {
   const [tagNames, setTagNames] = useState([])
   const [isCollapseOpen, setIsCollapseOpen] = useState(false)
   const collapseEle = useRef(null)
   const user = useAuth().user
+
+  const handleUpload = () => {
+    onFileUpload(id)
+  }
 
   // Get pdf tags
   useEffect(() => { 
@@ -100,7 +112,11 @@ const FileLoading = ({ id, filename, size, uploaded, progress, onFileDelete }) =
             items={tagNames}
           />
 
-          <Button fullWidth style={{ marginTop: '15px' }}>
+          <Button 
+            fullWidth 
+            style={{ marginTop: '15px' }}
+            onClick={handleUpload}
+          >
             Upload file
           </Button>
         </div>

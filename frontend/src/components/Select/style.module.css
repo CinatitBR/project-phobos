@@ -25,8 +25,3 @@
 .selected {
   color: var(--white);
 }
-
-.select.disabled {
-  pointer-events: none;
-  opacity: 0.8;
-}

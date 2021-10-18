@@ -48,7 +48,7 @@ const Select = ({
       onOpen={() => setIsOpen(true)}
     >
       <div 
-        className={classNames(style.select, { [style.disabled]: disabled })} 
+        className={classNames(style.select, { disabled })} 
         {...props}
       >
         {selected ? 

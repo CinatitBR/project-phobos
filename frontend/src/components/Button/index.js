@@ -9,15 +9,13 @@ const Button = ({
   className, 
   ...rest 
 }) => {
-  const classNameAttribute = classNames(
-    { fullWidth, disabled },
-    className
-  )
-
   return (
     <button 
       disabled={disabled}
-      className={classNameAttribute}
+      className={classNames(
+        { fullWidth, disabled },
+        className
+      )}
       {...rest}
     >
       {children}

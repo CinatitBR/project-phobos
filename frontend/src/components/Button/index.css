@@ -19,7 +19,7 @@ button.fullWidth {
   width: 100%;
 }
 
-button.disabled {
+/* button.disabled {
   cursor: default;
   opacity: 0.7;
-}
+} */

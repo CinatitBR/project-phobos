@@ -10,7 +10,7 @@ const FormField = ({
   ...props
 }) => {
   return (
-    <div className={classNames(style.formField, {[style.disabled]: disabled})}>
+    <div className={classNames(style.formField, {disabled})}>
       <label>
         {label}
 

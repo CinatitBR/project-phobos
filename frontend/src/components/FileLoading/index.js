@@ -5,6 +5,7 @@ import { FaFilePdf, FaTimes, FaChevronUp } from 'react-icons/fa'
 import FormField from '../FormField'
 import Select from '../Select'
 import Button from '../Button'
+import FileTag from '../FileTag'
 
 import style from './style.module.css'
 
@@ -70,8 +71,11 @@ const FileLoading = ({ id, filename, size, uploaded, progress, onFileDelete }) =
         <div className={style.content}>
           <div className={style.info}>
             <h3 className={style.filename}>{filename}</h3>
-            
-            <span className={style.fileSize}>{size} mb</span>
+            <span className={style.fileSize}>{size} MB</span>
+
+            <FileTag style={{ marginLeft: 'auto' }}>
+              Matemática aplicada
+            </FileTag>
           </div>
 
           <div className={style.progressBar}>

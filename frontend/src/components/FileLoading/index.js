@@ -18,13 +18,22 @@ const FileLoading = ({
   onFileDelete,
   onFileUpload
 }) => {
-  const [tagNames, setTagNames] = useState([])
+  const [selectItems, setSelectItems] = useState([])
   const [isCollapseOpen, setIsCollapseOpen] = useState(false)
   const collapseEle = useRef(null)
   const user = useAuth().user
 
+  const [newTagName, setNewTagName] = useState(null)
+  const [existingTagId, setExistingTagId] = useState(null)
+  const [tagName, setTagName] = useState(null)
+
   const handleUpload = () => {
-    onFileUpload(id)
+    onFileUpload({ 
+      id, 
+      newTagName: newTagName ? newTagName : null, // If newTagName is an empty string, will set it to null
+      existingTagId 
+    })
+    setIsCollapseOpen(false)
   }
 
   // Get pdf tags
@@ -33,7 +42,12 @@ const FileLoading = ({
       const response = await authAPI.findAllTag(user.id)
       const tags = response.data
 
-      setTagNames(tags.map(tag => tag.tag_name))
+      const items = tags.map(tag => ({
+        text: tag.tag_name,
+        id: tag.id,
+      }))
+
+      setSelectItems(items)
     }
 
     getTags()
@@ -85,9 +99,14 @@ const FileLoading = ({
             <h3 className={style.filename}>{filename}</h3>
             <span className={style.fileSize}>{size} MB</span>
 
-            <FileTag style={{ marginLeft: 'auto' }}>
-              Matemática aplicada
-            </FileTag>
+            {(newTagName || existingTagId) &&
+              <FileTag style={{ marginLeft: 'auto' }}>
+                {newTagName ? 
+                  newTagName : 
+                  tagName
+                }
+              </FileTag>
+            }
           </div>
 
           <div className={style.progressBar}>
@@ -103,18 +122,26 @@ const FileLoading = ({
         <div className={style.content}>
           <FormField 
             label="Add new tag"
+            disabled={existingTagId}
+            onChange={e => setNewTagName(e.target.value)}
           />
 
           <span className={style.text}>Or</span>
           
           <Select
             label="Select existing tag"
-            items={tagNames}
+            items={selectItems}
+            disabled={newTagName}
+            onSelect={item => {
+              setExistingTagId(item.id)
+              setTagName(item.text)
+            }}
           />
 
           <Button 
             fullWidth 
             style={{ marginTop: '15px' }}
+            disabled={!(existingTagId || newTagName)}
             onClick={handleUpload}
           >
             Upload file

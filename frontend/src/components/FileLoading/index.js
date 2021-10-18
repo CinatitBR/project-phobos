@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
+import useAuth from '../../hooks/useAuth'
+import authAPI from '../../apis/authAPI'
 import { FaFilePdf, FaTimes, FaChevronUp } from 'react-icons/fa'
 import FormField from '../FormField'
 import Select from '../Select'
@@ -6,20 +8,22 @@ import Select from '../Select'
 import style from './style.module.css'
 
 const FileLoading = ({ id, filename, size, uploaded, progress, onFileDelete }) => {
+  const [tagNames, setTagNames] = useState([])
   const [isCollapseOpen, setIsCollapseOpen] = useState(false)
   const collapseEle = useRef(null)
+  const user = useAuth().user
 
-  const selectItems = [
-    {
-      text: 'Olá',
-    },
-    {
-      text: 'Mano tudo bem com você',
-    },
-    {
-      text: 'Com certeza deus'
+  // Get pdf tags
+  useEffect(() => { 
+    const getTags = async () => {
+      const response = await authAPI.findAllTag(user.id)
+      const tags = response.data
+
+      setTagNames(tags.map(tag => tag.tag_name))
     }
-  ]
+
+    getTags()
+  }, [user])
 
   // Handle Collapse opening and closing
   useEffect(() => {
@@ -88,7 +92,7 @@ const FileLoading = ({ id, filename, size, uploaded, progress, onFileDelete }) =
           
           <Select
             label="Select existing tag"
-            items={selectItems}
+            items={tagNames}
           />
         </div>
       </section>

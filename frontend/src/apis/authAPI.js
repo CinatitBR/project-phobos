@@ -70,6 +70,9 @@ const uploadFile = (data, updateProgress) =>
 const destroy = pdfId => 
   axiosInstance.post('/pdf/delete', { pdfId })
 
+const findAllTag = userId =>
+  axiosInstance.post('/pdf/find-all-tag', { userId })
+
 // Response interceptor to handle expired access tokens
 axiosInstance.interceptors.response.use(undefined, async (error) => {
   // Return any error which is not due to authentication
@@ -105,7 +108,8 @@ const authAPI = {
   search,
   findAll,
   uploadFile,
-  destroy
+  destroy,
+  findAllTag
 }
 
 export default authAPI

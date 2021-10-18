@@ -5,15 +5,18 @@ import classNames from 'classnames'
 
 import style from './style.module.css'
 
-const Select = ({ label, items, ...props }) => {
+const Select = ({ label, items, onSelect, ...props }) => {
   const [selected, setSelected] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
+  
   const formattedItems = items.map(item => {
     return {
-      text: item, 
+      text: item.text, 
+      id: item.id,
       onClick: () => {
-        setSelected(item)
+        setSelected(item.text)
         setIsOpen(false)
+        onSelect(item)
       }
     }
   })
@@ -21,6 +24,7 @@ const Select = ({ label, items, ...props }) => {
   // Add default option to the beginning of the array
   formattedItems.unshift({  
     text: label,
+    id: -1,
     defaultValue: true,
     onClick: () => { 
       setSelected(null)

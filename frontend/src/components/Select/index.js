@@ -29,6 +29,7 @@ const Select = ({ label, items, onSelect, ...props }) => {
     onClick: () => { 
       setSelected(null)
       setIsOpen(false)
+      onSelect({ text: null, id: null })
     },
   })
 

@@ -10,9 +10,9 @@ const Select = ({ label, items, ...props }) => {
   const [isOpen, setIsOpen] = useState(false)
   const formattedItems = items.map(item => {
     return {
-      text: item.text, 
+      text: item, 
       onClick: () => {
-        setSelected(item.text)
+        setSelected(item)
         setIsOpen(false)
       }
     }

@@ -39,7 +39,7 @@ const AddDocumentModal = ({ show, onClose }) => {
     }
   }
 
-  const handleUpload = files => {
+  const handleFileDrop = files => {
     // Create array with new uploaded files
     const newUploadedFiles = files.map(file => ({
       file: file,
@@ -48,24 +48,42 @@ const AddDocumentModal = ({ show, onClose }) => {
       size: file.size,
       progress: 0,
       uploaded: false,
-      error: false
+      error: false,
+      newTagName: null, 
+      existingTagId: null
     }))
 
     // Update uploadedFiles
     setUploadedFiles(state => state?.concat(newUploadedFiles))
 
     // Upload new files to the server
-    newUploadedFiles.forEach(processUpload)
+    // newUploadedFiles.forEach(uploadFile)
   }
 
-  // Upload file to server and update progress
-  const processUpload = async uploadedFile => {
-    const { id } = uploadedFile
+  const handleFileUpload = ({ id, newTagName, existingTagId  }) => {
+    const fileData = {newTagName, existingTagId}
+
+    // Update file data
+    updateFile(id, fileData)
+
+    // Get updated file object
+    const oldFile = uploadedFiles.find(file => file.id === id)
+    const updatedFile = {...oldFile, ...fileData}
+
+    // Upload file to server
+    uploadFile(updatedFile)
+  }
+
+  // Upload file to server and update loading progress
+  const uploadFile = async uploadedFile => {
+    const { id, existingTagId, newTagName, file } = uploadedFile
 
     // Prepare data to send to server
     const data = new FormData()
     data.append('userId', userId)
-    data.append('pdf', uploadedFile.file)
+    data.append('pdf', file)
+    data.append('existingTagId', existingTagId)
+    data.append('newTagName', newTagName)
 
     // Upload file to server
     try {
@@ -85,7 +103,7 @@ const AddDocumentModal = ({ show, onClose }) => {
   return (
     <Modal className={style.addDocumentModal} title="Upload document" show={show} onClose={onClose}>
       <div className={style.wrapper}>
-        <FileDropBox onFileUpload={handleUpload} />
+        <FileDropBox onFileDrop={handleFileDrop} />
 
         <div className={style.fileLoadingList}>
           {uploadedFiles?.map(uploadedFile => (
@@ -97,8 +115,21 @@ const AddDocumentModal = ({ show, onClose }) => {
               progress={uploadedFile.progress} 
               id={uploadedFile.id}
               onFileDelete={deleteFile}
+              onFileUpload={handleFileUpload}
             />
           ))}
+
+          <FileLoading 
+            key={1}
+            filename="Matemática"
+            size={35}
+            uploaded={true}
+            progress={100}
+            id={1}
+            onFileDelete={deleteFile}
+            onFileUpload={handleFileUpload}
+          />
+
         </div>
       </div>
     </Modal>

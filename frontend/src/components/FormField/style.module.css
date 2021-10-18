@@ -1,4 +1,8 @@
-label {
+.formField {
+  width: 100%;
+}
+
+.formField label {
   font-size: 18px;
   color: var(--secondary-text);
 
@@ -7,7 +11,7 @@ label {
   gap: 5px;
 }
 
-input {
+.formField input {
   font-size: 24px;
   color: var(--white);
   background: var(--background-dark);

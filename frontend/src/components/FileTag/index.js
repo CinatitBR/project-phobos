@@ -1,9 +1,11 @@
+import classNames from 'classnames'
+
 import style from './style.module.css'
 
-const FileTag = ({ tagName }) => {
+const FileTag = ({ children, className, ...props }) => {
   return (
-    <span className={style.fileTag}>
-      {tagName}
+    <span className={classNames(style.fileTag, className)} {...props}>
+      {children}
     </span>
   )
 }

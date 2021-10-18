@@ -8,12 +8,22 @@ import pageModel from '../models/pageModel.js'
 const upload = async (req, res) => {
   const pdfParser = new PDFParser(null, 1)
 
-  const { userId, tag } = req.body
+  const { userId, existingTagId, newTagName } = req.body
   const { filename, originalname, path: filePath } = req.file
   const title = path.parse(originalname).name
 
+  let tagId = null
+
+  // If newTagName exists, add to database and get its id
+  if (newTagName) {
+    tagId = await pdfModel.createTag(userId, newTagName)
+  }
+  else { // if newTagName doesn't exist, use existingTagId as tagId
+    tagId = existingTagId
+  }
+
   // Add file to database
-  const pdfId = await pdfModel.create({userId, filename, title, tag})
+  const pdfId = await pdfModel.create({userId, filename, title, tagId})
   
   // PDF parsing error
   pdfParser.on('pdfParser_dataError', errData => { 

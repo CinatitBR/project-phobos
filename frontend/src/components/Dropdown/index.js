@@ -92,9 +92,9 @@ const Dropdown = ({
               width: fullWidth ? target.current.offsetWidth : '170px'
             }}
           >
-            {items.map((item, index) =>
+            {items.map(item =>
               <DropdownItem 
-                key={index+1}
+                key={item.id}
                 leftIcon={item.leftIcon}
                 text={item.text}
                 defaultValue={item.defaultValue}

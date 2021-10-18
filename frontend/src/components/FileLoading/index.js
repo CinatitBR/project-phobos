@@ -101,7 +101,7 @@ const FileLoading = ({ id, filename, size, uploaded, progress, onFileDelete }) =
           />
 
           <Button fullWidth style={{ marginTop: '15px' }}>
-            Choose tag
+            Upload file
           </Button>
         </div>
       </section>

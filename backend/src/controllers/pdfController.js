@@ -117,12 +117,30 @@ const findAllTag = async (req, res) => {
   }
 }
 
+const findTagById = async (req, res) => {
+  try {
+    const { tagId } = req.body
+
+    const tag = await pdfModel.findTagById(tagId)
+
+    res.json(tag)
+  }
+  catch (e) {
+    console.log(e)
+
+    return res
+      .status(500)
+      .json({ message: 'Oh, no! There was an error. Please, try again' })
+  }
+}
+
 const pdfController = {
   upload,
   findAll,
   search,
   destroy,
-  findAllTag
+  findAllTag,
+  findTagById
 }
 
 export default pdfController

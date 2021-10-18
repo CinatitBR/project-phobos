@@ -106,6 +106,22 @@ const createTag = async (userId, tagName) => {
   }
 }
 
+const findTagById = async id => {
+  try {
+    const sql = `
+      SELECT tag_name FROM pdf_tag
+      WHERE id = ?
+    `
+
+    const [rows, fields] = await db.query(sql, id)
+
+    return rows[0]
+  }
+  catch (e) {
+    throw new Error(e)
+  }
+}
+
 const findAllTag = async userId => {
   try {
     const sql = `
@@ -129,7 +145,8 @@ const pdfModel = {
   search,
   destroy,
   createTag,
-  findAllTag
+  findAllTag,
+  findTagById
 }
 
 export default pdfModel

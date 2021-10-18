@@ -1,13 +1,13 @@
 import db from '../db.js'
 
-const create = async ({ userId, filename, title, tag}) => {
+const create = async ({ userId, filename, title, tag, size }) => {
   try {
     const sql = `
-      INSERT INTO pdf (user_id, filename, title, tag)
-      VALUES (?, ?, ?, ?)
+      INSERT INTO pdf (user_id, filename, title, tag, size)
+      VALUES (?, ?, ?, ?, ?)
     `
 
-    const [results, fields] = await db.query(sql, [userId, filename, title, tag])
+    const [results, fields] = await db.query(sql, [userId, filename, title, tag, size])
 
     // Return inserted id
     return results.insertId

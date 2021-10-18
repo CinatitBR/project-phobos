@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import style from './style.module.css'
 
 const FormField = ({ 
@@ -5,10 +6,11 @@ const FormField = ({
   type,
   touched, 
   error,
+  disabled,
   ...props
 }) => {
   return (
-    <div className={style.formField}>
+    <div className={classNames(style.formField, {[style.disabled]: disabled})}>
       <label>
         {label}
 

@@ -5,7 +5,13 @@ import classNames from 'classnames'
 
 import style from './style.module.css'
 
-const Select = ({ label, items, onSelect, ...props }) => {
+const Select = ({ 
+  label, 
+  items, 
+  onSelect, 
+  disabled,
+  ...props 
+}) => {
   const [selected, setSelected] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
   
@@ -42,7 +48,7 @@ const Select = ({ label, items, onSelect, ...props }) => {
       onOpen={() => setIsOpen(true)}
     >
       <div 
-        className={style.select} 
+        className={classNames(style.select, { [style.disabled]: disabled })} 
         {...props}
       >
         {selected ? 

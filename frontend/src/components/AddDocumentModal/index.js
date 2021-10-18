@@ -70,6 +70,7 @@ const AddDocumentModal = ({ show, onClose }) => {
     const oldFile = uploadedFiles.find(file => file.id === id)
     const updatedFile = {...oldFile, ...fileData}
 
+    console.log({ existingTagId, newTagName })
     // Upload file to server
     uploadFile(updatedFile)
   }
@@ -77,13 +78,15 @@ const AddDocumentModal = ({ show, onClose }) => {
   // Upload file to server and update loading progress
   const uploadFile = async uploadedFile => {
     const { id, existingTagId, newTagName, file } = uploadedFile
-
+    
     // Prepare data to send to server
     const data = new FormData()
     data.append('userId', userId)
     data.append('pdf', file)
-    data.append('existingTagId', existingTagId)
-    data.append('newTagName', newTagName)
+
+    // Only append data that exists
+    if (existingTagId) data.append('existingTagId', existingTagId)
+    if (newTagName) data.append('newTagName', newTagName)
 
     // Upload file to server
     try {

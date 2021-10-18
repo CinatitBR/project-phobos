@@ -23,7 +23,7 @@ const FilePreviewSidebar = () => {
             <span className={style.size}>10 MB</span>
           </div>
 
-          <FileTag tagName="Matemática" />
+          <FileTag>Matemática</FileTag>
         </div>
       </div>
 

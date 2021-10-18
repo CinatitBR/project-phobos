@@ -88,12 +88,30 @@ const destroy = async (pdfId) => {
   }
 }
 
+const createTag = async (userId, tagName) => {
+  try {
+    const sql = `
+      INSERT INTO pdf_tag (user_id, tag_name)
+      VALUES (?, ?)
+    `
+
+    const [results, fields] = await db.query(sql, [userId, tagName])
+
+    // Return tag id
+    return results.insertId
+  } 
+  catch (e) {
+    throw new Error(e)
+  }
+}
+
 const pdfModel = { 
   create, 
   findAll,
   findByFilename, 
   search,
-  destroy 
+  destroy,
+  createTag 
 }
 
 export default pdfModel

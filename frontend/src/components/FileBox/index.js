@@ -61,7 +61,9 @@ const FileBox = ({ filename, tagName, fileSize }) => {
             <div className={style.size}>{fileSize}</div>
           </div>
 
-          <FileTag tagName={tagName} />
+          <FileTag>
+            {tagName}
+          </FileTag>
         </div>
       </footer>
     </article>

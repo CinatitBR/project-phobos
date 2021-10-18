@@ -5,7 +5,7 @@ import { FaUpload } from 'react-icons/fa'
 
 import style from './style.module.css'
 
-const FileDropBox = ({ onFileUpload }) => {
+const FileDropBox = ({ onFileDrop }) => {
   const [isDragActive, setIsDragActive] = useState(false)
   
   const handleDrop = async e => {
@@ -14,18 +14,17 @@ const FileDropBox = ({ onFileUpload }) => {
     setIsDragActive(false)
 
     const { items } = e.dataTransfer
-
-    // Get file objects of uploaded PDFs
-    const uploadedFiles = []
-
+    const droppedFiles = []
+    
+    // Get file objects from dropped PDFs
     for (let i = 0; i < items.length; i++) {
       const item = items[i]
 
       if (item.kind === 'file' && item.type === 'application/pdf')
-        uploadedFiles.push(item.getAsFile())
+        droppedFiles.push(item.getAsFile())
     }
 
-    onFileUpload(uploadedFiles)
+    onFileDrop(droppedFiles)
   }
 
   const handleDragOver = e => {

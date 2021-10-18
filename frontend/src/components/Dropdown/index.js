@@ -85,12 +85,12 @@ const Dropdown = ({
 
           <div 
             className={style.dropdownMenu}
+            onClick={e => e.stopPropagation()} // Prevent overlay click propagation
             style={{ 
               left: `${position.x}px`, 
               top: `${position.y}px`, 
               width: fullWidth ? target.current.offsetWidth : '170px'
             }}
-            onClick={e => e.stopPropagation()} // Prevent overlay click propagation
           >
             {items.map((item, index) =>
               <DropdownItem 

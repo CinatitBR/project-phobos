@@ -100,11 +100,29 @@ const destroy = async (req, res) => {
   }
 }
 
+const findAllTag = async (req, res) => {
+  try {
+    const { userId } = req.body
+
+    const tags = await pdfModel.findAllTag(userId)
+
+    res.json(tags)
+  }
+  catch (e) {
+    console.log(e)
+
+    return res
+      .status(500)
+      .json({ message: 'Oh, no! There was an error. Please, try again' })
+  }
+}
+
 const pdfController = {
   upload,
   findAll,
   search,
-  destroy
+  destroy,
+  findAllTag
 }
 
 export default pdfController

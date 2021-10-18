@@ -88,6 +88,7 @@ const destroy = async (pdfId) => {
   }
 }
 
+// pdf_tag (table)
 const createTag = async (userId, tagName) => {
   try {
     const sql = `
@@ -105,13 +106,30 @@ const createTag = async (userId, tagName) => {
   }
 }
 
+const findAllTag = async userId => {
+  try {
+    const sql = `
+      SELECT * FROM pdf_tag 
+      WHERE user_id = ?
+    `
+
+    const [rows, fields] = await db.query(sql, userId)
+
+    return rows
+  }
+  catch (e) {
+    throw new Error(e)
+  }
+}
+
 const pdfModel = { 
   create, 
   findAll,
   findByFilename, 
   search,
   destroy,
-  createTag 
+  createTag,
+  findAllTag
 }
 
 export default pdfModel

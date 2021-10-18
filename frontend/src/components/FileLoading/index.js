@@ -4,6 +4,7 @@ import authAPI from '../../apis/authAPI'
 import { FaFilePdf, FaTimes, FaChevronUp } from 'react-icons/fa'
 import FormField from '../FormField'
 import Select from '../Select'
+import Button from '../Button'
 
 import style from './style.module.css'
 
@@ -30,11 +31,11 @@ const FileLoading = ({ id, filename, size, uploaded, progress, onFileDelete }) =
     // Check if ref is null
     if (!collapseEle) return null
 
-    const { scrollHeight } = collapseEle.current
-
     if (isCollapseOpen) {
-      collapseEle.current.style.maxHeight = `${scrollHeight + 30}px`
       collapseEle.current.style.padding = '15px'
+
+      const { scrollHeight } = collapseEle.current
+      collapseEle.current.style.maxHeight = `${scrollHeight}px`
     } 
     else {
       collapseEle.current.style.maxHeight = '0'
@@ -94,6 +95,10 @@ const FileLoading = ({ id, filename, size, uploaded, progress, onFileDelete }) =
             label="Select existing tag"
             items={tagNames}
           />
+
+          <Button fullWidth style={{ marginTop: '15px' }}>
+            Choose tag
+          </Button>
         </div>
       </section>
     </article>

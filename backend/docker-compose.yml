@@ -1,0 +1,35 @@
+services:
+  backend:
+    image: "phobos-backend"
+    ports:
+      - 5000:5000
+    working_dir: /app
+    volumes: 
+      - type: volume
+        source: phobos-storage
+        target: /phobos-storage
+      - type: bind
+        source: ./src
+        target: /app/src
+    environment:
+      STORAGE_PATH: /phobos-storage
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_DB: phobos
+    env_file: .env
+  
+  mysql:
+    image: "mysql:8"
+    ports: 
+      - 3306:3306
+    volumes:
+      - phobos-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: phobos
+
+
+volumes:
+  phobos-storage:
+  phobos-mysql-data:

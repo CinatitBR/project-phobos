@@ -3,7 +3,7 @@ import IconButton from '../../components/IconButton'
 import ProfileDisplay from '../ProfileDisplay'
 import SidebarLinkList from '../SidebarLinkList'
 import AddDocumentModal from '../AddDocumentModal'
-import { FaFileAlt, FaSearch, FaSignOutAlt, FaFolderOpen } from 'react-icons/fa'
+import { FaFileAlt, FaSearch, FaSignOutAlt, FaFolderOpen, FaGlobe } from 'react-icons/fa'
 import useAuth from '../../hooks/useAuth'
 
 import './index.css'
@@ -22,6 +22,11 @@ const Sidebar = () => {
       name: 'Library',
       icon: <FaFolderOpen />,
       to: '/library'
+    },
+    {
+      name: 'Explore',
+      icon: <FaGlobe />,
+      to: '/explore'
     }
   ]
 

@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import Sidebar from '../Sidebar'
 import Home from '../../pages/Home'
 import Library from '../../pages/Library'
+import Explore from '../../pages/Explore'
 
 import './index.css' 
 
@@ -12,7 +13,6 @@ function MainLayout() {
       <Sidebar/>
 
       <Switch>
-
         <Route exact path="/">
           <Home />
         </Route>
@@ -21,6 +21,9 @@ function MainLayout() {
           <Library />
         </Route>
 
+        <Route exact path="/explore">
+          <Explore />
+        </Route>
       </Switch>
     </div>
   )

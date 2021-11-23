@@ -23,7 +23,7 @@ const Explore = () => {
   }, [userId])
 
   return (
-    <div className={style.explore}>
+    <div className={style.library}>
       <section className={style.content}>
         {loading ? 
           'Carregando...' :

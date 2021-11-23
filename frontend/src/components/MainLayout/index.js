@@ -2,7 +2,7 @@ import { Switch, Route } from 'react-router-dom'
 
 import Sidebar from '../Sidebar'
 import Home from '../../pages/Home'
-import Explore from '../../pages/Explore'
+import Library from '../../pages/Library'
 
 import './index.css' 
 
@@ -17,8 +17,8 @@ function MainLayout() {
           <Home />
         </Route>
 
-        <Route exact path="/explore">
-          <Explore />
+        <Route exact path="/library">
+          <Library />
         </Route>
 
       </Switch>

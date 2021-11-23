@@ -19,9 +19,9 @@ const Sidebar = () => {
       to: '/',
     },
     {
-      name: 'Explore',
+      name: 'Library',
       icon: <FaFolderOpen />,
-      to: '/explore'
+      to: '/library'
     }
   ]
 

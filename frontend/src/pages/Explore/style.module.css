@@ -95,3 +95,33 @@
 .like {
   color: var(--yellow);
 }
+
+/* PaginationBar */
+.paginationBar {
+  list-style: none;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.paginationButton {
+  width: 28px;
+  height: 28px;
+  background: var(--secondary-text);
+  color: var(--primary-text);
+  border-radius: 2px;
+  font-size: 20px;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.currentPage {
+  background: var(--primary-blue);
+  color: var(--white);
+}

@@ -1,4 +1,4 @@
-import { FaFilePdf, FaStar } from 'react-icons/fa'
+import { FaFilePdf, FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import classNames from 'classnames'
 import Select from '../../components/Select'
 import FileTag from '../../components/FileTag'
@@ -46,6 +46,22 @@ const PublicDocumentBox = ({ title, size, author, description, tag, stars, like=
         <FileTag>{tag}</FileTag>
       </div>
     </article>
+  )
+}
+
+const Pagination = ({ count }) => {
+  const paginationButtons = []
+
+  for (let i = 0; i < count; i++) {
+    paginationButtons.push(<li className={style.paginationButton} key={i}>{i+1}</li>)
+  }
+
+  return (
+    <ul className={style.paginationBar}>
+      <li className={classNames(style.next, style.paginationButton)}><FaChevronLeft /></li>
+      {paginationButtons}
+      <li className={classNames(style.next, style.paginationButton)}><FaChevronRight /></li>
+    </ul>
   )
 }
 
@@ -121,7 +137,8 @@ const Explore = () => {
         />
 
       </div>
-
+      
+      <Pagination count={9} />
     </section>
   )
 }

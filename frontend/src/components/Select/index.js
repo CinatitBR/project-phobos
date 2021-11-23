@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FaChevronUp } from 'react-icons/fa'
 import Dropdown from '../Dropdown'
 import classNames from 'classnames'
@@ -27,17 +27,26 @@ const Select = ({
     }
   })
 
-  // Add default option to the beginning of the array
-  formattedItems.unshift({  
-    text: label,
-    id: -1,
-    defaultValue: true,
-    onClick: () => { 
-      setSelected(null)
-      setIsOpen(false)
-      onSelect({ text: null, id: null })
-    },
-  })
+  // When there's no label, set first item as selected
+  useEffect(() => {
+    // If there is a label, add it to the beginning of the select...
+    // and set is as selected
+    if (label) {
+      formattedItems.unshift({  
+        text: label,
+        id: -1,
+        defaultValue: true,
+        onClick: () => { 
+          setSelected(null)
+          setIsOpen(false)
+          onSelect({ text: null, id: null })
+        },
+      })
+    } 
+    else { // If there is no label, set first item as selected
+      setSelected(formattedItems[0].text)
+    }
+  }, [])
 
   return (
     <Dropdown 

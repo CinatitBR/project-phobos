@@ -157,6 +157,23 @@ const findTagById = async (req, res) => {
   }
 }
 
+const stars = async (req, res) => {
+  try {
+    const { action, pdfId, userId } = req.body
+
+    await pdfModel.stars(action, pdfId)
+
+    res.sendStatus(200)
+  }
+  catch (e) {
+    console.log(e)
+
+    return res
+      .status(500)
+      .json({ message: 'Oh, no! There was an error. Please, try again' })
+  }
+}
+
 const pdfController = {
   upload,
   findAll,
@@ -164,7 +181,8 @@ const pdfController = {
   destroy,
   findAllTag,
   findTagById,
-  findPublic
+  findPublic,
+  stars
 }
 
 export default pdfController

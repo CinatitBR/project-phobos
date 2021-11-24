@@ -18,6 +18,7 @@ router.post('/pdf/search', pdfController.search)
 router.post('/pdf/delete', pdfController.destroy)
 router.post('/pdf/find-all-tag', pdfController.findAllTag)
 router.post('/pdf/find-tag-by-id', pdfController.findTagById)
+router.post('/pdf/stars', pdfController.stars)
 
 router.post('/auth/register', validation.register, authController.register)
 router.post('/auth/login', validation.login, authController.login)

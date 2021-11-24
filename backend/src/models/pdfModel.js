@@ -163,6 +163,51 @@ const findAllTag = async userId => {
   }
 }
 
+const stars = async (action, pdfId) => {
+  // Get connection from pool
+  const conn = await db.getConnection()
+
+  try {
+    const sign = action === 'like' ? '+' : '-'
+
+    const sqlStars = `
+      UPDATE pdf
+      SET stars = stars ${sign} 1
+      WHERE id = ?
+    `
+
+    const sqlLiked = `
+      UPDATE pdf
+      SET liked = ?
+      WHERE id = ?
+    `
+
+    // Start transaction
+    await conn.query('SET TRANSACTION ISOLATION LEVEL READ COMMITTED')
+    await conn.beginTransaction()
+    
+    // Update stars field
+    await conn.query(sqlStars, pdfId)
+
+    // Update liked field
+    await conn.query(sqlLiked, [
+      (action === 'like' ? 1 : 0),
+      pdfId
+    ])
+
+    // Finish transaction
+    await conn.commit()
+
+    return 
+  }
+  catch (e) {
+    // Rollback transaction
+    conn.rollback()
+
+    throw new Error(e)
+  }
+}
+
 const pdfModel = { 
   create, 
   findAll,
@@ -172,7 +217,8 @@ const pdfModel = {
   createTag,
   findAllTag,
   findTagById,
-  findPublic
+  findPublic,
+  stars
 }
 
 export default pdfModel

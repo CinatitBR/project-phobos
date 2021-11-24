@@ -6,7 +6,7 @@ import authAPI from '../../apis/authAPI'
 
 import style from './style.module.css'
 
-const Explore = () => {
+const Library = () => {
   const userId = useAuth().user.id
   const [files, setFiles] = useState([])
   const [loading, setLoading] = useState(true)
@@ -14,7 +14,7 @@ const Explore = () => {
   useEffect(() => {
     const getFiles = async () => {
       const response = await authAPI.findAll(userId)
-
+  
       setFiles(response.data.files)
       setLoading(false)
     }
@@ -36,4 +36,4 @@ const Explore = () => {
   )
 }
 
-export default Explore
+export default Library

@@ -51,7 +51,7 @@ const findPublic = async (index) => {
     const offset = (index - 1) * limit
 
     const sql = `
-      SELECT pdf.id, pdf.filename, pdf.title, user.username, pdf_tag.tag_name, size, stars 
+      SELECT pdf.id, pdf.filename, pdf.title, pdf.liked, user.username, pdf_tag.tag_name, size, stars 
       FROM pdf
       INNER JOIN user
       ON pdf.user_id = user.id

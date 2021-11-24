@@ -82,7 +82,7 @@
   transition: color .4s;
 }
 
-.liked {
+.starIcon.liked {
   color: var(--yellow);
 }
 

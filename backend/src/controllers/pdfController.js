@@ -8,7 +8,7 @@ import pageModel from '../models/pageModel.js'
 const upload = async (req, res) => {
   const pdfParser = new PDFParser(null, 1)
 
-  const { userId, existingTagId, newTagName } = req.body
+  const { userId, existingTagId, newTagName, isPublic } = req.body
   const { filename, originalname, path: filePath, size } = req.file
   const title = path.parse(originalname).name
 
@@ -23,7 +23,7 @@ const upload = async (req, res) => {
   }
 
   // Add file to database
-  const pdfId = await pdfModel.create({userId, filename, title, tagId, size})
+  const pdfId = await pdfModel.create({userId, filename, title, tagId, size, isPublic})
   
   // PDF parsing error
   pdfParser.on('pdfParser_dataError', errData => { 

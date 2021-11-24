@@ -45,6 +45,26 @@ const findByFilename = async (filename) => {
   }
 }
 
+const findPublic = async (index) => {
+  try {
+    const limit = 20
+    const offset = (index - 1) * limit
+
+    const sql = `
+      SELECT * FROM pdf
+      WHERE is_public IS TRUE
+      LIMIT ?
+      OFFSET ?
+    `
+
+    const [rows, fields] = await db.query(sql, [limit, offset])
+
+    return rows
+  } catch(e) {
+    throw new Error(e)
+  }
+}
+
 const search = async (keyword) => {
   const sql = `
     SELECT page.id, pdf.title as pdf_title, pdf.filename as filename, page.number, 
@@ -146,7 +166,8 @@ const pdfModel = {
   destroy,
   createTag,
   findAllTag,
-  findTagById
+  findTagById,
+  findPublic
 }
 
 export default pdfModel

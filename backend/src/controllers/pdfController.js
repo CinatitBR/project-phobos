@@ -73,6 +73,22 @@ const findAll = async (req, res) => {
   }
 }
 
+const findPublic = async (req, res) => {
+  try {
+    const { page } = req.query
+
+    const publicDocuments = await pdfModel.findPublic(page)
+
+    res.json(publicDocuments)
+  } catch (e) {
+    console.log(e)
+
+    return res
+      .status(500)
+      .json({ message: 'Oh, no! There was an error. Please, try again' })
+  }
+}
+
 const search = async (req, res) => {
   try {
     const { keyword } = req.body
@@ -147,7 +163,8 @@ const pdfController = {
   search,
   destroy,
   findAllTag,
-  findTagById
+  findTagById,
+  findPublic
 }
 
 export default pdfController

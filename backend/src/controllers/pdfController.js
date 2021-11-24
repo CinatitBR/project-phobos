@@ -161,7 +161,7 @@ const stars = async (req, res) => {
   try {
     const { action, pdfId, userId } = req.body
 
-    await pdfModel.stars(action, pdfId)
+    await pdfModel.stars(action, pdfId, userId)
 
     res.sendStatus(200)
   }

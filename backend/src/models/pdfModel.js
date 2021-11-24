@@ -163,12 +163,23 @@ const findAllTag = async userId => {
   }
 }
 
-const stars = async (action, pdfId) => {
+const stars = async (action, pdfId, userId) => {
   // Get connection from pool
   const conn = await db.getConnection()
 
   try {
     const sign = action === 'like' ? '+' : '-'
+
+    const sqlLike = `
+      INSERT INTO public_pdf_like (user_id, pdf_id)
+      VALUES (?, ?)
+    `
+
+    const sqlUnlike = `
+      DELETE FROM public_pdf_like
+      WHERE user_id = ?
+      AND pdf_id = ?
+    `
 
     const sqlStars = `
       UPDATE pdf
@@ -176,24 +187,18 @@ const stars = async (action, pdfId) => {
       WHERE id = ?
     `
 
-    const sqlLiked = `
-      UPDATE pdf
-      SET liked = ?
-      WHERE id = ?
-    `
-
     // Start transaction
     await conn.query('SET TRANSACTION ISOLATION LEVEL READ COMMITTED')
     await conn.beginTransaction()
-    
+
+    // Update public_pdf_like
+    if (action === 'like') 
+      await conn.query(sqlLike, [userId, pdfId])
+    else if (action === 'unlike') 
+      await conn.query(sqlUnlike, [userId, pdfId])
+
     // Update stars field
     await conn.query(sqlStars, pdfId)
-
-    // Update liked field
-    await conn.query(sqlLiked, [
-      (action === 'like' ? 1 : 0),
-      pdfId
-    ])
 
     // Finish transaction
     await conn.commit()

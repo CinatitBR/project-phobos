@@ -45,24 +45,31 @@ const findByFilename = async (filename) => {
   }
 }
 
-const findPublic = async (index) => {
+const findPublic = async (index, userId) => {
   try {
     const limit = 20
     const offset = (index - 1) * limit
 
     const sql = `
-      SELECT pdf.id, pdf.filename, pdf.title, pdf.liked, user.username, pdf_tag.tag_name, size, stars 
+      SELECT pdf.id, pdf.filename, pdf.title, pdf.size, pdf.stars, 
+        user.username, 
+        pdf_tag.tag_name,
+        (SELECT COUNT(*) 
+          FROM public_pdf_like
+          WHERE user_id = ${userId}
+          AND pdf_id = pdf.id
+        ) AS liked
       FROM pdf
       INNER JOIN user
-      ON pdf.user_id = user.id
+        ON pdf.user_id = user.id
       INNER JOIN pdf_tag
-      ON pdf.tag_id = pdf_tag.id
+        ON pdf.tag_id = pdf_tag.id
       WHERE is_public IS TRUE
-      LIMIT ?
-      OFFSET ?
+      LIMIT ${limit}
+      OFFSET ${offset}
     `
 
-    const [rows, fields] = await db.query(sql, [limit, offset])
+    const [rows, fields] = await db.query(sql)
 
     return rows
   } catch(e) {

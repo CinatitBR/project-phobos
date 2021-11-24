@@ -1,11 +1,29 @@
+import { useEffect, useState } from 'react'
 import { FaFilePdf, FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import useAuth from '../../hooks/useAuth'
+import authAPI from '../../apis/authAPI'
 import classNames from 'classnames'
 import Select from '../../components/Select'
 import FileTag from '../../components/FileTag'
 
 import style from './style.module.css'
 
-const PublicDocumentBox = ({ title, size, author, description, tag, stars, like=false }) => {
+const PublicDocumentBox = ({ id, title, size, author, description, tag, stars, liked }) => {
+  const [isLiked, setIsLiked] = useState(liked)
+  const [updatedStars, setUpdatedStars] = useState(stars)
+  const userId = useAuth().user.id
+
+  const handleLike = async (e) => {
+    const action = isLiked ? 'unlike' : 'like'
+
+    // Update UI
+    setIsLiked(!isLiked)
+    setUpdatedStars(prevState => action === 'like' ? (prevState + 1) : (prevState - 1))
+
+    // Update backend
+    await authAPI.stars(action, id, userId)
+  }
+
   return (
     <article className={style.publicDocumentBox}>
       <FaFilePdf fontSize="60px" color="var(--salmon)" />
@@ -27,14 +45,14 @@ const PublicDocumentBox = ({ title, size, author, description, tag, stars, like=
             <div className={style.stars}>
               <FaStar 
                 fontSize="20px" 
-                // color="var(--yellow)" 
                 className={classNames(
                   style.starIcon,
-                  { [style.like]: like }
+                  { [style.liked]: isLiked }
                 )}
+                onClick={handleLike}
               />
 
-              {stars}
+              {updatedStars}
             </div>
           </div>
         </header>
@@ -66,6 +84,19 @@ const Pagination = ({ count }) => {
 }
 
 const Explore = () => {
+  const [publicDocuments, setPublicDocuments] = useState([]) 
+  const userId = useAuth().user.id
+
+  const getPublicDocuments = async () => {
+    const response = await authAPI.findPublic(1, userId)
+
+    setPublicDocuments(response.data)
+  }
+
+  useEffect(() => {
+    getPublicDocuments()
+  }, [])
+
   return (
     <section className={style.wrapper}>
 
@@ -89,53 +120,19 @@ const Explore = () => {
       </div>
 
       <div className={style.searchResults}>
-        
-        <PublicDocumentBox 
-          title="Constituição Brasileira"
-          author="cinatitBR"
-          size="10"
-          description="fdjfdlfjdklfjdslfjldjfldlfjldfjldj"
-          tag="Democracia"
-          stars={63}
-          like={true}
-        />
-
-        <PublicDocumentBox 
-          title="Probabilidade"
-          author="PeDrOcA"
-          size="10"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
-          tag="Matemática"
-          stars={50}
-        />
-
-        <PublicDocumentBox 
-          title="Divina Comédia Legal"
-          author="Tavares"
-          size="25"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
-          tag="Literatura"
-          stars={23}
-        />
-
-        <PublicDocumentBox 
-          title="Principais autores Enem"
-          author="Renatovski"
-          size="17"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
-          tag="Vestibular"
-          stars={0}
-        />
-
-        <PublicDocumentBox 
-          title="A Escravidão No Século XXI"
-          author="alecs"
-          size="15"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
-          tag="Sociologia"
-          stars={5}
-        />
-
+        {publicDocuments.map(doc => 
+          <PublicDocumentBox 
+            key={doc.id}
+            id={doc.id}
+            title={doc.title}
+            author={doc.username}
+            size={doc.size}
+            description="fdjfdlfjdklfjdslfjldjfldlfjldfjldj"
+            tag={doc.tag_name}
+            stars={doc.stars}
+            liked={doc.is_liked}
+          />
+        )}
       </div>
       
       <Pagination count={9} />

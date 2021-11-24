@@ -58,7 +58,7 @@ const findPublic = async (index, userId) => {
           FROM public_pdf_like
           WHERE user_id = ${userId}
           AND pdf_id = pdf.id
-        ) AS liked
+        ) AS is_liked
       FROM pdf
       INNER JOIN user
         ON pdf.user_id = user.id

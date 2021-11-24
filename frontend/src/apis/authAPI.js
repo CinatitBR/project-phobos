@@ -79,6 +79,9 @@ const findTagById = tagId =>
 const findPublic = page =>
   axiosInstance.get(`/pdf/find-public/?page=${page}`)
 
+const stars = (action, pdfId, userId) =>
+  axiosInstance.post('/pdf/stars', { action, pdfId, userId })
+
 // Response interceptor to handle expired access tokens
 axiosInstance.interceptors.response.use(undefined, async (error) => {
   // Return any error which is not due to authentication
@@ -117,7 +120,8 @@ const authAPI = {
   destroy,
   findAllTag,
   findTagById,
-  findPublic
+  findPublic,
+  stars
 }
 
 export default authAPI

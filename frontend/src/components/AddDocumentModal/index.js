@@ -50,38 +50,36 @@ const AddDocumentModal = ({ show, onClose }) => {
       uploaded: false,
       error: false,
       newTagName: null, 
-      existingTagId: null
+      existingTagId: null,
+      isPublic: false
     }))
 
     // Update uploadedFiles
     setUploadedFiles(state => state?.concat(newUploadedFiles))
-
-    // Upload new files to the server
-    // newUploadedFiles.forEach(uploadFile)
   }
 
-  const handleFileUpload = ({ id, newTagName, existingTagId  }) => {
-    const fileData = {newTagName, existingTagId}
+  const handleFileUpload = ({ id, newTagName, existingTagId, isPublic }) => {
+    const updatedFileData = {newTagName, existingTagId, isPublic}
 
     // Update file data
-    updateFile(id, fileData)
+    updateFile(id, updatedFileData)
 
     // Get updated file object
     const oldFile = uploadedFiles.find(file => file.id === id)
-    const updatedFile = {...oldFile, ...fileData}
+    const updatedFile = {...oldFile, ...updatedFileData}
 
-    console.log({ existingTagId, newTagName })
     // Upload file to server
     uploadFile(updatedFile)
   }
 
   // Upload file to server and update loading progress
   const uploadFile = async uploadedFile => {
-    const { id, existingTagId, newTagName, file } = uploadedFile
+    const { id, existingTagId, newTagName, file, isPublic } = uploadedFile
     
     // Prepare data to send to server
     const data = new FormData()
     data.append('userId', userId)
+    data.append('isPublic', isPublic)
     data.append('pdf', file)
 
     // Only append data that exists

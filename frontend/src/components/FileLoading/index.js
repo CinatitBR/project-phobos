@@ -1,13 +1,14 @@
 import { useState, useRef, useEffect } from 'react'
+import { FaFilePdf, FaTimes, FaChevronUp } from 'react-icons/fa'
 import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
-import { FaFilePdf, FaTimes, FaChevronUp } from 'react-icons/fa'
 import FormField from '../FormField'
 import Select from '../Select'
 import Button from '../Button'
 import FileTag from '../FileTag'
 
 import style from './style.module.css'
+import classNames from 'classnames'
 
 const FileLoading = ({ 
   id, 
@@ -26,13 +27,18 @@ const FileLoading = ({
   const [newTagName, setNewTagName] = useState(null)
   const [existingTagId, setExistingTagId] = useState(null)
   const [tagName, setTagName] = useState(null)
+  const [isPublic, setIsPublic] = useState(false)
 
   const handleUpload = () => {
+    console.log(isPublic)
+
     onFileUpload({ 
       id, 
       newTagName: newTagName ? newTagName : null, // If newTagName is an empty string, will set it to null
-      existingTagId 
+      existingTagId,
+      isPublic 
     })
+
     setIsCollapseOpen(false)
   }
 
@@ -120,6 +126,17 @@ const FileLoading = ({
         ref={collapseEle}
       >
         <div className={style.content}>
+          <label className={style.switch}>
+            <input 
+              type="checkbox" 
+              onClick={e => setIsPublic(e.target.checked)} 
+            />
+            <span className={style.slider}></span>
+
+            <span className={classNames(style.value, style.off)}>Private</span>
+            <span className={classNames(style.value, style.on)}>Public</span>
+          </label>
+
           <FormField 
             label="Add new tag"
             disabled={existingTagId}

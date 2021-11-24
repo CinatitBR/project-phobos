@@ -79,6 +79,11 @@
 
 .publicDocumentBox .starIcon {
   cursor: pointer;
+  transition: color .4s;
+}
+
+.liked {
+  color: var(--yellow);
 }
 
 .publicDocumentBox .stars {
@@ -92,9 +97,6 @@
   color: var(--white);
 }
 
-.like {
-  color: var(--yellow);
-}
 
 /* PaginationBar */
 .paginationBar {

@@ -15,6 +15,7 @@ const FormField = ({
         {label}
 
         <input 
+          type={type}
           {...props} 
         />
 

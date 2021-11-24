@@ -7,7 +7,7 @@ const create = async ({ userId, filename, title, tagId, size, isPublic }) => {
       VALUES (?, ?, ?, ?, ?, ?)
     `
 
-    const [results, fields] = await db.query(sql, [userId, filename, title, tagId, size, (isPublic ? 1 : 0)])
+    const [results, fields] = await db.query(sql, [userId, filename, title, tagId, size, isPublic])
 
     // Return inserted id
     return results.insertId

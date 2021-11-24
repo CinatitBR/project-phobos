@@ -23,7 +23,14 @@ const upload = async (req, res) => {
   }
 
   // Add file to database
-  const pdfId = await pdfModel.create({userId, filename, title, tagId, size, isPublic})
+  const pdfId = await pdfModel.create({
+    userId, 
+    filename, 
+    title, 
+    tagId, 
+    size, 
+    isPublic: (isPublic === 'true' ? 1 : 0)
+  })
   
   // PDF parsing error
   pdfParser.on('pdfParser_dataError', errData => { 

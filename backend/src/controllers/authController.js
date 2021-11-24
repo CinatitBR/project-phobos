@@ -42,16 +42,16 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email } = req.body
-    const { id: userId, username } = await userModel.findByEmail(email)
+    const { id, username } = await userModel.findByEmail(email)
 
-    const user = {userId, username}
+    const user = {id, username}
 
     // Create tokens
     const { accessToken, accessTokenExpiration } = token.createAccessToken()
     const { refreshToken, refreshTokenExpiration } = token.createRefreshToken()
 
     // Store refresh token in database
-    await refreshTokenModel.create(userId, refreshToken)
+    await refreshTokenModel.create(id, refreshToken)
 
     // Set the refresh token in a HttpOnly cookie.
     res.cookie('refreshToken', refreshToken, { 

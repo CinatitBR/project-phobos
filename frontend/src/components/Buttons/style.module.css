@@ -20,6 +20,11 @@ button.fullWidth {
   width: 100%;
 }
 
+.disabled {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
 /* IconWrapper */
 .iconWrapper {
   padding: 1px;

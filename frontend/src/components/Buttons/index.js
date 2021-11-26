@@ -14,7 +14,7 @@ export const Button = ({
     <button 
       disabled={disabled}
       className={classNames(
-        { fullWidth, disabled },
+        { [style.fullWidth]: fullWidth, [style.disabled]: disabled },
         className
       )}
       {...rest}

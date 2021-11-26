@@ -4,9 +4,8 @@ import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
 import FormField from '../FormField'
 import Select from '../Select'
-import { Button } from '../Buttons'
 import FileTag from '../FileTag'
-import { ChevronIcon, CloseIcon, ToggleSwitch } from '../Buttons'
+import { Button, ChevronIcon, CloseIcon, ToggleSwitch } from '../Buttons'
 import Collapse from '../Collapse'
 
 import style from './style.module.css'
@@ -22,7 +21,6 @@ const FileLoading = ({
 }) => {
   const [selectItems, setSelectItems] = useState([])
   const [isCollapseOpen, setIsCollapseOpen] = useState(false)
-  // const collapseEle = useRef(null)
   const user = useAuth().user
 
   const [newTagName, setNewTagName] = useState(null)

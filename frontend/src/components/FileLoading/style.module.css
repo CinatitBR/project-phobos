@@ -72,22 +72,7 @@
   transition: width 800ms;
 }
 
-/* Collapse */
-/* .collapseWrapper {
-  width: 100%;
-  background: var(--primary-blue);
-  border-radius: 4px;
-
-  padding: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 200ms ease;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-
+/* Collapse content */
 .collapseContent {
   max-width: 300px;
 

@@ -19,3 +19,34 @@ button:hover {
 button.fullWidth {
   width: 100%;
 }
+
+/* IconWrapper */
+.iconWrapper {
+  padding: 1px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 150ms ease;
+  color: var(--white);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Chevron */
+.iconWrapper.chevron:hover {
+  background: var(--primary-blue);
+}
+
+.chevronIcon {
+  transition: all 250ms ease;
+}
+
+.chevronIcon.open {
+  transform: rotate(180deg);
+}
+
+/* CloseIcon */
+.iconWrapper.close:hover {
+  background: var(--primary-red);
+}

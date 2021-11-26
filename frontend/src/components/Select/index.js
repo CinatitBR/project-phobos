@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { FaChevronUp } from 'react-icons/fa'
-import Dropdown from '../Dropdown'
 import classNames from 'classnames'
+import Dropdown from '../Dropdown'
+import { ChevronIcon } from '../Buttons'
 
 import style from './style.module.css'
 
@@ -65,12 +65,10 @@ const Select = ({
           label
         }
         
-        <FaChevronUp 
-          className={classNames(
-            style.collapseIcon, 
-            {[style.open]: isOpen},
-            {[style.selected]: selected}
-          )} 
+        <ChevronIcon 
+          isOpen={isOpen || selected}
+          size="24px"
+          colorClosed="var(--secondary-text)"
         />
       </div>
     </Dropdown>

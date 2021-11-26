@@ -1,14 +1,15 @@
 import { useState, useRef, useEffect } from 'react'
-import { FaFilePdf, FaTimes, FaChevronUp } from 'react-icons/fa'
+import classNames from 'classnames'
+import { FaFilePdf } from 'react-icons/fa'
 import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
 import FormField from '../FormField'
 import Select from '../Select'
 import { Button } from '../Buttons'
 import FileTag from '../FileTag'
+import { ChevronIcon, CloseIcon } from '../Buttons'
 
 import style from './style.module.css'
-import classNames from 'classnames'
 
 const FileLoading = ({ 
   id, 
@@ -80,20 +81,15 @@ const FileLoading = ({
   return (
     <article className={style.fileLoading}>
       <div className={style.header}>
-        <span 
-          className={`${style.iconWrapper} ${style.collapseIcon}`}
-          onClick={() => setIsCollapseOpen(!isCollapseOpen)}
-        >
-          <FaChevronUp className={`${style.collapseIcon} ${style.icon}`} />
-        </span>
+        <ChevronIcon 
+          onClick={() => setIsCollapseOpen(!isCollapseOpen)} 
+          isOpen={isCollapseOpen}
+        />
 
         {uploaded &&
-          <span className={`${style.iconWrapper} ${style.close}`}>
-            <FaTimes 
-              className={`${style.closeIcon} ${style.icon}`} 
-              onClick={() => onFileDelete(id)} 
-            />
-          </span>
+          <CloseIcon 
+            onClick={() => onFileDelete(id)}
+          />
         }
       </div>
 

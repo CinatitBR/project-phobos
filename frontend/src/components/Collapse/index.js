@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 import style from './style.module.css'
 
-const Collapse = ({ isOpen, children, className }) => {
+const Collapse = ({ isOpen, children, className, background }) => {
   const collapseEle = useRef(null)
 
   // Handle Collapse opening and closing
@@ -27,6 +27,7 @@ const Collapse = ({ isOpen, children, className }) => {
     <section 
       className={classNames(style.collapse, className)}
       ref={collapseEle}
+      style={{ background }}
     >
       {children}
     </section>

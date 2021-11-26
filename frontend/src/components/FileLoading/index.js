@@ -97,7 +97,7 @@ const FileLoading = ({
         </div>
       </div>
 
-      <Collapse isOpen={isCollapseOpen}>
+      <Collapse isOpen={isCollapseOpen} background="var(--primary-blue)">
         <div className={style.collapseContent}>
           <ToggleSwitch onClick={e => setIsPublic(e.target.checked)} />
 

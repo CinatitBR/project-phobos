@@ -1,4 +1,4 @@
-#documentPreview {
+.documentPreview {
   padding: 15px 30px;
   background: var(--background-light);
   border-radius: 16px;
@@ -12,22 +12,22 @@
   gap: 15px;
 }
 
-#documentPreview:hover {
+.documentPreview:hover {
   border: solid 2px var(--primary-green);
 }
 
-#documentPreview header #title {
+.documentPreview header .title {
   font-size: 25px;
   color: var(--white);
 }
 
-#documentPreview header #pageNumber {
+.documentPreview header .pageNumber {
   font-size: 18px;
   color: var(--primary-purple);
 }
 
 /* body */
-#documentPreview #body {
+.documentPreview .body {
   color: var(--secondary-text);
   font-size: 18px;
   text-align: justify;
@@ -38,7 +38,7 @@
   align-items: center;
 }
 
-#documentPreview #body .highlight {
+.documentPreview .body .highlight {
   color: var(--white);
   background: var(--primary-green);
   border-radius: 4px;

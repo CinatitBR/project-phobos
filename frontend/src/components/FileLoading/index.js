@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { FaFilePdf } from 'react-icons/fa'
 import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
@@ -7,6 +7,7 @@ import Select from '../Select'
 import { Button } from '../Buttons'
 import FileTag from '../FileTag'
 import { ChevronIcon, CloseIcon, ToggleSwitch } from '../Buttons'
+import Collapse from '../Collapse'
 
 import style from './style.module.css'
 
@@ -21,7 +22,7 @@ const FileLoading = ({
 }) => {
   const [selectItems, setSelectItems] = useState([])
   const [isCollapseOpen, setIsCollapseOpen] = useState(false)
-  const collapseEle = useRef(null)
+  // const collapseEle = useRef(null)
   const user = useAuth().user
 
   const [newTagName, setNewTagName] = useState(null)
@@ -58,24 +59,6 @@ const FileLoading = ({
 
     getTags()
   }, [user])
-
-  // Handle Collapse opening and closing
-  useEffect(() => {
-    // Check if ref is null
-    if (!collapseEle) return null
-
-    if (isCollapseOpen) {
-      collapseEle.current.style.padding = '15px'
-
-      const { scrollHeight } = collapseEle.current
-      collapseEle.current.style.maxHeight = `${scrollHeight}px`
-    } 
-    else {
-      collapseEle.current.style.maxHeight = '0'
-      collapseEle.current.style.padding = '0'
-    }
-
-  }, [isCollapseOpen])
   
   return (
     <article className={style.fileLoading}>
@@ -115,12 +98,9 @@ const FileLoading = ({
           </div>
         </div>
       </div>
-      
-      <section 
-        className={style.collapseWrapper}
-        ref={collapseEle}
-      >
-        <div className={style.content}>
+
+      <Collapse isOpen={isCollapseOpen}>
+        <div className={style.collapseContent}>
           <ToggleSwitch onClick={e => setIsPublic(e.target.checked)} />
 
           <FormField 
@@ -150,7 +130,7 @@ const FileLoading = ({
             Upload file
           </Button>
         </div>
-      </section>
+      </Collapse>
     </article>
   )
 }

@@ -1,8 +1,8 @@
 import classNames from 'classnames'
 
-import './index.css'
+import style from './style.module.css'
 
-const Button = ({ 
+export const Button = ({ 
   children, 
   fullWidth, 
   disabled,
@@ -22,5 +22,3 @@ const Button = ({
     </button>
   )
 }
-
-export default Button

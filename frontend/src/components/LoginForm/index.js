@@ -6,7 +6,7 @@ import loginValidation from '../../../../shared/src/validations/loginValidation'
 import Title from '../Title'
 import FormFields from '../FormFields'
 import FormField from '../FormField'
-import Button from '../Button'
+import { Button } from '../Buttons'
 import FormSuggestion from '../FormSuggestion'
 import FormLink from '../FormLink'
 

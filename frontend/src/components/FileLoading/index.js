@@ -4,7 +4,7 @@ import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
 import FormField from '../FormField'
 import Select from '../Select'
-import Button from '../Button'
+import { Button } from '../Buttons'
 import FileTag from '../FileTag'
 
 import style from './style.module.css'

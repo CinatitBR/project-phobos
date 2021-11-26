@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import Button from '../Button'
+import { Button } from '../Buttons'
 
 import './index.css'
 

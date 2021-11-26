@@ -3,6 +3,7 @@ import userModel from '../models/userModel.js'
 const findByEmail = async (req, res) => {
   try {
     const { email } = req.body
+
     const user = await userModel.findByEmail(email)
 
     res.json(user)

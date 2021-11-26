@@ -1,15 +1,16 @@
 import viewSDKClient from '../../apis/viewSDKClient'
+import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
 import useAuth from '../../hooks/useAuth'
 import './index.css'
 
 function DocumentPreview({ pdfId, filename, title, pageNumber, children }) {
   const auth = useAuth()
   const userId = auth.user.id
+  const fileUrl = `http://localhost:5000/storage/user${userId}/pdf/${filename}`
 
   // Open PDF using Adobe PDF Embed API
   const previewFile = async () => {
     await viewSDKClient.ready()
-    const fileUrl = `http://localhost:5000/storage/user${userId}/pdf/${filename}`
 
     viewSDKClient.previewFile({ 
       fileName: `${title}.pdf`, 
@@ -32,6 +33,10 @@ function DocumentPreview({ pdfId, filename, title, pageNumber, children }) {
       </header>
 
       <div id="body">
+        <Document file={fileUrl}>
+          <Page pageNumber={pageNumber} width={150} />
+        </Document>
+
         <p>
           {children}
         </p>

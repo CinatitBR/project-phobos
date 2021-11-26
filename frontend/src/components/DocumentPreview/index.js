@@ -39,21 +39,25 @@ function DocumentPreview({ pdfId, filename, title, pageNumber, children }) {
             {title}
           </h3>
         </div>
-        
+
         <span className={style.pageNumber}>page {pageNumber}</span>
       </header>
 
       <div className={style.body}>
-        <Document 
-          className={style.document} 
-          file={fileUrl} 
-          onClick={openFile}
-        >
-          <Page 
-            pageNumber={pageNumber} 
-            width={150} 
-          />
-        </Document>
+        {!isCollapseOpen && 
+          <Document 
+            className={style.document} 
+            file={fileUrl} 
+            onClick={openFile}
+            loading={<div style={{ width: '150px', height: '150px' }}></div>}
+          >
+            <Page 
+              pageNumber={pageNumber} 
+              width={150} 
+              loading={<div style={{ width: '150px', height: '150px' }}></div>}
+            />
+          </Document>
+        }
 
         <p>
           {children}

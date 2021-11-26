@@ -71,3 +71,16 @@ export const CloseIcon = ({
     />
   </IconWrapper>
 )
+
+export const ToggleSwitch = ({ onClick }) => (
+  <label className={style.switch}>
+    <input 
+      type="checkbox" 
+      onClick={onClick} 
+    />
+    <span className={style.slider}></span>
+
+    <span className={classNames(style.value, style.off)}>Private</span>
+    <span className={classNames(style.value, style.on)}>Public</span>
+  </label>
+)

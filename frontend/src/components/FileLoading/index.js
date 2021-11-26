@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react'
-import classNames from 'classnames'
 import { FaFilePdf } from 'react-icons/fa'
 import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
@@ -7,7 +6,7 @@ import FormField from '../FormField'
 import Select from '../Select'
 import { Button } from '../Buttons'
 import FileTag from '../FileTag'
-import { ChevronIcon, CloseIcon } from '../Buttons'
+import { ChevronIcon, CloseIcon, ToggleSwitch } from '../Buttons'
 
 import style from './style.module.css'
 
@@ -122,16 +121,7 @@ const FileLoading = ({
         ref={collapseEle}
       >
         <div className={style.content}>
-          <label className={style.switch}>
-            <input 
-              type="checkbox" 
-              onClick={e => setIsPublic(e.target.checked)} 
-            />
-            <span className={style.slider}></span>
-
-            <span className={classNames(style.value, style.off)}>Private</span>
-            <span className={classNames(style.value, style.on)}>Public</span>
-          </label>
+          <ToggleSwitch onClick={e => setIsPublic(e.target.checked)} />
 
           <FormField 
             label="Add new tag"

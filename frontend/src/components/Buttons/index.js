@@ -49,8 +49,8 @@ export const ChevronIcon = ({
         style.chevronIcon,
         { [style.open]: isOpen }
       )}
+      size={size}
       style={{ 
-        fontsize: size,
         color: (isOpen ? colorOpen : colorClosed)
       }}
     />

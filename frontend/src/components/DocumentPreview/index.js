@@ -7,7 +7,25 @@ import Collapse from '../Collapse'
 
 import style from './style.module.css'
 
-function DocumentPreview({ pdfId, filename, title, pageNumber, children }) {
+const highlightPattern = (text, pattern) => {
+  const splitText = text.split(pattern)
+
+  if (splitText.length <= 1) {
+    return text
+  }
+
+  const matches = text.match(pattern)
+
+  return splitText.reduce((arr, element, index) => (matches[index] ? [
+    ...arr,
+    element,
+    <mark className={style.highlight} key={index}>
+      {matches[index]}
+    </mark>,
+  ] : [...arr, element]), [])
+}
+
+function DocumentPreview({ keyword, text, pdfId, filename, title, pageNumber }) {
   const auth = useAuth()
   const userId = auth.user.id
   const fileUrl = `http://localhost:5000/storage/user${userId}/pdf/${filename}`
@@ -55,12 +73,13 @@ function DocumentPreview({ pdfId, filename, title, pageNumber, children }) {
               pageNumber={pageNumber} 
               width={150} 
               loading={<div style={{ width: '150px', height: '150px' }}></div>}
+              customTextRenderer={textItem => highlightPattern(textItem.str, keyword)}
             />
           </Document>
         }
 
         <p>
-          {children}
+          {highlightPattern(text, keyword)}
         </p>
       </div>
 
@@ -77,6 +96,7 @@ function DocumentPreview({ pdfId, filename, title, pageNumber, children }) {
               <Page 
                 pageNumber={pageNumber} 
                 width={700} 
+                customTextRenderer={textItem => highlightPattern(textItem.str, keyword)}
               />
             </div>
           </Document>

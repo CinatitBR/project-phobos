@@ -63,14 +63,14 @@
   gap: 35px;
 }
 
-.button {
+.buttonList .item {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   gap: 5px;
 }
 
-.button .backgroundIcon {
+.buttonList .item .backgroundIcon {
   cursor: pointer;
   color: white;
   background: var(--background-dark);
@@ -85,15 +85,15 @@
   transition: border-color 250ms ease;
 }
 
-.button .backgroundIcon:hover {
+.buttonList .item .backgroundIcon:hover {
   border-color: var(--primary-green);
 }
 
-.button .icon {
+.buttonList .item .icon {
   font-size: 25px;
 }
 
-.button .buttonName {
+.buttonList .item .buttonName {
   color: var(--primary-green);
   font-size: 14px;
   cursor: default;

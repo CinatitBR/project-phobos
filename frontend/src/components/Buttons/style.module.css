@@ -33,7 +33,7 @@ button.fullWidth {
   transition: background 150ms ease;
   color: var(--white);
 
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
 }

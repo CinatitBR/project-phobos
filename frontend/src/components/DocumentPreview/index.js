@@ -14,7 +14,7 @@ function DocumentPreview({ pdfId, filename, title, pageNumber, children }) {
   const [isCollapseOpen, setIsCollapseOpen] = useState(false)
 
   // Open PDF using Adobe PDF Embed API
-  const previewFile = async () => {
+  const openFile = async () => {
     await viewSDKClient.ready()
 
     viewSDKClient.previewFile({ 
@@ -26,26 +26,33 @@ function DocumentPreview({ pdfId, filename, title, pageNumber, children }) {
   }
 
   return (
-    <article 
-      className={style.documentPreview} 
-      onClick={previewFile}
-    >
-      <ChevronIcon 
-        isOpen={isCollapseOpen}
-        onClick={() => setIsCollapseOpen(!isCollapseOpen)}
-        size="30px"
-      />
-
+    <article className={style.documentPreview}>
       <header>
-        <h3 className={style.title}>
-          {title}
-        </h3>
+        <div className={style.top}>
+          <ChevronIcon 
+            isOpen={isCollapseOpen}
+            onClick={() => setIsCollapseOpen(!isCollapseOpen)}
+            size="30px"
+          />
+
+          <h3 className={style.title}>
+            {title}
+          </h3>
+        </div>
+        
         <span className={style.pageNumber}>page {pageNumber}</span>
       </header>
 
       <div className={style.body}>
-        <Document file={fileUrl}>
-          <Page pageNumber={pageNumber} width={150} />
+        <Document 
+          className={style.document} 
+          file={fileUrl} 
+          onClick={openFile}
+        >
+          <Page 
+            pageNumber={pageNumber} 
+            width={150} 
+          />
         </Document>
 
         <p>
@@ -54,11 +61,20 @@ function DocumentPreview({ pdfId, filename, title, pageNumber, children }) {
       </div>
 
       <Collapse 
-        isOpen={isCollapseOpen} 
+        isOpen={isCollapseOpen}
       >
         <div className={style.collapseContent}>
-          <Document file={fileUrl}>
-            <Page pageNumber={pageNumber} width={700} />
+          <Document 
+            className={style.document}
+            file={fileUrl} 
+            onClick={openFile}
+          >
+            <div>
+              <Page 
+                pageNumber={pageNumber} 
+                width={700} 
+              />
+            </div>
           </Document>
         </div>
       </Collapse>

@@ -25,10 +25,7 @@ const highlightPattern = (text, pattern) => {
   ] : [...arr, element]), [])
 }
 
-function DocumentPreview({ keyword, text, pdfId, filename, title, pageNumber }) {
-  const auth = useAuth()
-  const userId = auth.user.id
-  const fileUrl = `http://localhost:5000/storage/user${userId}/pdf/${filename}`
+function DocumentPreview({ keyword, fileUrl, text, pdfId, filename, title, pageNumber }) {
   const [isCollapseOpen, setIsCollapseOpen] = useState(false)
 
   // Open PDF using Adobe PDF Embed API

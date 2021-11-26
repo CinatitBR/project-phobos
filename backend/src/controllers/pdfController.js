@@ -91,9 +91,17 @@ const findPublic = async (req, res) => {
 
 const search = async (req, res) => {
   try {
-    const { keyword } = req.body
+    const { keyword, userId } = req.body
+    const domain = `http://localhost:${process.env.PORT}`
 
-    const documentPreviews = await pdfModel.search(keyword)
+    const files = await pdfModel.search(keyword)
+
+    const documentPreviews = files.map(file => {
+      const fileUrl = `${domain}/storage/user${userId}/pdf/${file.filename}`
+
+      return {...file, fileUrl }
+    })
+
     res.json(documentPreviews)
   }
   catch (e) {

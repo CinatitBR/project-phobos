@@ -2,15 +2,17 @@ import FileBox from '../../components/FileBox'
 
 import style from './style.module.css'
 
-const FileList = ({ files }) => {
+const FileList = ({ files, onFileClick }) => {
   return (
     <div className={style.fileList}>
       {files.map(file => 
         <FileBox 
           key={file.id}
+          id={file.id}
           filename={file.title}
-          tagName={'Math'}
-          fileSize={'50 MB'}
+          tagName={file.tag_name}
+          fileSize={file.size}
+          onFileClick={onFileClick}
         />  
       )}
     </div>

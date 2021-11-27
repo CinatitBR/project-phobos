@@ -9,6 +9,7 @@ import style from './style.module.css'
 const Library = () => {
   const userId = useAuth().user.id
   const [files, setFiles] = useState([])
+  const [selectedFile, setSelectedFile] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -22,16 +23,24 @@ const Library = () => {
     getFiles()
   }, [userId])
 
+  const handleFileClick = (file) => {
+    setSelectedFile(file)
+  }
+
+  console.log(selectedFile)
+
   return (
     <div className={style.library}>
       <section className={style.content}>
         {loading ? 
           'Carregando...' :
-          <FileList files={files} />
+          <FileList files={files} onFileClick={handleFileClick} />
         }
       </section>
 
-      <FilePreviewSidebar />
+      <FilePreviewSidebar 
+        file={selectedFile}
+      />
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import viewSDKClient from '../../apis/viewSDKClient'
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
-import useAuth from '../../hooks/useAuth'
 import { ChevronIcon } from '../Buttons'
 import Collapse from '../Collapse'
 

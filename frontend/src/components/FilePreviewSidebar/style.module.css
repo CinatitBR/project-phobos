@@ -8,6 +8,8 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  width: 300px;
 }
 
 .filePreviewSidebar .title {
@@ -106,4 +108,11 @@
   background: var(--background-dark);
   border-radius: 4px;
   opacity: 0.35;
+}
+
+/* Tip */
+.tip {
+  color: var(--white);
+  font-size: 18px;
+  font-style: italic;
 }

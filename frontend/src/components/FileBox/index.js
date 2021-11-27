@@ -6,7 +6,7 @@ import classNames from 'classnames'
 
 import style from './style.module.css'
 
-const FileBox = ({ filename, tagName, fileSize }) => {
+const FileBox = ({ id, filename, tagName, fileSize, onFileClick }) => {
   const [showOptions, setShowOptions] = useState(false)
 
   const dropdownItems = [
@@ -29,6 +29,7 @@ const FileBox = ({ filename, tagName, fileSize }) => {
       className={style.fileBox}
       onMouseEnter={() => setShowOptions(true)}
       onMouseLeave={() => setShowOptions(false)}
+      onClick={() => onFileClick({ filename, tagName, fileSize })}
     >
       <header 
         className={classNames(

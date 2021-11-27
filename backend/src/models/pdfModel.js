@@ -19,18 +19,27 @@ const create = async ({ userId, filename, title, tagId, size, isPublic }) => {
 
 const findAll = async (userId) => {
   try {
-    const sql = `
-      SELECT pdf.id, pdf.filename, pdf.title, pdf.size, pdf.is_public, pdf.stars, 
-        pdf_tag.tag_name
+    const sqlPersonal = `
+      SELECT pdf.*, pdf_tag.tag_name
       FROM pdf 
       INNER JOIN pdf_tag
         ON pdf.tag_id = pdf_tag.id
       WHERE pdf.user_id = ?
     `
 
-    const [rows, fields] = await db.query(sql, userId)
+    const sqlAdded = `
+      SELECT * FROM pdf 
+      INNER JOIN pdf_tag
+        ON pdf.tag_id = pdf_tag.id
+      WHERE pdf.id IN (SELECT pdf_id FROM added_public_pdf WHERE user_id = ${userId})
+    ` 
 
-    return rows
+    const [personalFiles, fields] = await db.query(sqlPersonal, userId)
+    const [addedFiles, fields1] = await db.query(sqlAdded, userId)
+
+    const files = [...personalFiles, ...addedFiles]
+
+    return files
   } catch(e) {
     throw new Error(e)
   }

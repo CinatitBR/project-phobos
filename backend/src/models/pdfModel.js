@@ -59,7 +59,7 @@ const findPublic = async (index, userId) => {
 
     const sql = `
       SELECT pdf.id, pdf.filename, pdf.title, pdf.size, pdf.stars, 
-      user.username AS author, 
+      user.username AS author, user.id AS authorId, 
       pdf_tag.tag_name,
       (SELECT COUNT(*) FROM added_public_pdf
         WHERE user_id = ${userId}

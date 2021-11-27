@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { FaFilePdf, FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import classNames from 'classnames'
 import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
-import classNames from 'classnames'
 import Select from '../../components/Select'
 import FileTag from '../../components/FileTag'
 import { Button } from '../../components/Buttons'
@@ -11,9 +11,10 @@ import style from './style.module.css'
 
 const PublicDocumentBox = ({ file }) => {
   const [isLiked, setIsLiked] = useState(file.is_liked)
+  const [isAdded, setIsAdded] = useState(file.isAdded)
   const [updatedStars, setUpdatedStars] = useState(file.stars)
   const userId = useAuth().user.id
-
+  
   const handleLike = async (e) => {
     const action = isLiked ? 'unlike' : 'like'
 
@@ -24,6 +25,13 @@ const PublicDocumentBox = ({ file }) => {
     // Update backend
     await authAPI.stars(action, file.id, userId)
   }
+
+  // Add document to user library
+  const handleAddToLibrary = async () => {
+    await authAPI.addToLibrary(file.id, userId)
+
+    setIsAdded(true)
+  } 
 
   return (
     <article className={style.publicDocumentBox}>
@@ -56,13 +64,16 @@ const PublicDocumentBox = ({ file }) => {
               {updatedStars}
             </div>
             
-            {!file.isAdded && 
-              <Button className={classNames(style.button, style.addButton)}>
+            {(!isAdded && file.authorId !== userId) && 
+              <Button 
+                className={classNames(style.button, style.addButton)}
+                onClick={handleAddToLibrary}
+              >
                 Add to library
               </Button>
             }
 
-            {file.isAdded &&
+            {(isAdded && file.authorId !== userId) &&
               <Button className={classNames(style.button, style.removeButton)}>
                 Remove from library
               </Button> 
@@ -139,14 +150,6 @@ const Explore = () => {
           <PublicDocumentBox 
             key={doc.id}
             file={doc}
-            // id={doc.id}
-            // title={doc.title}
-            // author={doc.username}
-            // size={doc.size}
-            // description="fdjfdlfjdklfjdslfjldjfldlfjldfjldj"
-            // tag={doc.tag_name}
-            // stars={doc.stars}
-            // liked={doc.is_liked}
           />
         )}
       </div>

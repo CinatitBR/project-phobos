@@ -130,4 +130,14 @@ const viewSDKClient = {
   }
 }
 
-export default viewSDKClient
+// Open PDF using Adobe PDF Embed API
+export const openFile = async (title, fileUrl, pageNumber) => {
+  await viewSDKClient.ready()
+
+  viewSDKClient.previewFile({ 
+    fileName: `${title}.pdf`, 
+    fileUrl, 
+    pageNumber,
+    viewerConfig: { embedMode: 'LIGHT_BOX' }
+  })
+}

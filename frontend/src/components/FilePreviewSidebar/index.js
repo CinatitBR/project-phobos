@@ -19,7 +19,7 @@ const FileInfo = ({ filename, size, tag }) => (
   </div>
 )
 
-const ButtonList = () => (
+const ButtonList = ({ file }) => (
   <div className={style.buttonList}>
     <div className={style.item}>
       <span className={style.backgroundIcon}>

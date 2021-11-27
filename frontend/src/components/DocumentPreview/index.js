@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import viewSDKClient from '../../apis/viewSDKClient'
+import viewSDKClient, { openFile } from '../../apis/viewSDKClient'
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
 import { ChevronIcon } from '../Buttons'
 import Collapse from '../Collapse'
@@ -27,18 +27,6 @@ const highlightPattern = (text, pattern) => {
 function DocumentPreview({ keyword, fileUrl, text, pdfId, filename, title, pageNumber }) {
   const [isCollapseOpen, setIsCollapseOpen] = useState(false)
 
-  // Open PDF using Adobe PDF Embed API
-  const openFile = async () => {
-    await viewSDKClient.ready()
-
-    viewSDKClient.previewFile({ 
-      fileName: `${title}.pdf`, 
-      fileUrl, 
-      pageNumber,
-      viewerConfig: { embedMode: 'LIGHT_BOX' }
-    })
-  }
-
   return (
     <article className={style.documentPreview}>
       <header>
@@ -62,7 +50,7 @@ function DocumentPreview({ keyword, fileUrl, text, pdfId, filename, title, pageN
           <Document 
             className={style.document} 
             file={fileUrl} 
-            onClick={openFile}
+            onClick={() => openFile(title, fileUrl, pageNumber)}
             loading={<div style={{ width: '150px', height: '150px' }}></div>}
           >
             <Page 
@@ -86,7 +74,7 @@ function DocumentPreview({ keyword, fileUrl, text, pdfId, filename, title, pageN
           <Document 
             className={style.document}
             file={fileUrl} 
-            onClick={openFile}
+            onClick={() => openFile(title, fileUrl, pageNumber)}
           >
             <div>
               <Page 

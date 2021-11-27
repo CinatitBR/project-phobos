@@ -66,7 +66,7 @@ const findPublic = async (index, userId) => {
     const limit = 20
     const offset = (index - 1) * limit
 
-    const sql = `
+    const sqlFiles = `
       SELECT pdf.id, pdf.filename, pdf.title, pdf.size, pdf.stars, 
       user.username AS author, user.id AS authorId, 
       pdf_tag.tag_name,
@@ -85,9 +85,15 @@ const findPublic = async (index, userId) => {
       OFFSET ${offset}
     `
 
-    const [rows, fields] = await db.query(sql)
+    const sqlTotal = `
+      SELECT COUNT(*) AS total FROM pdf
+      WHERE is_public IS TRUE
+    `
 
-    return rows
+    const [files, fields1] = await db.query(sqlFiles)
+    const [total, fields2] = await db.query(sqlTotal)
+
+    return { files, total: total[0].total }
   } catch(e) {
     throw new Error(e)
   }

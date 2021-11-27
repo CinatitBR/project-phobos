@@ -103,7 +103,7 @@ const PublicDocumentBox = ({ file }) => {
   )
 }
 
-const Pagination = ({ count, pageNumber, onNext, onPrevious }) => {
+const Pagination = ({ count, pageNumber, onNext, onPrevious, onPageChange }) => {
   const paginationButtons = []
 
   for (let i = 0; i < count; i++) {
@@ -114,6 +114,7 @@ const Pagination = ({ count, pageNumber, onNext, onPrevious }) => {
           style.paginationButton,
           { [style.currentPage]: (i+1) === pageNumber }
         )} 
+        onClick={() => onPageChange(i+1)}
       >
         {i+1}
       </li>
@@ -122,45 +123,56 @@ const Pagination = ({ count, pageNumber, onNext, onPrevious }) => {
 
   return (
     <ul className={style.paginationBar}>
-      <li 
-        className={classNames(
-          style.next, 
-          style.paginationButton
-        )}
-        onClick={onPrevious}
-      >
-        <FaChevronLeft />
-      </li>
+      {pageNumber !== 1 &&
+        <li 
+          className={classNames(
+            style.next, 
+            style.paginationButton
+          )}
+          onClick={() => onPageChange(pageNumber - 1)}
+        >
+          <FaChevronLeft />
+        </li>
+      }
 
       {paginationButtons}
 
-      <li 
-        className={classNames(
-          style.next, 
-          style.paginationButton
-        )}
-        onClick={onNext}
-      >
-        <FaChevronRight />
-      </li>
+      {pageNumber !== count &&
+        <li 
+          className={classNames(
+            style.next, 
+            style.paginationButton
+          )}
+          onClick={() => onPageChange(pageNumber + 1)}
+        >
+          <FaChevronRight />
+        </li>
+      }
     </ul>
   )
 }
 
 const Explore = () => {
+  const queryLimit = 20
+
   const [publicDocuments, setPublicDocuments] = useState([]) 
   const userId = useAuth().user.id
   const location = useLocation()
   const history = useHistory()
   const { page = 1 } = queryString.parse(location.search)
   const [currentPage, setCurrentPage] = useState(parseInt(page))
+  const [totalPages, setTotalPages] = useState(0)
+
+  const paginationCount = Math.ceil(totalPages / queryLimit)
 
   // Get documents
   useEffect(() => {
     const getPublicDocuments = async () => {
       const response = await authAPI.findPublic(currentPage, userId)
+      const { files, total } = response.data
   
-      setPublicDocuments(response.data)
+      setPublicDocuments(files)
+      setTotalPages(total)
     }
 
     getPublicDocuments()
@@ -178,7 +190,7 @@ const Explore = () => {
     <section className={style.wrapper}>
       <div className={style.searchHeader}>
         <span className={style.currentSearch}>
-          1 - 5 of 500 available documents.   
+          {totalPages} available documents.   
         </span>
 
         <Select 
@@ -205,10 +217,11 @@ const Explore = () => {
       </div>
       
       <Pagination 
-        count={9} 
+        count={paginationCount} 
         pageNumber={currentPage} 
-        onNext={() => setCurrentPage(state => state + 1)}
-        onPrevious={() => setCurrentPage(state => state - 1)}
+        onPageChange={pageNumber => setCurrentPage(pageNumber)}
+        // onNext={() => setCurrentPage(state => state + 1)}
+        // onPrevious={() => setCurrentPage(state => state - 1)}
       />
     </section>
   )

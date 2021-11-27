@@ -1,26 +1,29 @@
+import useAuth from '../../hooks/useAuth'
 import FileTag from '../FileTag'
 import { openFile } from '../../apis/viewSDKClient'
 import { FaFileAlt, FaFilePdf, FaArrowDown, FaTrashAlt, FaExternalLinkAlt } from 'react-icons/fa'
 
 import style from './style.module.css'
 
-const FileInfo = ({ filename, size, tag }) => (
+const FileInfo = ({ file }) => (
   <div className={style.fileInfo}>
     <FaFilePdf className={style.fileIcon} />
-    <h2 className={style.filename}>{filename}</h2>
+    <h2 className={style.filename}>{file.title}</h2>
 
     <div className={style.footer}>
       <div className={style.fileSize}>
         <header>Size</header>
-        <span className={style.size}>{size} MB</span>
+        <span className={style.size}>{file.size} MB</span>
       </div>
 
-      <FileTag>{tag}</FileTag>
+      <FileTag>{file.tag_name}</FileTag>
     </div>
   </div>
 )
 
 const ButtonList = ({ file, onFileDelete }) => {
+  const userId = useAuth().user.id
+
   return (
     <div className={style.buttonList}>
       <div 
@@ -34,16 +37,18 @@ const ButtonList = ({ file, onFileDelete }) => {
         <span className={style.buttonName}>Open</span>
       </div>
 
-      <div 
-        className={style.item} 
-        onClick={() => onFileDelete(file.id)}
-      >
-        <span className={style.backgroundIcon}>
-          <FaTrashAlt className={style.icon} />
-        </span>
+      {(userId === file.user_id) &&
+        <div 
+          className={style.item} 
+          onClick={() => onFileDelete(file.id)}
+        >
+          <span className={style.backgroundIcon}>
+            <FaTrashAlt className={style.icon} />
+          </span>
 
-        <span className={style.buttonName}>Delete</span>
-      </div>
+          <span className={style.buttonName}>Delete</span>
+        </div>
+      }
 
       <div className={style.item} onClick={() => window.open(file.fileUrl, '_blank')}>
         <span className={style.backgroundIcon}>
@@ -70,9 +75,7 @@ const FilePreviewSidebar = ({ file = null, onFileDelete }) => {
       {file &&
         <> 
         <FileInfo 
-          filename={file.title}
-          tag={file.tag_name}
-          size={file.size}
+          file={file}
         />
 
         <div className={style.divider} style={{ margin: ' 0-20px' }}></div>

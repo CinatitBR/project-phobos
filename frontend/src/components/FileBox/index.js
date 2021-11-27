@@ -15,7 +15,7 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
   const { id, title, fileUrl, size, tag_name } = file
   const userId = useAuth().user.id
 
-  const dropdownItems = [
+  let dropdownItems = [
     {
       id: 0,
       leftIcon: <FaExternalLinkAlt />,
@@ -38,6 +38,10 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
       }
     }
   ]
+
+  // If file is shared, remove delete button
+  if (userId !== file.user_id) 
+    dropdownItems.pop()
 
   return (
     <article 

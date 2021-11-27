@@ -27,17 +27,27 @@ const Library = () => {
     setSelectedFile(file)
   }
 
+  const onFileDelete = (fileId) => {
+    setFiles(files.filter(file => file.id !== fileId))
+    setSelectedFile(null)
+  }
+
   return (
     <div className={style.library}>
       <section className={style.content}>
         {loading ? 
           'Carregando...' :
-          <FileList files={files} onFileClick={handleFileClick} />
+          <FileList 
+            files={files} 
+            onFileClick={handleFileClick} 
+            onFileDelete={onFileDelete}
+          />
         }
       </section>
 
       <FilePreviewSidebar 
         file={selectedFile}
+        onFileDelete={onFileDelete}
       />
     </div>
   )

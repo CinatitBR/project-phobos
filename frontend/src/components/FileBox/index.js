@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { openFile } from '../../apis/viewSDKClient'
+import authAPI from '../../apis/authAPI'
 import FileTag from '../FileTag'
 import Dropdown from '../../components/Dropdown'
 import { FaFilePdf, FaEllipsisV, FaExternalLinkAlt, FaArrowDown, FaTrashAlt } from 'react-icons/fa'
@@ -7,9 +8,9 @@ import classNames from 'classnames'
 
 import style from './style.module.css'
 
-const FileBox = ({ file, onFileClick }) => {
+const FileBox = ({ file, onFileClick, onFileDelete }) => {
   const [showOptions, setShowOptions] = useState(false)
-  const { title, fileUrl, size, tag_name } = file
+  const { id, title, fileUrl, size, tag_name } = file
 
   const dropdownItems = [
     {
@@ -27,7 +28,11 @@ const FileBox = ({ file, onFileClick }) => {
     {
       id: 2,
       leftIcon: <FaTrashAlt />,
-      text: 'Delete'
+      text: 'Delete',
+      onClick: async () => {
+        onFileDelete(file.id)
+        await authAPI.destroy(id)
+      }
     }
   ]
 
@@ -36,7 +41,7 @@ const FileBox = ({ file, onFileClick }) => {
       className={style.fileBox}
       onMouseEnter={() => setShowOptions(true)}
       onMouseLeave={() => setShowOptions(false)}
-      onClick={() => onFileClick({ title, tag_name, size })}
+      onClick={() => onFileClick(file)}
     >
       <header 
         className={classNames(

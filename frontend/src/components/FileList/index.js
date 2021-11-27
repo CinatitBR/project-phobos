@@ -2,7 +2,7 @@ import FileBox from '../../components/FileBox'
 
 import style from './style.module.css'
 
-const FileList = ({ files, onFileClick }) => {
+const FileList = ({ files, onFileClick, onFileDelete }) => {
   return (
     <div className={style.fileList}>
       {files.map(file => 
@@ -10,6 +10,7 @@ const FileList = ({ files, onFileClick }) => {
           key={file.id}
           file={file}
           onFileClick={onFileClick}
+          onFileDelete={onFileDelete}
         />  
       )}
     </div>

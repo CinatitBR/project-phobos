@@ -19,7 +19,14 @@ const create = async ({ userId, filename, title, tagId, size, isPublic }) => {
 
 const findAll = async (userId) => {
   try {
-    const sql = `SELECT * FROM pdf WHERE user_id = ?`
+    const sql = `
+      SELECT pdf.id, pdf.filename, pdf.title, pdf.size, pdf.is_public, pdf.stars, 
+        pdf_tag.tag_name
+      FROM pdf 
+      INNER JOIN pdf_tag
+        ON pdf.tag_id = pdf_tag.id
+      WHERE pdf.user_id = ?
+    `
 
     const [rows, fields] = await db.query(sql, userId)
 

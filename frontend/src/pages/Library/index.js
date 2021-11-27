@@ -27,8 +27,6 @@ const Library = () => {
     setSelectedFile(file)
   }
 
-  console.log(selectedFile)
-
   return (
     <div className={style.library}>
       <section className={style.content}>

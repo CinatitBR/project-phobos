@@ -8,6 +8,7 @@ button {
   text-align: center;
   border: none;
   cursor: pointer;
+  display: block;
 
   transition: filter 200ms;
 }

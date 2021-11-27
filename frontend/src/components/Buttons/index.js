@@ -8,7 +8,7 @@ export const Button = ({
   fullWidth, 
   disabled,
   className, 
-  ...rest 
+  ...rest
 }) => {
   return (
     <button 

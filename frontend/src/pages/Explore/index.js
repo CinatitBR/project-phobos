@@ -5,6 +5,7 @@ import authAPI from '../../apis/authAPI'
 import classNames from 'classnames'
 import Select from '../../components/Select'
 import FileTag from '../../components/FileTag'
+import { Button } from '../../components/Buttons'
 
 import style from './style.module.css'
 
@@ -54,6 +55,14 @@ const PublicDocumentBox = ({ id, title, size, author, description, tag, stars, l
 
               {updatedStars}
             </div>
+
+            <Button className={classNames(style.button, style.addButton)}>
+              Add to library
+            </Button>
+
+            <Button className={classNames(style.button, style.removeButton)}>
+              Remove from library
+            </Button>
           </div>
         </header>
 
@@ -99,7 +108,6 @@ const Explore = () => {
 
   return (
     <section className={style.wrapper}>
-
       <div className={style.searchHeader}>
         <span className={style.currentSearch}>
           1 - 5 of 500 available documents.   

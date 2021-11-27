@@ -65,6 +65,7 @@
 .publicDocumentBox .rightInfo {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 20px;
 }
 
@@ -97,6 +98,18 @@
   color: var(--white);
 }
 
+.publicDocumentBox .button {
+  font-size: 14px;
+  padding: 5px 18px;
+}
+
+.removeButton {
+  background: var(--primary-text);
+}
+
+.removeButton:hover {
+  background: var(--moon-crater);
+}
 
 /* PaginationBar */
 .paginationBar {

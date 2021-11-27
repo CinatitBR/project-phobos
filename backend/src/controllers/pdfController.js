@@ -89,7 +89,7 @@ const findAll = async (req, res) => {
 
 const findPublic = async (req, res) => {
   try {
-    const { page, userId } = req.query
+    const { page, userId } = req.body
 
     const publicDocuments = await pdfModel.findPublic(page, userId)
 

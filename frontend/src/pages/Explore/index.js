@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { useLocation, useHistory } from 'react-router-dom'
+import queryString from 'query-string'
 import { FaFilePdf, FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import classNames from 'classnames'
 import useAuth from '../../hooks/useAuth'
@@ -38,8 +40,6 @@ const PublicDocumentBox = ({ file }) => {
 
     setIsAdded(false)
   } 
-
-  console.log(file)
 
   return (
     <article className={style.publicDocumentBox}>
@@ -103,18 +103,46 @@ const PublicDocumentBox = ({ file }) => {
   )
 }
 
-const Pagination = ({ count }) => {
+const Pagination = ({ count, pageNumber, onNext, onPrevious }) => {
   const paginationButtons = []
 
   for (let i = 0; i < count; i++) {
-    paginationButtons.push(<li className={style.paginationButton} key={i}>{i+1}</li>)
+    paginationButtons.push(
+      <li 
+        key={i}
+        className={classNames(
+          style.paginationButton,
+          { [style.currentPage]: (i+1) === pageNumber }
+        )} 
+      >
+        {i+1}
+      </li>
+    )
   }
 
   return (
     <ul className={style.paginationBar}>
-      <li className={classNames(style.next, style.paginationButton)}><FaChevronLeft /></li>
+      <li 
+        className={classNames(
+          style.next, 
+          style.paginationButton
+        )}
+        onClick={onPrevious}
+      >
+        <FaChevronLeft />
+      </li>
+
       {paginationButtons}
-      <li className={classNames(style.next, style.paginationButton)}><FaChevronRight /></li>
+
+      <li 
+        className={classNames(
+          style.next, 
+          style.paginationButton
+        )}
+        onClick={onNext}
+      >
+        <FaChevronRight />
+      </li>
     </ul>
   )
 }
@@ -122,18 +150,29 @@ const Pagination = ({ count }) => {
 const Explore = () => {
   const [publicDocuments, setPublicDocuments] = useState([]) 
   const userId = useAuth().user.id
+  const location = useLocation()
+  const history = useHistory()
+  const { page = 1 } = queryString.parse(location.search)
+  const [currentPage, setCurrentPage] = useState(parseInt(page))
 
-  const getPublicDocuments = async () => {
-    const response = await authAPI.findPublic(1, userId)
-
-    setPublicDocuments(response.data)
-
-    console.log(response.data)
-  }
-
+  // Get documents
   useEffect(() => {
+    const getPublicDocuments = async () => {
+      const response = await authAPI.findPublic(currentPage, userId)
+  
+      setPublicDocuments(response.data)
+    }
+
     getPublicDocuments()
-  }, [])
+  }, [currentPage, userId])
+
+  // Update page url
+  useEffect(() => {
+    const newParams = new URLSearchParams()
+    newParams.append('page', currentPage)
+
+    history.push({ search: newParams.toString() })
+  }, [currentPage, history])
 
   return (
     <section className={style.wrapper}>
@@ -165,7 +204,12 @@ const Explore = () => {
         )}
       </div>
       
-      <Pagination count={9} />
+      <Pagination 
+        count={9} 
+        pageNumber={currentPage} 
+        onNext={() => setCurrentPage(state => state + 1)}
+        onPrevious={() => setCurrentPage(state => state - 1)}
+      />
     </section>
   )
 }

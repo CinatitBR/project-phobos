@@ -77,7 +77,7 @@ const findTagById = tagId =>
   axiosInstance.post('/pdf/find-tag-by-id', { tagId })
 
 const findPublic = (page, userId) =>
-  axiosInstance.get(`/pdf/find-public/?page=${page}&userId=${userId}`)
+  axiosInstance.post('/pdf/find-public', { page, userId })
 
 const stars = (action, pdfId, userId) =>
   axiosInstance.post('/pdf/stars', { action, pdfId, userId })

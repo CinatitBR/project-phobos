@@ -4,10 +4,16 @@
   background: var(--primary-blue);
   padding: 10px;
   border-radius: 10px;
+  border: solid 3px transparent;
+  transition: border-color 0.2s ease;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.fileBox:hover {
+  border: solid 3px var(--primary-green);
 }
 
 .fileBoxHeader {
@@ -19,15 +25,20 @@
 }
 
 .wrapperOptions {
-  border-radius: 2px;
-  display: inline-block;
-  padding: 2px;
-  transition: background 250ms ease;
+  font-size: 18px;
+  padding: 2px 0;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
   cursor: pointer;
+  margin-left: auto;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .wrapperOptions:hover {
-  background: #7278A3;
+  background: #333C75;
 }
 
 .options {

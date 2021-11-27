@@ -11,7 +11,7 @@ import style from './style.module.css'
 
 const PublicDocumentBox = ({ file }) => {
   const [isLiked, setIsLiked] = useState(file.is_liked)
-  const [isAdded, setIsAdded] = useState(file.isAdded)
+  const [isAdded, setIsAdded] = useState(file.is_added)
   const [updatedStars, setUpdatedStars] = useState(file.stars)
   const userId = useAuth().user.id
   
@@ -32,6 +32,8 @@ const PublicDocumentBox = ({ file }) => {
 
     setIsAdded(true)
   } 
+
+  console.log(file)
 
   return (
     <article className={style.publicDocumentBox}>
@@ -74,7 +76,8 @@ const PublicDocumentBox = ({ file }) => {
             }
 
             {(isAdded && file.authorId !== userId) &&
-              <Button className={classNames(style.button, style.removeButton)}>
+              <Button 
+                className={classNames(style.button, style.removeButton)}>
                 Remove from library
               </Button> 
             }

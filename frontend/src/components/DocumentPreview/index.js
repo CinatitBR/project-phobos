@@ -18,9 +18,9 @@ const highlightPattern = (text, pattern) => {
   return splitText.reduce((arr, element, index) => (matches[index] ? [
     ...arr,
     element,
-    <mark className={style.highlight} key={index}>
+    <span className={style.highlight} key={index}>
       {matches[index]}
-    </mark>,
+    </span>,
   ] : [...arr, element]), [])
 }
 

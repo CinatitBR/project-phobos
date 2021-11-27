@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { FaChevronUp, FaTimes } from 'react-icons/fa'
+import { FaChevronUp, FaTimes, FaLink } from 'react-icons/fa'
 
 import style from './style.module.css'
 
@@ -83,4 +83,10 @@ export const ToggleSwitch = ({ onClick }) => (
     <span className={classNames(style.value, style.off)}>Private</span>
     <span className={classNames(style.value, style.on)}>Public</span>
   </label>
+)
+
+export const LinkIcon = () => (
+  <IconWrapper className={style.link}>
+    <FaLink />
+  </IconWrapper>
 )

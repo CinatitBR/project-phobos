@@ -1,16 +1,19 @@
 import { useState } from 'react'
 import { openFile } from '../../apis/viewSDKClient'
+import classNames from 'classnames'
+import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
 import FileTag from '../FileTag'
 import Dropdown from '../../components/Dropdown'
-import { FaFilePdf, FaEllipsisV, FaExternalLinkAlt, FaArrowDown, FaTrashAlt } from 'react-icons/fa'
-import classNames from 'classnames'
+import { FaFilePdf, FaEllipsisV, FaExternalLinkAlt, FaArrowDown, FaTrashAlt, FaLink } from 'react-icons/fa'
+import { LinkIcon } from '../Buttons'
 
 import style from './style.module.css'
 
 const FileBox = ({ file, onFileClick, onFileDelete }) => {
   const [showOptions, setShowOptions] = useState(false)
   const { id, title, fileUrl, size, tag_name } = file
+  const userId = useAuth().user.id
 
   const dropdownItems = [
     {
@@ -43,17 +46,19 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
       onMouseLeave={() => setShowOptions(false)}
       onClick={() => onFileClick(file)}
     >
-      <header 
-        className={classNames(
-          style.fileBoxHeader, 
-          {[style.hide]: !showOptions}
-        )}
-      >
+      <header className={style.fileBoxHeader}>
+        {(userId !== file.user_id) && 
+          <LinkIcon />
+        }
+
         <Dropdown
           items={dropdownItems}
           margin={5}
         > 
-          <span className={style.wrapperOptions}>
+          <span className={classNames(
+            style.wrapperOptions,
+            {[style.hide]: !showOptions}
+          )}>
             <FaEllipsisV className={style.options}/>
           </span>
         </Dropdown>

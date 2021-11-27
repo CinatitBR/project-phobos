@@ -85,7 +85,7 @@ const PublicDocumentBox = ({ file }) => {
               <Button 
                 className={classNames(style.button, style.removeButton)}
                 onClick={handleRemoveFromLibrary}
-                >
+              >
                 Remove from library
               </Button> 
             }

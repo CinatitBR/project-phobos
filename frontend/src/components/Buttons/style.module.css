@@ -127,3 +127,9 @@ button.fullWidth {
 .switch input:checked ~ .value.on {
   opacity: 1;
 }
+
+/* LinkIcon */
+.link {
+  color: var(--yellow);
+  font-size: 20px;
+}

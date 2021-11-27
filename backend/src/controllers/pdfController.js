@@ -5,11 +5,11 @@ import getPages from '../utils/getPages.js'
 import pageModel from '../models/pageModel.js'
 
 // Add file url to file object
-const addFileUrl = (files, userId) => {
+const addFileUrl = (files) => {
   const domain = `http://localhost:${process.env.PORT}`
 
   const newFiles = files.map(file => {
-    const fileUrl = `${domain}/storage/user${userId}/pdf/${file.filename}`
+    const fileUrl = `${domain}/storage/user${file.user_id}/pdf/${file.filename}`
 
     return {...file, fileUrl }
   })
@@ -75,7 +75,7 @@ const findAll = async (req, res) => {
     const { userId } = req.body 
 
     const files = await pdfModel.findAll(userId)
-    const newFiles = addFileUrl(files, userId)
+    const newFiles = addFileUrl(files)
 
     res.json(newFiles)
   } catch (e) {
@@ -108,7 +108,7 @@ const search = async (req, res) => {
     const { keyword, userId } = req.body
 
     const files = await pdfModel.search(keyword)
-    const newFiles = addFileUrl(files, userId)
+    const newFiles = addFileUrl(files)
 
     res.json(newFiles)
   }

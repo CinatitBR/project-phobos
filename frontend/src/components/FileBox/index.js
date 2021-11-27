@@ -44,8 +44,6 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
   if (userId !== file.user_id) 
     dropdownItems.pop()
 
-  console.log(file)
-
   return (
     <article 
       className={style.fileBox}

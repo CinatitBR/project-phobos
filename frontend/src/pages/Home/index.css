@@ -7,7 +7,7 @@
 /* Wrapper */
 #wrapper {
   padding: 40px;
-  width: min(1200px, 100%);
+  width: min(1000px, 100%);
   margin: 0 auto;
 }
 
@@ -23,4 +23,80 @@
 /* highlight */
 .highlight {
   color: var(--primary-green);
+}
+
+/* Empty ilustration */
+.emptyIlustration {
+  background: var(--black);
+  max-width: 100%;
+  height: 600px;
+  border-radius: 20px;
+  color: var(--white);
+  padding-top: 40px;
+  position: relative;
+  overflow: hidden;
+
+  animation: fade 1s ease;
+}
+
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.emptyIlustration .text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.emptyIlustration h4 {
+  font-size: 30px;
+}
+
+.emptyIlustration h3 {
+  background: var(--primary-green);
+  display: inline-block;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 20px;
+}
+
+.svg {
+  width: 150px;
+  position: absolute;
+}
+
+.earth {
+  left: 30px;
+  top: 35px;
+}
+
+.planet {
+  left: -100px;
+  bottom: -50px;
+  width: 300px;
+}
+
+.saturn {
+  top: 50%;
+  right: -75px;
+  width: 200px;
+}
+
+.phoebeSad {
+  width: 200px;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  animation: phoebe 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes phoebe {
+  from { transform: translateY(30px) }
+  to { transform: translateY(-40px); }
 }

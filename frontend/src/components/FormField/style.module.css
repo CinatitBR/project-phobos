@@ -16,8 +16,13 @@
   color: var(--white);
   background: var(--background-dark);
   padding: 5px 10px;
-  border: none;
+  border: solid 2px transparent;
+  transition: border-color 0.2s ease;
   border-radius: 5px;
+}
+
+.formField input:focus {
+  border-color: var(--primary-green);
 }
 
 .error {

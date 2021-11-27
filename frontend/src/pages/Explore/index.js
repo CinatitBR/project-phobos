@@ -9,9 +9,9 @@ import { Button } from '../../components/Buttons'
 
 import style from './style.module.css'
 
-const PublicDocumentBox = ({ id, title, size, author, description, tag, stars, liked }) => {
-  const [isLiked, setIsLiked] = useState(liked)
-  const [updatedStars, setUpdatedStars] = useState(stars)
+const PublicDocumentBox = ({ file }) => {
+  const [isLiked, setIsLiked] = useState(file.is_liked)
+  const [updatedStars, setUpdatedStars] = useState(file.stars)
   const userId = useAuth().user.id
 
   const handleLike = async (e) => {
@@ -22,7 +22,7 @@ const PublicDocumentBox = ({ id, title, size, author, description, tag, stars, l
     setUpdatedStars(prevState => action === 'like' ? (prevState + 1) : (prevState - 1))
 
     // Update backend
-    await authAPI.stars(action, id, userId)
+    await authAPI.stars(action, file.id, userId)
   }
 
   return (
@@ -32,14 +32,14 @@ const PublicDocumentBox = ({ id, title, size, author, description, tag, stars, l
       <div className={style.content}>
         <header>
           <div className={style.leftInfo}>
-            <h3 className={style.title}>{title}</h3>
+            <h3 className={style.title}>{file.title}</h3>
 
-            <span className={style.author}>By {author}</span>
+            <span className={style.author}>By {file.author}</span>
           </div>
 
           <div className={style.rightInfo}>
             <div className={style.size}>
-              <span>{size} MB</span>
+              <span>{file.size} MB</span>
               Size
             </div>
 
@@ -55,22 +55,27 @@ const PublicDocumentBox = ({ id, title, size, author, description, tag, stars, l
 
               {updatedStars}
             </div>
+            
+            {!file.isAdded && 
+              <Button className={classNames(style.button, style.addButton)}>
+                Add to library
+              </Button>
+            }
 
-            <Button className={classNames(style.button, style.addButton)}>
-              Add to library
-            </Button>
+            {file.isAdded &&
+              <Button className={classNames(style.button, style.removeButton)}>
+                Remove from library
+              </Button> 
+            }
 
-            <Button className={classNames(style.button, style.removeButton)}>
-              Remove from library
-            </Button>
           </div>
         </header>
 
         <div className={style.description}>
-          {description}
+          {'fjdjfojfjdsjfjjdfjsfjsjodjfojsodjfjdsjfjosdjifojiosdjfojsofjodsjfjosjofjdsofjjdsjfjsodfjosdjfojodsjfoj'}
         </div>
 
-        <FileTag>{tag}</FileTag>
+        <FileTag>{file.tag_name}</FileTag>
       </div>
     </article>
   )
@@ -100,6 +105,8 @@ const Explore = () => {
     const response = await authAPI.findPublic(1, userId)
 
     setPublicDocuments(response.data)
+
+    console.log(response.data)
   }
 
   useEffect(() => {
@@ -131,14 +138,15 @@ const Explore = () => {
         {publicDocuments.map(doc => 
           <PublicDocumentBox 
             key={doc.id}
-            id={doc.id}
-            title={doc.title}
-            author={doc.username}
-            size={doc.size}
-            description="fdjfdlfjdklfjdslfjldjfldlfjldfjldj"
-            tag={doc.tag_name}
-            stars={doc.stars}
-            liked={doc.is_liked}
+            file={doc}
+            // id={doc.id}
+            // title={doc.title}
+            // author={doc.username}
+            // size={doc.size}
+            // description="fdjfdlfjdklfjdslfjldjfldlfjldfjldj"
+            // tag={doc.tag_name}
+            // stars={doc.stars}
+            // liked={doc.is_liked}
           />
         )}
       </div>

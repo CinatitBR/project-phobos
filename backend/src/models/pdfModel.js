@@ -59,13 +59,13 @@ const findPublic = async (index, userId) => {
 
     const sql = `
       SELECT pdf.id, pdf.filename, pdf.title, pdf.size, pdf.stars, 
-        user.username, 
-        pdf_tag.tag_name,
-        (SELECT COUNT(*) 
-          FROM public_pdf_like
-          WHERE user_id = ${userId}
+      user.username AS author, 
+      pdf_tag.tag_name,
+      (SELECT COUNT(*) FROM added_public_pdf
+        WHERE user_id = ${userId}
           AND pdf_id = pdf.id
-        ) AS is_liked
+        ) AS is_added,
+      (SELECT COUNT(*) FROM public_pdf_like WHERE user_id = ${userId} AND pdf_id = pdf.id) AS is_liked
       FROM pdf
       INNER JOIN user
         ON pdf.user_id = user.id

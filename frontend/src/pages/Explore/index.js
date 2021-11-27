@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useLocation, useHistory } from 'react-router-dom'
-import queryString from 'query-string'
 import { FaFilePdf, FaStar } from 'react-icons/fa'
-import Pagination from '../../components/Pagination'
+import Pagination, { usePagination } from '../../components/Pagination'
 import classNames from 'classnames'
 import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
@@ -109,10 +107,7 @@ const Explore = () => {
 
   const [publicDocuments, setPublicDocuments] = useState([]) 
   const userId = useAuth().user.id
-  const location = useLocation()
-  const history = useHistory()
-  const { page = 1 } = queryString.parse(location.search)
-  const [currentPage, setCurrentPage] = useState(parseInt(page))
+  const { currentPage, handlePageChange } = usePagination()
   const [totalPages, setTotalPages] = useState(0)
 
   const paginationCount = Math.ceil(totalPages / queryLimit)
@@ -129,14 +124,6 @@ const Explore = () => {
 
     getPublicDocuments()
   }, [currentPage, userId])
-
-  // Update page url
-  useEffect(() => {
-    const newParams = new URLSearchParams()
-    newParams.append('page', currentPage)
-
-    history.push({ search: newParams.toString() })
-  }, [currentPage, history])
 
   return (
     <section className={style.wrapper}>
@@ -171,7 +158,7 @@ const Explore = () => {
       <Pagination 
         count={paginationCount} 
         pageNumber={currentPage} 
-        onPageChange={pageNumber => setCurrentPage(pageNumber)}
+        onPageChange={pageNumber => handlePageChange(pageNumber)}
       />
     </section>
   )

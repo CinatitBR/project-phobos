@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react'
+import { useLocation, useHistory } from 'react-router-dom'
+import queryString from 'query-string'
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa'
 import classNames from 'classnames'
 
@@ -50,6 +53,31 @@ const Pagination = ({ count, pageNumber, onPageChange }) => {
       }
     </ul>
   )
+}
+
+export const usePagination = () => {
+  const location = useLocation()
+  const history = useHistory()
+
+  const { page = 1 } = queryString.parse(location.search)
+  const [currentPage, setCurrentPage] = useState(parseInt(page))
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
+
+  // Update page url
+  useEffect(() => {
+    const newParams = new URLSearchParams()
+    newParams.append('page', currentPage)
+
+    history.push({ search: newParams.toString() })
+  }, [currentPage, history])
+
+  return {
+    handlePageChange,
+    currentPage
+  }
 }
 
 export default Pagination

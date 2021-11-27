@@ -108,10 +108,10 @@ const search = async (req, res) => {
     const { keyword, limit, page } = req.body
     const offset = (page - 1) * limit
 
-    const files = await pdfModel.search(keyword, limit, offset)
+    const { files, total } = await pdfModel.search(keyword, limit, offset)
     const newFiles = addFileUrl(files)
 
-    res.json(newFiles)
+    res.json({ files: newFiles, total })
   }
   catch (e) {
     console.log(e)

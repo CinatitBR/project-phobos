@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
 import Pagination, { usePagination } from '../../components/Pagination'
 import DocumentPreviewList from '../../components/DocumentPreviewList'
@@ -19,11 +18,17 @@ const Home = () => {
   const [documentPreviews, setDocumentPreviews] = useState([])
   const { currentPage, handlePageChange } = usePagination()
 
+  const [totalPages, setTotalPages] = useState(0)
+  const paginationCount = Math.ceil(totalPages / queryLimit)
+
   const onKeywordChange = async (keyword) => {
     setKeyword(keyword)
 
     const response = await authAPI.search(keyword, currentPage, queryLimit)
-    setDocumentPreviews(response.data)
+    const { files, total } = response.data
+
+    setDocumentPreviews(files)
+    setTotalPages(total)
   }
 
   return (
@@ -36,7 +41,7 @@ const Home = () => {
       
       {keyword && 
         <Pagination 
-          count={6}
+          count={paginationCount}
           pageNumber={currentPage}
           onPageChange={handlePageChange}
         />     

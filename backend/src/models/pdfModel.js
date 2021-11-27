@@ -118,7 +118,7 @@ const checkUserOwner = async (pdfId, userId) => {
 
 const search = async (keyword, limit, offset) => {
   try {
-    const sql = `
+    const sqlFiles = `
       SELECT pdf.*, page.id, page.number AS page_number, 
       SUBSTRING(body, 1, LEAST(char_length(body), 400)) AS text
       FROM page
@@ -128,9 +128,15 @@ const search = async (keyword, limit, offset) => {
       LIMIT ${limit} OFFSET ${offset} 
     `
 
-    const [rows, fields] = await db.query(sql, keyword)
+    const sqlTotal = `
+      SELECT COUNT(*) AS total FROM page
+      WHERE MATCH(body) AGAINST(?)
+    `
 
-    return rows
+    const [files, fields1] = await db.query(sqlFiles, keyword)
+    const [total, fields2] = await db.query(sqlTotal, keyword)
+
+    return { files, total: total[0].total }
   }
   catch(e) {
     throw new Error(e)

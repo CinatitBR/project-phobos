@@ -33,6 +33,12 @@ const PublicDocumentBox = ({ file }) => {
     setIsAdded(true)
   } 
 
+  const handleRemoveFromLibrary = async () => {
+    await authAPI.removeFromLibrary(file.id, userId)
+
+    setIsAdded(false)
+  } 
+
   console.log(file)
 
   return (
@@ -77,7 +83,9 @@ const PublicDocumentBox = ({ file }) => {
 
             {(isAdded && file.authorId !== userId) &&
               <Button 
-                className={classNames(style.button, style.removeButton)}>
+                className={classNames(style.button, style.removeButton)}
+                onClick={handleRemoveFromLibrary}
+                >
                 Remove from library
               </Button> 
             }

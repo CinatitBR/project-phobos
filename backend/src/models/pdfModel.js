@@ -116,17 +116,18 @@ const checkUserOwner = async (pdfId, userId) => {
   }
 }
 
-const search = async (keyword) => {
-  const sql = `
-    SELECT pdf.*, page.id, page.number AS page_number, 
-    SUBSTRING(body, 1, LEAST(char_length(body), 400)) AS text
-    FROM page
-    INNER JOIN pdf
-    ON page.pdf_id = pdf.id
-    WHERE MATCH(body) AGAINST(?)  
-  `
-
+const search = async (keyword, limit, offset) => {
   try {
+    const sql = `
+      SELECT pdf.*, page.id, page.number AS page_number, 
+      SUBSTRING(body, 1, LEAST(char_length(body), 400)) AS text
+      FROM page
+      INNER JOIN pdf
+      ON page.pdf_id = pdf.id
+      WHERE MATCH(body) AGAINST(?) 
+      LIMIT ${limit} OFFSET ${offset} 
+    `
+
     const [rows, fields] = await db.query(sql, keyword)
 
     return rows

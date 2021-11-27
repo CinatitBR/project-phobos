@@ -44,12 +44,12 @@ const refreshToken = () =>
 
 
 // pdf
-const search = (keyword, userId) => 
+const search = (keyword, page, limit) => 
   axiosInstance
     .request({
       method: 'post',
       url: '/pdf/search',
-      data: { keyword, userId }
+      data: { keyword, page, limit }
     })
 
 const findAll = userId =>

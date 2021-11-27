@@ -105,9 +105,10 @@ const findPublic = async (req, res) => {
 
 const search = async (req, res) => {
   try {
-    const { keyword } = req.body
+    const { keyword, limit, page } = req.body
+    const offset = (page - 1) * limit
 
-    const files = await pdfModel.search(keyword)
+    const files = await pdfModel.search(keyword, limit, offset)
     const newFiles = addFileUrl(files)
 
     res.json(newFiles)

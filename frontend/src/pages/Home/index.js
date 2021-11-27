@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
+import Pagination, { usePagination } from '../../components/Pagination'
 import DocumentPreviewList from '../../components/DocumentPreviewList'
 import Searchbar from '../../components/Searchbar'
 
@@ -13,14 +14,15 @@ import stars from '../../assets/stars.svg'
 import './index.css'
 
 const Home = () => {
-  const userId = useAuth().user.id
+  const queryLimit = 10
   const [keyword, setKeyword] = useState('')
   const [documentPreviews, setDocumentPreviews] = useState([])
+  const { currentPage, handlePageChange } = usePagination()
 
   const onKeywordChange = async (keyword) => {
     setKeyword(keyword)
 
-    const response = await authAPI.search(keyword, userId)
+    const response = await authAPI.search(keyword, currentPage, queryLimit)
     setDocumentPreviews(response.data)
   }
 
@@ -31,6 +33,14 @@ const Home = () => {
       <div className="divider"></div>
 
       <DocumentPreviewList files={documentPreviews} keyword={keyword} />
+      
+      {keyword && 
+        <Pagination 
+          count={6}
+          pageNumber={currentPage}
+          onPageChange={handlePageChange}
+        />     
+      }
 
       {!keyword && 
         <section className="emptyIlustration show">
@@ -45,7 +55,7 @@ const Home = () => {
             <img src={phoebeSad} alt="phoebe sad" className="svg phoebeSad phoebeAnimation" />
           </div>
         </section>
-      }      
+      } 
     </section>
   )
 }

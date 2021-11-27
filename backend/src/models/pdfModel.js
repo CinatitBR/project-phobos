@@ -118,8 +118,8 @@ const checkUserOwner = async (pdfId, userId) => {
 
 const search = async (keyword) => {
   const sql = `
-    SELECT page.id, pdf.title as pdf_title, pdf.filename as filename, page.number, 
-    SUBSTRING(body, 1, LEAST(char_length(body), 400)) as text
+    SELECT pdf.*, page.id, page.number AS page_number, 
+    SUBSTRING(body, 1, LEAST(char_length(body), 400)) AS text
     FROM page
     INNER JOIN pdf
     ON page.pdf_id = pdf.id

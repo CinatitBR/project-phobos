@@ -2,19 +2,14 @@ import DocumentPreview from '../DocumentPreview'
 
 import './index.css'
 
-function DocumentPreviewList({ documentPreviews, keyword }) {
+function DocumentPreviewList({ files, keyword }) {
   return (
     <section id="documentPreviewList">
-      {documentPreviews.map(({ id, keyword, fileUrl, filename, pdf_title, number, text }) => (
+      {files.map(file => (
         <DocumentPreview 
-          key={id} 
-          keyword={keyword} 
-          text={text} 
-          filename={filename} 
-          pdfId={id} 
-          title={pdf_title} 
-          pageNumber={number}
-          fileUrl={fileUrl}
+          key={file.id} 
+          file={file}
+          keyword={keyword}
         />
       ))}
     </section>

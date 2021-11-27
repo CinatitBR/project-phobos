@@ -24,7 +24,7 @@ const highlightPattern = (text, pattern) => {
   ] : [...arr, element]), [])
 }
 
-function DocumentPreview({ keyword, fileUrl, text, pdfId, filename, title, pageNumber }) {
+function DocumentPreview({ file, keyword }) {
   const [isCollapseOpen, setIsCollapseOpen] = useState(false)
 
   return (
@@ -38,23 +38,23 @@ function DocumentPreview({ keyword, fileUrl, text, pdfId, filename, title, pageN
           />
 
           <h3 className={style.title}>
-            {title}
+            {file.title}
           </h3>
         </div>
 
-        <span className={style.pageNumber}>page {pageNumber}</span>
+        <span className={style.pageNumber}>page {file.page_number}</span>
       </header>
 
       <div className={style.body}>
         {!isCollapseOpen && 
           <Document 
             className={style.document} 
-            file={fileUrl} 
-            onClick={() => openFile(title, fileUrl, pageNumber)}
+            file={file.fileUrl} 
+            onClick={() => openFile(file.title, file.fileUrl, file.page_number)}
             loading={<div style={{ width: '150px', height: '150px' }}></div>}
           >
             <Page 
-              pageNumber={pageNumber} 
+              pageNumber={file.page_number} 
               width={150} 
               loading={<div style={{ width: '150px', height: '150px' }}></div>}
               customTextRenderer={textItem => highlightPattern(textItem.str, keyword)}
@@ -63,7 +63,7 @@ function DocumentPreview({ keyword, fileUrl, text, pdfId, filename, title, pageN
         }
 
         <p>
-          {highlightPattern(text, keyword)}
+          {highlightPattern(file.text, keyword)}
         </p>
       </div>
 
@@ -73,12 +73,12 @@ function DocumentPreview({ keyword, fileUrl, text, pdfId, filename, title, pageN
         <div className={style.collapseContent}>
           <Document 
             className={style.document}
-            file={fileUrl} 
-            onClick={() => openFile(title, fileUrl, pageNumber)}
+            file={file.fileUrl} 
+            onClick={() => openFile(file.title, file.fileUrl, file.page_number)}
           >
             <div>
               <Page 
-                pageNumber={pageNumber} 
+                pageNumber={file.page_number} 
                 width={700} 
                 customTextRenderer={textItem => highlightPattern(textItem.str, keyword)}
               />

@@ -30,7 +30,7 @@ const Home = () => {
 
       <div className="divider"></div>
 
-      <DocumentPreviewList documentPreviews={documentPreviews} keyword={keyword} />
+      <DocumentPreviewList files={documentPreviews} keyword={keyword} />
 
       {!keyword && 
         <section className="emptyIlustration show">

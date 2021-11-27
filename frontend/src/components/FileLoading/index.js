@@ -29,8 +29,6 @@ const FileLoading = ({
   const [isPublic, setIsPublic] = useState(false)
 
   const handleUpload = () => {
-    console.log(isPublic)
-
     onFileUpload({ 
       id, 
       newTagName: newTagName ? newTagName : null, // If newTagName is an empty string, will set it to null

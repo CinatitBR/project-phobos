@@ -38,3 +38,12 @@ body {
 .noScroll {
   overflow: hidden;
 }
+
+.phoebeAnimation {
+  animation: phoebe 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes phoebe {
+  from { transform: translateY(30px) }
+  to { transform: translateY(-40px); }
+}

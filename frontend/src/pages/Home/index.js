@@ -42,7 +42,7 @@ const Home = () => {
             <img src={earth} alt="earth" className="svg earth" />
             <img src={planet} alt="planet" className="svg planet" />
             <img src={saturn} alt="saturn" className="svg saturn" />
-            <img src={phoebeSad} alt="phoebe sad" className="svg phoebeSad" />
+            <img src={phoebeSad} alt="phoebe sad" className="svg phoebeSad phoebeAnimation" />
           </div>
         </section>
       }      

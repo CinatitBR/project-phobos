@@ -9,7 +9,7 @@
   position: absolute;
   top: 45%;
   left: 220px;
-  transform: translate(-50%, -50%) rotate(15deg);
+  transform: translate(-50%, -50%);
 }
 
 /* Media query */

@@ -24,6 +24,7 @@ const Register = () => {
         <img id="planets" src={planets} alt="Planets" />
         <img
           id="phoebeAstronaut"
+          className="phoebeAnimation"
           src={phoebeAstronaut}
           alt="Phoebe astronaut"
         />

@@ -1,6 +1,6 @@
 .fileBox {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   background: var(--primary-blue);
   padding: 10px;
   border-radius: 10px;
@@ -48,9 +48,13 @@
 
 /* fileBoxBody */
 .fileBoxBody {
+  width: 100%;
+  height: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 5px;
 }
 
@@ -94,3 +98,15 @@ footer {
 .hide {
   visibility: hidden;
 }
+
+/* Page Wrapper */
+/* .pageWrapper {
+  background: black;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */

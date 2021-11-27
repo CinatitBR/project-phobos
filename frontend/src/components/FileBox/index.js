@@ -7,6 +7,7 @@ import FileTag from '../FileTag'
 import Dropdown from '../../components/Dropdown'
 import { FaFilePdf, FaEllipsisV, FaExternalLinkAlt, FaArrowDown, FaTrashAlt, FaLink } from 'react-icons/fa'
 import { LinkIcon } from '../Buttons'
+import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
 
 import style from './style.module.css'
 
@@ -43,6 +44,8 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
   if (userId !== file.user_id) 
     dropdownItems.pop()
 
+  console.log(file)
+
   return (
     <article 
       className={style.fileBox}
@@ -70,7 +73,15 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
 
       
       <div className={style.fileBoxBody}>
+
         <FaFilePdf className={style.fileIcon} />
+
+        {/* <div className={style.pageWrapper}>
+          <Document file={file.fileUrl}>
+            <Page pageNumber={1} width={200} />
+          </Document>
+        </div> */}
+
         <h3 className={style.fileTitle}>
           {title}
         </h3>

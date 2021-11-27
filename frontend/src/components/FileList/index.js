@@ -8,10 +8,7 @@ const FileList = ({ files, onFileClick }) => {
       {files.map(file => 
         <FileBox 
           key={file.id}
-          id={file.id}
-          filename={file.title}
-          tagName={file.tag_name}
-          fileSize={file.size}
+          file={file}
           onFileClick={onFileClick}
         />  
       )}

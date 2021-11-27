@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import viewSDKClient, { openFile } from '../../apis/viewSDKClient'
+import { openFile } from '../../apis/viewSDKClient'
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
 import { ChevronIcon } from '../Buttons'
 import Collapse from '../Collapse'

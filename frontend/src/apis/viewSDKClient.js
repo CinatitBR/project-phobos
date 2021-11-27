@@ -131,7 +131,7 @@ const viewSDKClient = {
 }
 
 // Open PDF using Adobe PDF Embed API
-export const openFile = async (title, fileUrl, pageNumber) => {
+export const openFile = async (title, fileUrl, pageNumber = 1) => {
   await viewSDKClient.ready()
 
   viewSDKClient.previewFile({ 

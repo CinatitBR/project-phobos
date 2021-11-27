@@ -61,9 +61,9 @@ const FilePreviewSidebar = ({ file = null }) => {
       {file &&
         <> 
         <FileInfo 
-          filename={file.filename}
-          tag={file.tagName}
-          size={file.fileSize}
+          filename={file.title}
+          tag={file.tag_name}
+          size={file.size}
         />
 
         <div className={style.divider} style={{ margin: ' 0-20px' }}></div>

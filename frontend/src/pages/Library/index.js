@@ -16,7 +16,7 @@ const Library = () => {
     const getFiles = async () => {
       const response = await authAPI.findAll(userId)
   
-      setFiles(response.data.files)
+      setFiles(response.data)
       setLoading(false)
     }
 

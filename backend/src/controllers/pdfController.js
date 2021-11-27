@@ -215,6 +215,24 @@ const addToLibrary = async (req, res) => {
   }
 }
 
+const removeFromLibrary = async (req, res) => {
+  try {
+    const { pdfId, userId} = req.body
+
+    // Remove pdf from user library
+    await pdfModel.removeFromLibrary(pdfId, userId)
+
+    res.sendStatus(200)
+  }
+  catch (e) {
+    console.log(e)
+
+    return res
+      .status(500)
+      .json({ message: 'Oh, no! There was an error. Please, try again' })
+  }
+}
+
 const pdfController = {
   upload,
   findAll,
@@ -224,7 +242,8 @@ const pdfController = {
   findTagById,
   findPublic,
   stars,
-  addToLibrary
+  addToLibrary,
+  removeFromLibrary
 }
 
 export default pdfController

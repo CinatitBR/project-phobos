@@ -20,6 +20,7 @@ router.post('/pdf/find-all-tag', pdfController.findAllTag)
 router.post('/pdf/find-tag-by-id', pdfController.findTagById)
 router.post('/pdf/stars', pdfController.stars)
 router.post('/pdf/add-to-library', pdfController.addToLibrary)
+router.post('/pdf/remove-from-library', pdfController.removeFromLibrary)
 
 router.post('/auth/register', validation.register, authController.register)
 router.post('/auth/login', validation.login, authController.login)

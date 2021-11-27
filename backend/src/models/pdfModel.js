@@ -261,6 +261,21 @@ const addToLibrary = async (pdfId, userId) => {
   }
 }
 
+const removeFromLibrary = async (pdfId, userId) => {
+  try {
+    const sql = `
+      DELETE FROM added_public_pdf
+      WHERE pdf_id = ?
+      AND user_id = ?
+    `
+
+    await db.query(sql, [pdfId, userId])
+  }
+  catch (e) {
+    throw new Error(e)
+  }
+}
+
 const pdfModel = { 
   create, 
   findAll,
@@ -273,7 +288,8 @@ const pdfModel = {
   findPublic,
   stars,
   checkUserOwner,
-  addToLibrary
+  addToLibrary,
+  removeFromLibrary
 }
 
 export default pdfModel

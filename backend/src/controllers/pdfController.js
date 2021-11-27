@@ -190,6 +190,31 @@ const stars = async (req, res) => {
   }
 }
 
+const addToLibrary = async (req, res) => {
+  try {
+    const { pdfId, userId} = req.body
+
+    // Check if pdf was created by the user
+    const isUserOwner = await pdfModel.checkUserOwner(pdfId, userId)
+
+    if (isUserOwner) 
+      res.status(400)
+        .json({ message: 'The pdf was already created by the user' })
+
+    // Add pdf to user library
+    await pdfModel.addToLibrary(pdfId, userId)
+
+    res.sendStatus(200)
+  }
+  catch (e) {
+    console.log(e)
+
+    return res
+      .status(500)
+      .json({ message: 'Oh, no! There was an error. Please, try again' })
+  }
+}
+
 const pdfController = {
   upload,
   findAll,
@@ -198,7 +223,8 @@ const pdfController = {
   findAllTag,
   findTagById,
   findPublic,
-  stars
+  stars,
+  addToLibrary
 }
 
 export default pdfController

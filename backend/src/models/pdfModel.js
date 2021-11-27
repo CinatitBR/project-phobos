@@ -84,6 +84,23 @@ const findPublic = async (index, userId) => {
   }
 }
 
+const checkUserOwner = async (pdfId, userId) => {
+  try {
+    const sql = `
+      SELECT * FROM pdf 
+      WHERE id = ?
+      AND user_id = ?
+    `
+
+    const [rows, fields] = await db.query(sql, [pdfId, userId])
+
+    return rows[0]
+  }
+  catch(e) {
+    throw new Error(e)
+  }
+}
+
 const search = async (keyword) => {
   const sql = `
     SELECT page.id, pdf.title as pdf_title, pdf.filename as filename, page.number, 
@@ -230,6 +247,20 @@ const stars = async (action, pdfId, userId) => {
   }
 }
 
+const addToLibrary = async (pdfId, userId) => {
+  try {
+    const sql = `
+      INSERT INTO added_public_pdf (pdf_id, user_id)
+      VALUES (?, ?)
+    `
+
+    await db.query(sql, [pdfId, userId])
+  }
+  catch (e) {
+    throw new Error(e)
+  }
+}
+
 const pdfModel = { 
   create, 
   findAll,
@@ -240,7 +271,9 @@ const pdfModel = {
   findAllTag,
   findTagById,
   findPublic,
-  stars
+  stars,
+  checkUserOwner,
+  addToLibrary
 }
 
 export default pdfModel

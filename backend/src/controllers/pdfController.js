@@ -4,6 +4,19 @@ import pdfModel from '../models/pdfModel.js'
 import getPages from '../utils/getPages.js'
 import pageModel from '../models/pageModel.js'
 
+// Add file url to file object
+const addFileUrl = (files, userId) => {
+  const domain = `http://localhost:${process.env.PORT}`
+
+  const newFiles = files.map(file => {
+    const fileUrl = `${domain}/storage/user${userId}/pdf/${file.filename}`
+
+    return {...file, fileUrl }
+  })
+
+  return newFiles
+}
+
 // Add PDF to database and handle parsing
 const upload = async (req, res) => {
   const pdfParser = new PDFParser(null, 1)
@@ -62,8 +75,9 @@ const findAll = async (req, res) => {
     const { userId } = req.body 
 
     const files = await pdfModel.findAll(userId)
+    const newFiles = addFileUrl(files, userId)
 
-    res.json({ files })
+    res.json(newFiles)
   } catch (e) {
     console.log(e)
 
@@ -92,17 +106,11 @@ const findPublic = async (req, res) => {
 const search = async (req, res) => {
   try {
     const { keyword, userId } = req.body
-    const domain = `http://localhost:${process.env.PORT}`
 
     const files = await pdfModel.search(keyword)
+    const newFiles = addFileUrl(files, userId)
 
-    const documentPreviews = files.map(file => {
-      const fileUrl = `${domain}/storage/user${userId}/pdf/${file.filename}`
-
-      return {...file, fileUrl }
-    })
-
-    res.json(documentPreviews)
+    res.json(newFiles)
   }
   catch (e) {
     console.log(e)

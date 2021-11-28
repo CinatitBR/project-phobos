@@ -47,7 +47,7 @@ const Home = () => {
         />     
       }
 
-      {!keyword && 
+      {!documentPreviews.length && 
         <section className="emptyIlustration show">
           <div className="text">
             <h4>There's nothing to see yet</h4>

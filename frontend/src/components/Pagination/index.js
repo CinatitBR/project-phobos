@@ -24,6 +24,9 @@ const Pagination = ({ count, pageNumber, onPageChange }) => {
     )
   }
 
+  // If there is only one page, return null
+  if (count === 1) return null
+
   return (
     <ul className={style.paginationBar}>
       {pageNumber !== 1 &&

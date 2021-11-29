@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
+import {v4 as uuidv4} from 'uuid'
+import useAuth from '../../hooks/useAuth'
+import authAPI from '../../apis/authAPI'
 import Modal from '../Modal'
 import FileDropBox from '../FileDropBox'
 import FileLoading from '../FileLoading'
-import authAPI from '../../apis/authAPI'
-import useAuth from '../../hooks/useAuth'
-import {v4 as uuidv4} from 'uuid'
 
 import style from './style.module.css'
 

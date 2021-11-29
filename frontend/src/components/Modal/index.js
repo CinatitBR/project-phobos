@@ -1,7 +1,8 @@
 import classNames from 'classnames'
+// import { FaTimes } from 'react-icons/fa'
+import { CloseIcon } from '../Buttons'
 import Portal from '../Portal'
 import Overlay from '../Overlay'
-import { FaTimes } from 'react-icons/fa'
 
 import './index.css'
 
@@ -29,8 +30,7 @@ const Modal = ({ show, onClick, onClose, title, children, className, ...rest }) 
               <h3 className="title">{title}</h3>
             }
 
-            <FaTimes 
-              className="closeButton" 
+            <CloseIcon 
               size="25px" 
               onClick={onClose}
             />

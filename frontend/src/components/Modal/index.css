@@ -41,9 +41,3 @@
   align-items: center;
   gap: 50px;
 }
-
-#modal .closeButton {
-  display: block;
-  cursor: pointer;
-  margin-left: auto;
-}

@@ -57,13 +57,10 @@ export const ChevronIcon = ({
   </IconWrapper>
 )
 
-export const CloseIcon = ({ 
-  onClick,
-  size = '18px'
-}) => (
+export const CloseIcon = ({ size = '18px', className, ...props }) => (
   <IconWrapper 
-    className={style.close}
-    onClick={onClick}
+    className={classNames(style.close, className)}
+    {...props}
   >
     <FaTimes 
       className={style.closeIcon}

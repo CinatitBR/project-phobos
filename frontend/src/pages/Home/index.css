@@ -78,6 +78,16 @@
 .svg {
   width: 150px;
   position: absolute;
+  animation: svg 3s ease;
+}
+
+@keyframes svg {
+  from {
+    transform: translateY(35px);
+  }
+  to {
+    transform: translateY(0px);
+  }
 }
 
 .earth {

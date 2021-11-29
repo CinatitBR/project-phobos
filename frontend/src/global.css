@@ -44,6 +44,10 @@ body {
 }
 
 @keyframes phoebe {
-  from { transform: translateY(30px) }
-  to { transform: translateY(-40px); }
+  from { 
+    transform: translateY(10px) 
+  }
+  to { 
+    transform: translateY(-20px); 
+  }
 }

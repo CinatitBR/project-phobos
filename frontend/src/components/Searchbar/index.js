@@ -1,17 +1,25 @@
+import searchIcon from '../../assets/search-icon.svg' 
+
 import './index.css'
 
 const Searchbar = ({ onChange, keyword }) => {
-  const handleChange = (event) => {
-    onChange(event.target.value)
+  const handleChange = (e) => {
+    onChange(e.target.value)
   }
 
   return (
-    <input 
-      id="searchBar" 
-      type="text"
-      value={keyword} 
-      onChange={handleChange}
-    />
+    <div 
+      className="searchBar" 
+      tabIndex="-1"
+    >
+      <img src={searchIcon} alt="Search icon" />
+
+      <input 
+        type="text"
+        value={keyword} 
+        onChange={handleChange}
+      />
+    </div>
   )
 }
 

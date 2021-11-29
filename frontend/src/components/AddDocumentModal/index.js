@@ -120,7 +120,7 @@ const AddDocumentModal = ({ show, onClose }) => {
             />
           ))}
 
-          <FileLoading 
+          {/* <FileLoading 
             key={1}
             filename="Matemática"
             size={35}
@@ -129,7 +129,7 @@ const AddDocumentModal = ({ show, onClose }) => {
             id={1}
             onFileDelete={deleteFile}
             onFileUpload={handleFileUpload}
-          />
+          /> */}
 
         </div>
       </div>

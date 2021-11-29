@@ -114,3 +114,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* Phobos game */
+.modalGame iframe {
+  width: 100%;
+  height: 700px;
+}
+
+.modalGame {
+  width: 980px;
+}

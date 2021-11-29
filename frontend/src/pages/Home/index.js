@@ -3,6 +3,8 @@ import authAPI from '../../apis/authAPI'
 import Pagination, { usePagination } from '../../components/Pagination'
 import DocumentPreviewList from '../../components/DocumentPreviewList'
 import Searchbar from '../../components/Searchbar'
+import Modal from '../../components/Modal'
+import { Button } from '../../components/Buttons'
 
 import earth from '../../assets/earth.svg'
 import planet from '../../assets/planet.svg'
@@ -16,8 +18,9 @@ const Home = () => {
   const queryLimit = 10
   const [keyword, setKeyword] = useState('')
   const [documentPreviews, setDocumentPreviews] = useState([])
-  const { currentPage, handlePageChange } = usePagination()
+  const [showModal, setShowModal] = useState(false)
 
+  const { currentPage, handlePageChange } = usePagination()
   const [totalPages, setTotalPages] = useState(0)
   const paginationCount = Math.ceil(totalPages / queryLimit)
 
@@ -57,10 +60,25 @@ const Home = () => {
             <img src={earth} alt="earth" className="svg earth" />
             <img src={planet} alt="planet" className="svg planet" />
             <img src={saturn} alt="saturn" className="svg saturn" />
-            <img src={phoebeSad} alt="phoebe sad" className="svg phoebeSad phoebeAnimation" />
+            <img 
+              src={phoebeSad} 
+              alt="phoebe sad" 
+              className="svg phoebeSad phoebeAnimation" 
+              onClick={() => setShowModal(true)}
+            />
+
           </div>
         </section>
       } 
+
+      <Modal show={showModal} onClose={setShowModal} className="modalGame">
+        <iframe 
+          src="/phobos-game/index.html" 
+          frameBorder="0" 
+          title="Phobos game"
+        ></iframe>
+      </Modal>
+
     </section>
   )
 }

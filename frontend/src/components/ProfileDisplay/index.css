@@ -1,11 +1,12 @@
 #profileDisplay {
   width: 250px;
-
   font-size: 18px;
   color: var(--primary-text);
-  background: var(--background-dark);
+  background-color: var(--background-dark);
   padding: 10px 20px;
   border-radius: 16px;
+  transition: background-color 100ms ease-in-out, border-color 100ms ease-in-out;
+  border: solid 3px transparent;
 
   display: flex;
   flex-direction: column;
@@ -14,4 +15,8 @@
 #profileDisplay h2 {
   font-size: 25px;
   color: var(--white);
+}
+
+#profileDisplay:hover {
+  border-color: var(--primary-green);
 }

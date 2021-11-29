@@ -57,9 +57,9 @@ export const ChevronIcon = ({
   </IconWrapper>
 )
 
-export const CloseIcon = ({ size = '18px', className, ...props }) => (
+export const CloseIcon = ({ size = '18px', className, left, ...props }) => (
   <IconWrapper 
-    className={classNames(style.close, className)}
+    className={classNames(style.close, className, left)}
     {...props}
   >
     <FaTimes 

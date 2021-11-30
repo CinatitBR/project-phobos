@@ -43,10 +43,15 @@
 }
 
 /* Logout button */
-#sidebar #bottomWrapper #logoutButton {
+#sidebar #logoutButton {
   margin-left: 14px;
-  padding: 0;
+  padding: 4px;
   font-size: 20px;
   background: inherit;
+  color: var(--salmon);
+  transition: color 0.1s ease-in-out;
+}
+
+#sidebar #logoutButton:hover {
   color: var(--primary-red);
 }

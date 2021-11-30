@@ -4,7 +4,6 @@ import Pagination, { usePagination } from '../../components/Pagination'
 import DocumentPreviewList from '../../components/DocumentPreviewList'
 import Searchbar from '../../components/Searchbar'
 import Modal from '../../components/Modal'
-import { Button } from '../../components/Buttons'
 
 import earth from '../../assets/earth.svg'
 import planet from '../../assets/planet.svg'

@@ -148,12 +148,15 @@ const destroy = async (pdfId) => {
     const sql = `
       START TRANSACTION;
 
+      DELETE FROM public_pdf_like
+      WHERE pdf_id = ${pdfId};
+
+      DELETE FROM added_public_pdf
+      WHERE pdf_id = ${pdfId};
+
       DELETE FROM page
       WHERE pdf_id = ${pdfId};
 
-      DELETE FROM public_pdf_like
-      WHERE pdf_id = ${pdfId};
-      
       DELETE FROM pdf 
       WHERE id = ${pdfId};
       

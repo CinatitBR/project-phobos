@@ -27,9 +27,10 @@ const Library = () => {
     setSelectedFile(file)
   }
 
-  const onFileDelete = (fileId) => {
+  const onFileDelete = async (fileId) => {
     setFiles(files.filter(file => file.id !== fileId))
     setSelectedFile(null)
+    await authAPI.destroy(fileId)
   }
 
   return (

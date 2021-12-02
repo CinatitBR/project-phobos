@@ -35,9 +35,7 @@ const Modal = ({ show, onClick, onClose, title, children, className, ...rest }) 
             />
           </header>
 
-          <div className="wrapper">
-            {children}
-          </div>
+          {children}
         </div>
 
       </Overlay>

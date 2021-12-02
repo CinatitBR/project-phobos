@@ -94,19 +94,60 @@ footer {
   font-size: 16px;
 }
 
+/* Delete modal */
+.deleteModal {
+  width: 600px;
+}
+
+.deleteModal .wrapper {
+  padding-top: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.deleteModal .modalBody {
+  color: var(--secondary-text);
+  font-size: 16px;
+}
+
+.deleteModal .modalBody .fileName {
+  color: var(--primary-green);
+}
+
+.deleteModal footer {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.deleteModal .button {
+  font-size: 18px;
+}
+
+.cancelButton {
+  background: var(--primary-text);
+  padding: 4px;
+}
+
+.cancelButton:hover {
+  background: rgb(159, 162, 181);
+}
+
+.deleteButton {
+  background: var(--primary-red);
+  padding: 4px;
+}
+
+.deleteButton:hover {
+  background: rgb(249, 142, 136);
+}
+
 /* hide */
 .hide {
   visibility: hidden;
 }
-
-/* Page Wrapper */
-/* .pageWrapper {
-  background: black;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */

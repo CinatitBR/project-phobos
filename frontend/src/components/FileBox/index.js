@@ -2,17 +2,17 @@ import { useState } from 'react'
 import { openFile } from '../../apis/viewSDKClient'
 import classNames from 'classnames'
 import useAuth from '../../hooks/useAuth'
-import authAPI from '../../apis/authAPI'
 import FileTag from '../FileTag'
 import Dropdown from '../../components/Dropdown'
 import { FaFilePdf, FaEllipsisV, FaExternalLinkAlt, FaArrowDown, FaTrashAlt, FaLink } from 'react-icons/fa'
-import { LinkIcon } from '../Buttons'
-import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
+import { Button, LinkIcon } from '../Buttons'
+import Modal from '../Modal'
 
 import style from './style.module.css'
 
 const FileBox = ({ file, onFileClick, onFileDelete }) => {
   const [showOptions, setShowOptions] = useState(false)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
   const { id, title, fileUrl, size, tag_name } = file
   const userId = useAuth().user.id
 
@@ -33,10 +33,7 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
       id: 2,
       leftIcon: <FaTrashAlt />,
       text: 'Delete',
-      onClick: async () => {
-        onFileDelete(file.id)
-        await authAPI.destroy(id)
-      }
+      onClick: () => setShowDeleteModal(true)
     }
   ]
 
@@ -71,14 +68,7 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
 
       
       <div className={style.fileBoxBody}>
-
         <FaFilePdf className={style.fileIcon} />
-
-        {/* <div className={style.pageWrapper}>
-          <Document file={file.fileUrl}>
-            <Page pageNumber={1} width={200} />
-          </Document>
-        </div> */}
 
         <h3 className={style.fileTitle}>
           {title}
@@ -97,6 +87,35 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
           </FileTag>
         </div>
       </footer>
+
+      <Modal 
+        className={style.deleteModal}
+        show={showDeleteModal} 
+        onClose={() => setShowDeleteModal(false)}
+        title="Delete file?"
+      >
+        <div className={style.wrapper}>
+          <div className={style.modalBody}>
+            <p>Are you sure you want to delete <span className={style.fileName}>{file.title}</span> from Phobos?</p>
+          </div>
+
+          <footer>
+            <Button 
+              className={classNames(style.cancelButton, style.button)}
+              onClick={() => setShowDeleteModal(false)}
+            >
+              Cancel
+            </Button>
+
+            <Button 
+              className={classNames(style.deleteButton, style.button)}
+              onClick={() => onFileDelete(file.id) }
+            >
+              Delete
+            </Button>
+          </footer>
+        </div>
+      </Modal>
     </article>
   )
 }

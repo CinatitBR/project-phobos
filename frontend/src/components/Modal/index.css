@@ -4,21 +4,26 @@
   border-radius: 16px;
 
   position: absolute;
-  top: 45%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* transform: translateX(-50%); */
+  /* transform: translate(-50%, -50%); */
 
   display: flex;
   flex-direction: column;
 
   opacity: 0;
-  animation: modal-animation forwards 500ms ease;
+  animation: modal-animation forwards 0.3s ease;
 }
 
 @keyframes modal-animation {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% - 10px));
+  }
   100% {
     opacity: 1;
-    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -32,12 +37,4 @@
 
 #modal header .title {
   font-size: 25px;
-}
-
-#modal .wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
 }

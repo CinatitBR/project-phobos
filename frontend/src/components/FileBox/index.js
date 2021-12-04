@@ -4,16 +4,17 @@ import classNames from 'classnames'
 import useAuth from '../../hooks/useAuth'
 import FileTag from '../FileTag'
 import Dropdown from '../../components/Dropdown'
-import { FaFilePdf, FaEllipsisV, FaExternalLinkAlt, FaArrowDown, FaTrashAlt, FaLink } from 'react-icons/fa'
+import { FaFilePdf, FaEllipsisV, FaExternalLinkAlt, FaArrowDown, FaTrashAlt } from 'react-icons/fa'
 import { Button, LinkIcon } from '../Buttons'
 import Modal from '../Modal'
+import Portal from '../Portal'
+import planet2 from '../../assets/planet-2.svg'
 
 import style from './style.module.css'
 
 const FileBox = ({ file, onFileClick, onFileDelete }) => {
   const [showOptions, setShowOptions] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
-  const { id, title, fileUrl, size, tag_name } = file
   const userId = useAuth().user.id
 
   let dropdownItems = [
@@ -21,13 +22,13 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
       id: 0,
       leftIcon: <FaExternalLinkAlt />,
       text: 'Open',
-      onClick: () => openFile(title, fileUrl)
+      onClick: () => openFile(file.title, file.fileUrl)
     },
     {
       id: 1,
       leftIcon: <FaArrowDown />,
       text: 'Download',
-      onClick: () => window.open(fileUrl, '_blank')
+      onClick: () => window.open(file.fileUrl, '_blank')
     },
     {
       id: 2,
@@ -71,7 +72,7 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
         <FaFilePdf className={style.fileIcon} />
 
         <h3 className={style.fileTitle}>
-          {title}
+          {file.title}
         </h3>
       </div>
 
@@ -79,11 +80,11 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
         <div className={style.info}>
           <div className={style.fileSize}>
             <header>Size</header>
-            <div className={style.size}>{size}</div>
+            <div className={style.size}>{file.size}</div>
           </div>
 
           <FileTag>
-            {tag_name}
+            {file.tag_name}
           </FileTag>
         </div>
       </footer>
@@ -116,6 +117,21 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
           </footer>
         </div>
       </Modal>
+      
+      <Portal>
+        <div className={style.snackbar}>
+          <div className={style.info}>
+            <img src={planet2} alt="Planet loading" className={style.loadingIcon} />
+
+            <p>Deleting file...</p>
+          </div>
+
+          <div className={style.buttons}>
+            <span>Undo</span>
+            <span>Close</span>
+          </div>
+        </div>
+      </Portal>
     </article>
   )
 }

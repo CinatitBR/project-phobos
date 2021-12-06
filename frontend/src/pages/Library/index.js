@@ -28,12 +28,6 @@ const Library = () => {
     getFiles()
   }, [userId])
   
-  // const updateFile = (id, fileData) => {
-  //   setFiles(files => files.map(file => 
-  //     file.id === id ? { ...file, ...fileData } : file
-  //   ))
-  // }
-
   const handleFileClick = (file) => {
     setSelectedFile(file)
   }

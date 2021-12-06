@@ -1,16 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import FilePreviewSidebar from '../../components/FilePreviewSidebar'
 import FileList from '../../components/FileList'
 import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
+import Snackbar from '../../components/Snackbar'
+import planet2 from '../../assets/planet-2.svg'
 
 import style from './style.module.css'
 
 const Library = () => {
   const userId = useAuth().user.id
+  
   const [files, setFiles] = useState([])
   const [selectedFile, setSelectedFile] = useState(null)
   const [loading, setLoading] = useState(true)
+  
+  const snackbarRef = useRef(null) 
 
   useEffect(() => {
     const getFiles = async () => {
@@ -22,15 +27,33 @@ const Library = () => {
 
     getFiles()
   }, [userId])
+  
+  // const updateFile = (id, fileData) => {
+  //   setFiles(files => files.map(file => 
+  //     file.id === id ? { ...file, ...fileData } : file
+  //   ))
+  // }
 
   const handleFileClick = (file) => {
     setSelectedFile(file)
   }
 
-  const onFileDelete = async (fileId) => {
-    setFiles(files.filter(file => file.id !== fileId))
+  // Delete file
+  const deleteFile = async (id) => {
+    // Open snackbar
+    snackbarRef.current.show()
+
+    // Remove file data from selectedFile
     setSelectedFile(null)
-    await authAPI.destroy(fileId)
+
+    // Delete file on backend
+    await authAPI.destroy(id)
+
+    // Remove file from local state
+    setFiles(files => files.filter(file => file.id !== id))
+
+    // Close snackbar
+    setTimeout(() => snackbarRef.current.close(), 2000)
   }
 
   return (
@@ -41,15 +64,22 @@ const Library = () => {
           <FileList 
             files={files} 
             onFileClick={handleFileClick} 
-            onFileDelete={onFileDelete}
+            onFileDelete={deleteFile}
           />
         }
       </section>
 
       <FilePreviewSidebar 
         file={selectedFile}
-        onFileDelete={onFileDelete}
+        onFileDelete={deleteFile}
       />
+
+      {/* Loading snackbar */}
+      <Snackbar 
+        ref={snackbarRef}
+        icon={<img src={planet2} alt="Planet loading" className={style.loadingIcon} />}
+        text="Deleting file..."
+      /> 
     </div>
   )
 }

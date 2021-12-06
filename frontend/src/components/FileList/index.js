@@ -2,7 +2,7 @@ import FileBox from '../../components/FileBox'
 
 import style from './style.module.css'
 
-const FileList = ({ files, onFileClick, onFileDelete }) => {
+const FileList = ({ files, onFileClick, onConfirmDelete, onUndoDelete, onFileDelete }) => {
   return (
     <div className={style.fileList}>
       {files.map(file => 

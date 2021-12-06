@@ -1,13 +1,13 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { openFile } from '../../apis/viewSDKClient'
 import classNames from 'classnames'
 import useAuth from '../../hooks/useAuth'
 import FileTag from '../FileTag'
 import Dropdown from '../../components/Dropdown'
-import { FaFilePdf, FaEllipsisV, FaExternalLinkAlt, FaArrowDown, FaTrashAlt } from 'react-icons/fa'
+import { FaFilePdf, FaEllipsisV, FaExternalLinkAlt, FaArrowDown, FaTrashAlt, FaCheck } from 'react-icons/fa'
 import { Button, LinkIcon } from '../Buttons'
 import Modal from '../Modal'
-import Portal from '../Portal'
+import Snackbar from '../Snackbar'
 import planet2 from '../../assets/planet-2.svg'
 
 import style from './style.module.css'
@@ -15,6 +15,8 @@ import style from './style.module.css'
 const FileBox = ({ file, onFileClick, onFileDelete }) => {
   const [showOptions, setShowOptions] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const snackbarRef = useRef(null) 
+
   const userId = useAuth().user.id
 
   let dropdownItems = [
@@ -89,6 +91,7 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
         </div>
       </footer>
 
+      {/* Delete Modal */}
       <Modal 
         className={style.deleteModal}
         show={showDeleteModal} 
@@ -110,28 +113,19 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
 
             <Button 
               className={classNames(style.deleteButton, style.button)}
-              onClick={() => onFileDelete(file.id) }
+              onClick={() => {
+                // Close modal
+                setShowDeleteModal(false)
+                
+                // Delete file
+                onFileDelete(file.id)
+              }}
             >
               Delete
             </Button>
           </footer>
         </div>
       </Modal>
-      
-      <Portal>
-        <div className={style.snackbar}>
-          <div className={style.info}>
-            <img src={planet2} alt="Planet loading" className={style.loadingIcon} />
-
-            <p>Deleting file...</p>
-          </div>
-
-          <div className={style.buttons}>
-            <span>Undo</span>
-            <span>Close</span>
-          </div>
-        </div>
-      </Portal>
     </article>
   )
 }

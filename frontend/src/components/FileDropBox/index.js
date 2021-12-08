@@ -43,7 +43,7 @@ const FileDropBox = ({ onFileDrop }) => {
       <FaUpload size="100px" className={style.uploadIcon} />
 
       <div className={style.suggestion}>
-        <p>Drag to upoload</p>
+        <p>Drag to upload</p>
 
         <span className={style.pseudo}>
           <span className={style.content}>or select a file</span>

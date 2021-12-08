@@ -32,7 +32,7 @@ const Snackbar = ({count, icon, text, buttons = [], className}, ref) => {
       }
     },
 
-    // Used by parent component to close snackbar when count is not known
+    // Used by parent component to close snackbar when count is not known, or before count
     close() {
       // Add fadeOut animation
       setAnimationStyle(`${style.fadeOut} 300ms`) 

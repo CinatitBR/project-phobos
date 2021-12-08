@@ -3,6 +3,7 @@ import FilePreviewSidebar from '../../components/FilePreviewSidebar'
 import FileList from '../../components/FileList'
 import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
+import { FaCheck } from 'react-icons/fa'
 import Snackbar from '../../components/Snackbar'
 import planet2 from '../../assets/planet-2.svg'
 
@@ -16,6 +17,7 @@ const Library = () => {
   const [loading, setLoading] = useState(true)
   
   const snackbarRef = useRef(null) 
+  const successSnackbarRef = useRef(null)
 
   useEffect(() => {
     const getFiles = async () => {
@@ -46,8 +48,11 @@ const Library = () => {
     // Remove file from local state
     setFiles(files => files.filter(file => file.id !== id))
 
-    // Close snackbar
+    // Close loading snackbar
     setTimeout(() => snackbarRef.current.close(), 2000)
+
+    // Show success snackbar
+    setTimeout(() => successSnackbarRef.current.show(), 2500)
   }
 
   return (
@@ -71,8 +76,17 @@ const Library = () => {
       {/* Loading snackbar */}
       <Snackbar 
         ref={snackbarRef}
-        icon={<img src={planet2} alt="Planet loading" className={style.loadingIcon} />}
+        icon={<img src={planet2} alt="Planet loading" className={style.loadingIcon} width="35px" />}
         text="Deleting file..."
+      /> 
+
+      {/* File deleted snackbar */}
+      <Snackbar 
+        ref={successSnackbarRef}
+        icon={<FaCheck size="30" />}
+        count={4000}
+        text="File deleted."
+        buttons={[{ text: 'Close', onClick: () => successSnackbarRef.current.close() }]}
       /> 
     </div>
   )

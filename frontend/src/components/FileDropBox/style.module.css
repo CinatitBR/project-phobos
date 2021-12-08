@@ -64,3 +64,8 @@
 
   position: relative;
 }
+
+/* File button */
+#fileInput {
+  display: none;
+}

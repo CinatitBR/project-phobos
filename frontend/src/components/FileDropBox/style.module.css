@@ -1,6 +1,6 @@
 .fileDropBox {
   width: 100%;
-  height: 350px;
+  min-height: 350px;
 
   color: var(--moon-crater);
   background: var(--background-dark);

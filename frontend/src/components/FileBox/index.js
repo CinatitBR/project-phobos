@@ -1,21 +1,18 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { openFile } from '../../apis/viewSDKClient'
 import classNames from 'classnames'
 import useAuth from '../../hooks/useAuth'
 import FileTag from '../FileTag'
 import Dropdown from '../../components/Dropdown'
-import { FaFilePdf, FaEllipsisV, FaExternalLinkAlt, FaArrowDown, FaTrashAlt, FaCheck } from 'react-icons/fa'
+import { FaFilePdf, FaEllipsisV, FaExternalLinkAlt, FaArrowDown, FaTrashAlt } from 'react-icons/fa'
 import { Button, LinkIcon } from '../Buttons'
 import Modal from '../Modal'
-import Snackbar from '../Snackbar'
-import planet2 from '../../assets/planet-2.svg'
 
 import style from './style.module.css'
 
 const FileBox = ({ file, onFileClick, onFileDelete }) => {
   const [showOptions, setShowOptions] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
-  const snackbarRef = useRef(null) 
 
   const userId = useAuth().user.id
 

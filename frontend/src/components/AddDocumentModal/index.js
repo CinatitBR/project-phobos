@@ -102,7 +102,12 @@ const AddDocumentModal = ({ show, onClose }) => {
   }
 
   return (
-    <Modal className={style.addDocumentModal} title="Upload document" show={show} onClose={onClose}>
+    <Modal 
+      className={style.addDocumentModal} 
+      title="Upload document" 
+      show={show} 
+      onClose={onClose}
+    >
       <div className={style.wrapper}>
         <FileDropBox onFileDrop={handleFileDrop} />
 

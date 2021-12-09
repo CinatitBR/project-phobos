@@ -3,6 +3,7 @@ import { openFile } from '../../apis/viewSDKClient'
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
 import { ChevronIcon } from '../Buttons'
 import Collapse from '../Collapse'
+import FileTag from '../FileTag'
 
 import style from './style.module.css'
 
@@ -30,7 +31,7 @@ function DocumentPreview({ file, keyword }) {
   return (
     <article className={style.documentPreview}>
       <header>
-        <div className={style.top}>
+        <div className={style.left}>
           <ChevronIcon 
             isOpen={isCollapseOpen}
             onClick={() => setIsCollapseOpen(!isCollapseOpen)}
@@ -42,7 +43,10 @@ function DocumentPreview({ file, keyword }) {
           </h3>
         </div>
 
-        <span className={style.pageNumber}>page {file.page_number}</span>
+        <div className={style.right}>
+          <span className={style.pageNumber}>page {file.page_number}</span>
+          <FileTag>{file.tag_name}</FileTag>
+        </div>
       </header>
 
       <div className={style.body}>

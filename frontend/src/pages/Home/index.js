@@ -72,7 +72,7 @@ const Home = () => {
             <img 
               src={phoebeSad} 
               alt="phoebe sad" 
-              className={`${style.svg} ${style.phoebeSad} ${style.phoebeAnimation}`}
+              className={`${style.svg} ${style.phoebeSad} phoebeAnimation`}
               onClick={() => setShowModal(true)}
             />
 

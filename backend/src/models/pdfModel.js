@@ -119,11 +119,13 @@ const checkUserOwner = async (pdfId, userId) => {
 const search = async (keyword, limit, offset) => {
   try {
     const sqlFiles = `
-      SELECT pdf.*, page.id, page.number AS page_number, 
+      SELECT pdf.*, pdf_tag.tag_name, page.id, page.number AS page_number, 
       SUBSTRING(body, 1, LEAST(char_length(body), 400)) AS text
       FROM page
       INNER JOIN pdf
       ON page.pdf_id = pdf.id
+      INNER JOIN pdf_tag
+      ON pdf.tag_id = pdf_tag.id
       WHERE MATCH(body) AGAINST(?) 
       LIMIT ${limit} OFFSET ${offset} 
     `

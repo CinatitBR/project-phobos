@@ -21,6 +21,10 @@
   border-radius: 5px;
 }
 
+.formField input:hover {
+  border-color: var(--primary-green);
+}
+
 .formField input:focus {
   border-color: var(--primary-green);
 }

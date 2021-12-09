@@ -77,7 +77,7 @@ const FileLoading = ({
         <div className={style.content}>
           <div className={style.info}>
             <h3 className={style.filename}>{filename}</h3>
-            <span className={style.fileSize}>{size} MB</span>
+            <span className={style.fileSize}>{size}</span>
 
             {(newTagName || existingTagId) &&
               <FileTag style={{ marginLeft: 'auto' }}>

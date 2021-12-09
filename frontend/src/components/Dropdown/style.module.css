@@ -3,10 +3,11 @@
   border-radius: 4px;
   background: var(--background-light);
   padding: 8px 0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
+  max-height: 180px;
+  overflow-y: auto;
 
   position: absolute;
-
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
 }
 
 .dropdownItem {

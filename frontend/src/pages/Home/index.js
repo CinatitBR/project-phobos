@@ -43,7 +43,7 @@ const Home = () => {
           className="select"
           label="All"
           items={[{ id: 0, text: 'TCC' }, { id: 1, text: 'Game Design' }]} 
-          onSelect={() => 'oi'}
+          onSelect={() => null}
         />
       </header>
 

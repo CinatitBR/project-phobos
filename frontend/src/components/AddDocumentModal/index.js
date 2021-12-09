@@ -116,7 +116,7 @@ const AddDocumentModal = ({ show, onClose }) => {
             <FileLoading 
               key={uploadedFile.id}
               filename={uploadedFile.filename} 
-              size={Math.round((uploadedFile.size / 10**6) * 100) / 100} 
+              size={`${Math.floor(uploadedFile.size / 1000)} KB`}
               uploaded={uploadedFile.uploaded}
               progress={uploadedFile.progress} 
               id={uploadedFile.id}

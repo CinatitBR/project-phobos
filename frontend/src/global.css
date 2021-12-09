@@ -32,6 +32,23 @@ body {
   color: var(--primary-text);
 }
 
+::-webkit-scrollbar {
+  width: 20px;
+  border-radius: 100px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--moon-crater);
+  border-radius: 100px;
+  border: 5px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-text);
+}
+
 :focus {
   outline: none;
 }

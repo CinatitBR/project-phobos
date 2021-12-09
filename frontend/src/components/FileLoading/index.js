@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { FaFilePdf } from 'react-icons/fa'
 import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
@@ -19,9 +19,9 @@ const FileLoading = ({
   onFileDelete,
   onFileUpload
 }) => {
-  const [selectItems, setSelectItems] = useState([])
-  const [isCollapseOpen, setIsCollapseOpen] = useState(false)
   const user = useAuth().user
+  const [selectItems, setSelectItems] = useState([])
+  const collapseRef = useRef(null)
 
   const [newTagName, setNewTagName] = useState(null)
   const [existingTagId, setExistingTagId] = useState(null)
@@ -36,8 +36,14 @@ const FileLoading = ({
       isPublic 
     })
 
-    setIsCollapseOpen(false)
+    collapseRef.current.close()
   }
+
+  useEffect(() => {
+    console.log('Open collapse')
+
+    if (!uploaded) collapseRef.current.open()
+  }, [uploaded])
 
   // Get pdf tags
   useEffect(() => { 
@@ -59,11 +65,6 @@ const FileLoading = ({
   return (
     <article className={style.fileLoading}>
       <div className={style.header}>
-        <ChevronIcon 
-          onClick={() => setIsCollapseOpen(!isCollapseOpen)} 
-          isOpen={isCollapseOpen}
-        />
-
         {uploaded &&
           <CloseIcon 
             onClick={() => onFileDelete(id)}
@@ -95,7 +96,10 @@ const FileLoading = ({
         </div>
       </div>
 
-      <Collapse isOpen={isCollapseOpen} background="var(--primary-blue)">
+      <Collapse 
+        ref={collapseRef}
+        background="var(--primary-blue)"
+      >
         <div className={style.collapseContent}>
           <ToggleSwitch onClick={e => setIsPublic(e.target.checked)} />
 

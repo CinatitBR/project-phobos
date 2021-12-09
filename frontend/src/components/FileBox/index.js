@@ -79,7 +79,7 @@ const FileBox = ({ file, onFileClick, onFileDelete }) => {
         <div className={style.info}>
           <div className={style.fileSize}>
             <header>Size</header>
-            <div className={style.size}>{file.size}</div>
+            <div className={style.size}>{Math.floor(file.size / 1000)} KB</div>
           </div>
 
           <FileTag>

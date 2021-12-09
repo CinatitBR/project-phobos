@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import { CloseIcon } from '../Buttons'
 import Overlay from '../Overlay'
 
-import './index.css'
+import style from './style.module.css'
 
 const Modal = ({ show, onClick, onClose, title, children, className, ...rest }) => {
   if (!show) return null
@@ -10,7 +10,7 @@ const Modal = ({ show, onClick, onClose, title, children, className, ...rest }) 
   return (
     <Overlay onClose={onClose}>
       <div 
-        id="modal" 
+        id={style.modal}
         className={classNames({ show }, className)} 
         onClick={e => {
           e.stopPropagation()
@@ -22,11 +22,12 @@ const Modal = ({ show, onClick, onClose, title, children, className, ...rest }) 
       >
         <header>
           {title &&
-            <h3 className="title">{title}</h3>
+            <h3 className={style.title}>{title}</h3>
           }
 
           <CloseIcon 
             size="25px" 
+            className={style.closeIcon}
             onClick={() => onClose(false)}
           />
         </header>

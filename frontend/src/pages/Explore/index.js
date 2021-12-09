@@ -54,7 +54,7 @@ const PublicDocumentBox = ({ file }) => {
 
           <div className={style.rightInfo}>
             <div className={style.size}>
-              <span>{file.size} MB</span>
+              <span>{Math.floor(file.size / 1000)} KB</span>
               Size
             </div>
 
@@ -70,23 +70,25 @@ const PublicDocumentBox = ({ file }) => {
 
               {updatedStars}
             </div>
-            
-            {(!isAdded && file.authorId !== userId) && 
+
+            {(!isAdded && file.authorId !== userId) ? 
               <Button 
                 className={classNames(style.button, style.addButton)}
                 onClick={handleAddToLibrary}
               >
                 Add to library
               </Button>
+              : null
             }
 
-            {(isAdded && file.authorId !== userId) &&
+            {(isAdded && file.authorId !== userId) ?
               <Button 
                 className={classNames(style.button, style.removeButton)}
                 onClick={handleRemoveFromLibrary}
               >
                 Remove from library
               </Button> 
+              : null
             }
 
           </div>

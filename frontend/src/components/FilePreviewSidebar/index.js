@@ -13,7 +13,7 @@ const FileInfo = ({ file }) => (
     <div className={style.footer}>
       <div className={style.fileSize}>
         <header>Size</header>
-        <span className={style.size}>{file.size} MB</span>
+        <span className={style.size}>{Math.floor(file.size / 1000)} KB</span>
       </div>
 
       <FileTag>{file.tag_name}</FileTag>

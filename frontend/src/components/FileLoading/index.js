@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { FaFilePdf } from 'react-icons/fa'
 import useAuth from '../../hooks/useAuth'
 import authAPI from '../../apis/authAPI'
@@ -21,7 +21,7 @@ const FileLoading = ({
 }) => {
   const user = useAuth().user
   const [selectItems, setSelectItems] = useState([])
-  const collapseRef = useRef(null)
+  const [isCollapseOpen, setIsCollapseOpen] = useState(false)
 
   const [newTagName, setNewTagName] = useState(null)
   const [existingTagId, setExistingTagId] = useState(null)
@@ -36,13 +36,12 @@ const FileLoading = ({
       isPublic 
     })
 
-    collapseRef.current.close()
+    setIsCollapseOpen(false)
   }
 
+  // Open collapse when file is not uploaded
   useEffect(() => {
-    console.log('Open collapse')
-
-    if (!uploaded) collapseRef.current.open()
+    if (!uploaded) setIsCollapseOpen(true)
   }, [uploaded])
 
   // Get pdf tags
@@ -97,7 +96,7 @@ const FileLoading = ({
       </div>
 
       <Collapse 
-        ref={collapseRef}
+        open={isCollapseOpen}
         background="var(--primary-blue)"
       >
         <div className={style.collapseContent}>

@@ -68,7 +68,7 @@ function DocumentPreview({ file, keyword }) {
       </div>
 
       <Collapse 
-        isOpen={isCollapseOpen}
+        open={isCollapseOpen}
       >
         <div className={style.collapseContent}>
           <Document 

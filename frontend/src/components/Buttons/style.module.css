@@ -29,7 +29,7 @@ button.fullWidth {
 /* IconWrapper */
 .iconWrapper {
   padding: 1px;
-  border-radius: 2px;
+  border-radius: 15%;
   cursor: pointer;
   transition: background 150ms ease;
   color: var(--white);

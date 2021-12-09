@@ -1,32 +1,28 @@
-import { useEffect, useRef } from 'react'
+import { useRef, forwardRef, useImperativeHandle } from 'react'
 import classNames from 'classnames'
 
 import style from './style.module.css'
 
-const Collapse = ({ isOpen, children, className, background }) => {
+const Collapse = ({ children, className, background }, ref) => {
   const collapseEle = useRef(null)
 
-  // Handle Collapse opening and closing
-  useEffect(() => {
-    // Check if ref is null
-    if (!collapseEle) return null
-
-    if (isOpen) {
+  useImperativeHandle(ref, () => ({
+    open() {
       collapseEle.current.style.padding = '15px'
-
+      
       const { scrollHeight } = collapseEle.current
       collapseEle.current.style.maxHeight = `${scrollHeight}px`
-    } 
-    else {
-      collapseEle.current.style.maxHeight = '0'
-      collapseEle.current.style.padding = '0'
+    },
+    close() {
+      collapseEle.current.style.padding = '0px'
+      collapseEle.current.style.maxHeight = '0px'
     }
-  }, [isOpen])
+  }))
 
   return (
     <section 
-      className={classNames(style.collapse, className)}
       ref={collapseEle}
+      className={classNames(style.collapse, className)}
       style={{ background }}
     >
       {children}
@@ -34,4 +30,4 @@ const Collapse = ({ isOpen, children, className, background }) => {
   )
 } 
 
-export default Collapse
+export default forwardRef(Collapse)

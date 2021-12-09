@@ -14,7 +14,7 @@ const getPages = pdfData => {
       for (const textRun of R) {
         const { T } = textRun
   
-        pageData.body += `${T} `
+        pageData.body += `${T}`
       }
     }
 

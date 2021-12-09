@@ -4,6 +4,7 @@ import Pagination, { usePagination } from '../../components/Pagination'
 import DocumentPreviewList from '../../components/DocumentPreviewList'
 import Searchbar from '../../components/Searchbar'
 import Modal from '../../components/Modal'
+import Select from '../../components/Select'
 
 import earth from '../../assets/earth.svg'
 import planet from '../../assets/planet.svg'
@@ -35,7 +36,16 @@ const Home = () => {
 
   return (
     <section id="wrapper">
-      <Searchbar onChange={onKeywordChange} keyword={keyword} />
+      <header>
+        <Searchbar onChange={onKeywordChange} keyword={keyword} />
+
+        <Select 
+          className="select"
+          label="All"
+          items={[{ id: 0, text: 'TCC' }, { id: 1, text: 'Game Design' }]} 
+          onSelect={() => 'oi'}
+        />
+      </header>
 
       <div className="divider"></div>
 

@@ -16,6 +16,22 @@
   align-items: center;
 }
 
+/* Wrapper header */
+#wrapper header {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+#wrapper .select {
+  background-color: var(--background-light);
+  width: min(240px, 100%);
+  font-size: 18px;
+}
+
 /* Divider */
 #wrapper .divider {
   background: var(--primary-purple);

@@ -10,6 +10,7 @@ const Select = ({
   items, 
   onSelect, 
   disabled,
+  className,
   ...props 
 }) => {
   const [selected, setSelected] = useState(null)
@@ -57,7 +58,7 @@ const Select = ({
       onOpen={() => setIsOpen(true)}
     >
       <div 
-        className={classNames(style.select, { disabled })} 
+        className={classNames(style.select, { disabled }, className)} 
         {...props}
       >
         {selected ? 

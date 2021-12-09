@@ -12,7 +12,7 @@ import saturn from '../../assets/saturn.svg'
 import phoebeSad from '../../assets/phoebe-sad.svg'
 import stars from '../../assets/stars.svg'
 
-import './index.css'
+import style from './style.module.css'
 
 const Home = () => {
   const queryLimit = 10
@@ -35,19 +35,19 @@ const Home = () => {
   }
 
   return (
-    <section id="wrapper">
+    <section id={style.wrapper}>
       <header>
         <Searchbar onChange={onKeywordChange} keyword={keyword} />
 
         <Select 
-          className="select"
+          className={style.select}
           label="All"
           items={[{ id: 0, text: 'TCC' }, { id: 1, text: 'Game Design' }]} 
           onSelect={() => null}
         />
       </header>
 
-      <div className="divider"></div>
+      <div className={style.divider}></div>
 
       <DocumentPreviewList files={documentPreviews} keyword={keyword} />
       
@@ -60,19 +60,19 @@ const Home = () => {
       }
 
       {!documentPreviews.length && 
-        <section className="emptyIlustration show">
-          <div className="text">
+        <section className={`${style.emptyIlustration} ${style.show}`}>
+          <div className={style.text}>
             <h4>There's nothing to see yet</h4>
             <h3>Search for a keyword!</h3>
 
-            <img src={stars} alt="stars" className="stars" />
-            <img src={earth} alt="earth" className="svg earth" />
-            <img src={planet} alt="planet" className="svg planet" />
-            <img src={saturn} alt="saturn" className="svg saturn" />
+            <img src={stars} alt="stars" className={style.stars} />
+            <img src={earth} alt="earth" className={`${style.svg} ${style.earth}`} />
+            <img src={planet} alt="planet" className={`${style.svg} ${style.planet}`} />
+            <img src={saturn} alt="saturn" className={`${style.svg} ${style.saturn}`} />
             <img 
               src={phoebeSad} 
               alt="phoebe sad" 
-              className="svg phoebeSad phoebeAnimation" 
+              className={`${style.svg} ${style.phoebeSad} ${style.phoebeAnimation}`}
               onClick={() => setShowModal(true)}
             />
 
@@ -80,7 +80,7 @@ const Home = () => {
         </section>
       } 
 
-      <Modal show={showModal} onClose={setShowModal} className="modalGame">
+      <Modal show={showModal} onClose={setShowModal} className={style.modalGame}>
         <iframe 
           src="/phobos-game/index.html" 
           frameBorder="0" 

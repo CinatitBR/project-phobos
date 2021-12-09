@@ -5,7 +5,7 @@ import authAPI from '../../apis/authAPI'
 import FormField from '../FormField'
 import Select from '../Select'
 import FileTag from '../FileTag'
-import { Button, ChevronIcon, CloseIcon, ToggleSwitch } from '../Buttons'
+import { Button, CloseIcon, ToggleSwitch } from '../Buttons'
 import Collapse from '../Collapse'
 
 import style from './style.module.css'

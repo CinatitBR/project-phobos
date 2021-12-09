@@ -112,7 +112,7 @@ const AddDocumentModal = ({ show, onClose }) => {
         <FileDropBox onFileDrop={handleFileDrop} />
 
         <div className={style.fileLoadingList}>
-          {uploadedFiles?.map(uploadedFile => (
+          {uploadedFiles.map(uploadedFile => (
             <FileLoading 
               key={uploadedFile.id}
               filename={uploadedFile.filename} 

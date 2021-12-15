@@ -5,7 +5,10 @@
   background-color: var(--background-dark);
   padding: 10px 20px;
   border-radius: 16px;
-  transition: background-color 100ms ease-in-out, border-color 100ms ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+
+  transition: border-color 0.2s ease;
   border: solid 3px transparent;
 
   display: flex;
@@ -17,6 +20,6 @@
   color: var(--white);
 }
 
-#profileDisplay:hover {
+#profileDisplay:hover, #profileDisplay.active {
   border-color: var(--primary-green);
 }

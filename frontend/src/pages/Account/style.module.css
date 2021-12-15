@@ -1,0 +1,102 @@
+.wrapper {
+  width: min(800px, 100%);
+  margin: 0 auto;
+  text-align: center;
+  color: var(--white);
+}
+
+.pageTitle {
+  display: inline-block;
+  font-size: 35px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.pageTitle::after {
+  content: "";
+  width: 100%;
+  height: 4px;
+  background-color: var(--primary-green);
+  border-radius: 10px;
+
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+/* Settings Container List */
+.settingsContainerList {
+  margin-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Settings Container */
+.settingsContainer {
+  width: 100%;
+  background-color: var(--primary-blue);
+  border-radius: 8px;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0px;
+}
+
+.containerTitle {
+  font-size: 18px;
+  border-radius: 4px;
+  background-color: var(--primary-green);
+  padding: 5px 20px;
+}
+
+.settingsBoxList {
+  width: 100%;
+}
+
+/* Settings Box */
+.settingsBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.settingsBox .content {
+  padding: 16px 0;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settingsBox .title {
+  font-size: 16px;
+}
+
+.settingsBox .data {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.settingsBox .imageWrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.settingsBox .divider {
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-purple);
+  border-radius: 4px;
+}
+

@@ -4,6 +4,7 @@ import Sidebar from '../Sidebar'
 import Home from '../../pages/Home'
 import Library from '../../pages/Library'
 import Explore from '../../pages/Explore'
+import Account from '../../pages/Account'
 
 import './index.css' 
 
@@ -23,6 +24,10 @@ function MainLayout() {
 
         <Route exact path="/explore">
           <Explore />
+        </Route>
+
+        <Route exact path="/account">
+          <Account />
         </Route>
       </Switch>
     </div>

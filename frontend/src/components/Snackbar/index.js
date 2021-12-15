@@ -1,6 +1,7 @@
 import { forwardRef, useImperativeHandle, useState } from 'react'
 import classNames from 'classnames'
 import Portal from '../Portal'
+import { EditButton } from '../Buttons'
 
 import style from './style.module.css'
 
@@ -60,7 +61,9 @@ const Snackbar = ({count, icon, text, buttons = [], className}, ref) => {
 
         <div className={style.buttons}>
           {buttons.map((button, index) => (
-            <span key={index} onClick={button.onClick}>{button.text}</span>
+            <EditButton key={index} onClick={button.onClick}>
+              {button.text}
+            </EditButton>
           ))}
         </div>
       </div>

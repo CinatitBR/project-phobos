@@ -42,9 +42,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email } = req.body
-    const { id, username } = await userModel.findByEmail(email)
-
-    const user = {id, username}
+    const { password, ...user } = await userModel.findByEmail(email)
 
     // Create tokens
     const { accessToken, accessTokenExpiration } = token.createAccessToken()
@@ -112,7 +110,7 @@ const refreshToken = async (req, res) => {
 
   // Check if refresh token exists in database.
   // If refresh token exists in database, method will return a user. 
-  const user = await userModel.findByRefreshToken(refreshToken)
+  const { password, ...user } = await userModel.findByRefreshToken(refreshToken)
 
   if (!user) {
     return res.sendStatus(401)

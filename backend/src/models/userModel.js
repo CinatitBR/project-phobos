@@ -19,7 +19,8 @@ const create = async ({ email, username, password }) => {
 const findByEmail = async (email) => {
   try {
     const sql = `
-      SELECT * FROM user 
+      SELECT * 
+      FROM user 
       WHERE email = ?
     `
 
@@ -36,7 +37,7 @@ const findByEmail = async (email) => {
 const findByRefreshToken = async (refreshToken) => {
   try {
     const sql = `
-      SELECT user.id, user.username 
+      SELECT user.* 
       FROM user
       INNER JOIN refresh_token
       ON user.id = refresh_token.user_id

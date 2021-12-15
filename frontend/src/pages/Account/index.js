@@ -1,3 +1,4 @@
+import useAuth from '../../hooks/useAuth'
 import { EditButton } from '../../components/Buttons'
 
 import style from './style.module.css'
@@ -39,6 +40,7 @@ const SettingsBox = ({ title, accountData, imageSrc, button }) => (
 )
 
 const Account = () => {
+  const { user } = useAuth()
 
   return (
     <section className={style.wrapper}>
@@ -54,13 +56,13 @@ const Account = () => {
 
           <SettingsBox 
             title="Name"
-            accountData="Igor Rocha"
+            accountData={user.username}
             button="Edit"
           />
 
           <SettingsBox
             title="Email"
-            accountData="cinatit.igor.santos@gmail.com"
+            accountData={user.email}
             button="Edit"
           />
         </SettingsContainer>

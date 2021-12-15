@@ -26,6 +26,28 @@ button.fullWidth {
   opacity: 0.8;
 }
 
+/* EditButton */
+.editButton {
+  font-size: 16px;
+  position: relative;
+  cursor: pointer;
+}
+
+.editButton::before {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background: var(--primary-green);  
+  border-radius: 4px;
+
+  position: absolute;
+  bottom: -2px;
+}
+
+.editButton:hover::before {
+  background: var(--yellow);
+}
+
 /* IconWrapper */
 .iconWrapper {
   padding: 1px;

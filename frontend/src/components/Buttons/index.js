@@ -24,6 +24,12 @@ export const Button = ({
   )
 }
 
+export const EditButton = ({ children, onClick, ...props }) => (
+  <span className={style.editButton} onClick={onClick} {...props}>
+    {children}
+  </span>
+)
+
 const IconWrapper = ({ onClick, className, children }) => (
   <span 
     className={classNames(style.iconWrapper, className)}

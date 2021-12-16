@@ -1,10 +1,10 @@
 # Project Phobos
 
+[**Project Phobos Brief Video Review**](https://www.youtube.com/watch?v=d-cIFKLLPqE)
+
 The **main goal** of Project Phobos is to **help you organize and search for specific passages through your documents**. 
 
 The user can upload the desired documents and use a search bar to seek specific terms across all files, without having the pain to open each file individually and search manually.
-
-[**Project Phobos Brief Video Review**](https://www.youtube.com/watch?v=d-cIFKLLPqE)
 
 # Example
 

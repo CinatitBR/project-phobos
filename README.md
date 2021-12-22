@@ -20,9 +20,8 @@ Using Phobos, you only have to upload the files and type the term in one single 
 
 # Tech Stack
 
-### Frontend
 - [React](https://reactjs.org/)
-
-### Backend
 - [Express](https://expressjs.com/)
 - [MySQL](https://www.mysql.com/)
+- RESTful APIs
+- MVC Pattern

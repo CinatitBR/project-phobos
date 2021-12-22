@@ -1,6 +1,6 @@
 # Project Phobos
 
-[### Project Phobos Brief Video Review](https://www.youtube.com/watch?v=d-cIFKLLPqE)
+### [Project Phobos Brief Video Review](https://www.youtube.com/watch?v=d-cIFKLLPqE)
 
 The **main goal** of Project Phobos is to **help you organize and search for specific passages through your documents**. 
 

@@ -15,14 +15,14 @@ const register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10)
 
     // Add user to database
-    const results = await userModel.create({
+    const rows = await userModel.create({
       email, 
       username: trimmedUsername, 
       password: hashedPassword
     })
 
     // Get user id
-    const userId = results.insertId
+    const userId = rows.id
 
     // Create user folder
     const folderPath = path.join(process.env.STORAGE_PATH, `user${userId}`, 'pdf')

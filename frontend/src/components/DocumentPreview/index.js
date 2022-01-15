@@ -14,7 +14,7 @@ const highlightPattern = (text, pattern) => {
     return text
   }
 
-  const matches = text.match(pattern)
+  const matches = text.toLowerCase().match(pattern.toLowerCase())
 
   return splitText.reduce((arr, element, index) => (matches[index] ? [
     ...arr,

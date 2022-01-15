@@ -381,7 +381,7 @@ const createTag = async (userId, tagName) => {
     const { rows } = await pool.query(sql, [userId, tagName])
 
     // Return tag id
-    const id = rows.id;
+    const id = rows[0].id;
     return id;
   } 
   catch (e) {

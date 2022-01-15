@@ -20,12 +20,12 @@ import db, { pool } from '../db.js'
 const create = async ({ userId, filename, title, tagId, size, isPublic }) => {
   try {
     const sql = `
-      INSERT INTO pdf (user_id, filename, title, tag_id, size, is_public)
-      VALUES ($1, $2, $3, $4, $5, $6)
+      INSERT INTO pdf (user_id, filename, title, tag_id, size, is_public, stars)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING id
     `;
 
-    const { rows } = await pool.query(sql, [userId, filename, title, tagId, size, isPublic]);
+    const { rows } = await pool.query(sql, [userId, filename, title, tagId, size, isPublic, 0]);
 
     // Return inserted id
     // return results.insertId

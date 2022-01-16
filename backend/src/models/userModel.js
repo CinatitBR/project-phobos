@@ -1,30 +1,65 @@
-import db from '../db.js'
+import { pool } from '../db.js'
+
+// const create = async ({ email, username, password }) => {
+//   try {
+//     const sql = `
+//       INSERT INTO user (email, username, password)
+//       VALUES (?, ?, ?)
+//     `
+
+//     const [results, fields] = await db.query(sql, [email, username, password])
+
+//     return results
+//   }
+//   catch (e) {
+//     throw new Error(e)
+//   }
+// }
 
 const create = async ({ email, username, password }) => {
   try {
     const sql = `
-      INSERT INTO user (email, username, password)
-      VALUES (?, ?, ?)
+      INSERT INTO user_account (email, username, password)
+      VALUES ($1, $2, $3)
+      RETURNING *
     `
 
-    const [results, fields] = await db.query(sql, [email, username, password])
+    const { rows } = await pool.query(sql, [email, username, password]);
 
-    return results
+    return rows[0];
   }
   catch (e) {
     throw new Error(e)
   }
 }
 
+// const findByEmail = async (email) => {
+//   try {
+//     const sql = `
+//       SELECT * 
+//       FROM user 
+//       WHERE email = ?
+//     `
+
+//     const [rows, fields] = await db.query(sql, email)
+
+//     const user = rows[0]
+//     return user
+//   }
+//   catch (e) {
+//     throw new Error(e)
+//   }
+// }
+
 const findByEmail = async (email) => {
   try {
     const sql = `
       SELECT * 
-      FROM user 
-      WHERE email = ?
+      FROM user_account 
+      WHERE email = $1
     `
 
-    const [rows, fields] = await db.query(sql, email)
+    const { rows } = await pool.query(sql, [email])
 
     const user = rows[0]
     return user
@@ -34,19 +69,40 @@ const findByEmail = async (email) => {
   }
 }
 
+// const findByRefreshToken = async (refreshToken) => {
+//   try {
+//     const sql = `
+//       SELECT user.* 
+//       FROM user
+//       INNER JOIN refresh_token
+//       ON user.id = refresh_token.user_id
+//       WHERE refresh_token = ?
+//     `
+
+//     const [rows, fields] = await db.query(sql, refreshToken)
+
+//     const user = rows[0]
+//     return user
+//   }
+//   catch (e) {
+//     throw new Error(e)
+//   }
+// }
+
 const findByRefreshToken = async (refreshToken) => {
   try {
     const sql = `
-      SELECT user.* 
-      FROM user
+      SELECT user_account.* 
+      FROM user_account
       INNER JOIN refresh_token
-      ON user.id = refresh_token.user_id
-      WHERE refresh_token = ?
+      ON user_account.id = refresh_token.user_id
+      WHERE refresh_token = $1
     `
 
-    const [rows, fields] = await db.query(sql, refreshToken)
+    const { rows } = await pool.query(sql, [refreshToken])
 
     const user = rows[0]
+
     return user
   }
   catch (e) {

@@ -103,7 +103,3 @@ Voila! It's as simple as that!
 ┣📦backend — The backend app, built with ExpressJS.
 ┣📦shared — Contains code shared between the frontend and backend.
 ```
-
-### Scripts
- - `yarn start` — Start the app.
- - `yarn build` — Make the build.

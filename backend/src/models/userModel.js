@@ -1,4 +1,4 @@
-import db, { pool } from '../db.js'
+import { pool } from '../db.js'
 
 // const create = async ({ email, username, password }) => {
 //   try {
@@ -24,7 +24,7 @@ const create = async ({ email, username, password }) => {
       RETURNING *
     `
 
-    const { rows } = await db.pool(sql, [email, username, password]);
+    const { rows } = await pool.query(sql, [email, username, password]);
 
     return rows[0];
   }
@@ -99,9 +99,10 @@ const findByRefreshToken = async (refreshToken) => {
       WHERE refresh_token = $1
     `
 
-    const { rows } = await db.query(sql, [refreshToken])
+    const { rows } = await pool.query(sql, [refreshToken])
 
     const user = rows[0]
+
     return user
   }
   catch (e) {

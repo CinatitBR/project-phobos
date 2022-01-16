@@ -29,10 +29,11 @@ Let's say you have several math books to study this semester, and you want to re
 </p>
 Following the traditional approach, you would have to open all the PDFs and search the topic manually.
 
+### Phobos to the rescue!
 
 Using Phobos, you only have to upload the files and type the term in one single place (the search bar), and it will get back to you all the pages related to the desired content:
 <p align="center">
-  <img width="600" src="https://user-images.githubusercontent.com/50183633/146299748-5c3f60f8-a0c5-42ee-8f9e-ca915561e482.png" alt="Phobos upload content">
+  <img src="https://user-images.githubusercontent.com/50183633/149677103-8b02ae75-0934-4bf3-a85a-26c86a7784be.gif" alt="Phobos upload modal">
   <br />
   <em>Uploading file</em>
 </p>
@@ -40,12 +41,60 @@ Using Phobos, you only have to upload the files and type the term in one single 
 <br />
 
 <p align="center">
-  <img width="600" src="https://user-images.githubusercontent.com/50183633/146294704-52f269b0-7db3-4956-b683-6235d5d4ada5.png" alt="Phobos searching">
+  <img src="https://user-images.githubusercontent.com/50183633/149676109-2b7380e5-4f20-415c-934d-73803d4dd812.gif" alt="Phobos home page">
   <br />
   <em>Searching</em>
 </p>
 
 Voila! It's as simple as that!
+
+## Pages
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/50183633/149675996-8106a217-1814-44fb-b600-77cc749aeaf5.gif" alt="Phobos register page">
+  <br />
+  <em>Register page</em>
+</p>
+
+<br />
+
+<p align="center">
+  <img width="600px" height="338px" src="https://user-images.githubusercontent.com/50183633/149676106-5c77b08d-d48f-447b-beeb-307c9a4a43e9.png" alt="Phobos login page">
+  <br />
+  <em>Login page</em>
+</p>
+
+<br />
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/50183633/149676109-2b7380e5-4f20-415c-934d-73803d4dd812.gif" alt="Phobos home page">
+  <br />
+  <em>Home page</em>
+</p>
+
+<br />
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/50183633/149676122-597d5891-8fee-49c3-90fe-d5ecb7ba3bcc.gif" alt="Phobos upload modal">
+  <br />
+  <em>Upload file</em>
+</p>
+
+<br />
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/50183633/149676130-6456a4de-54f4-4fd9-a86a-4c6ab024a75b.gif" alt="Phobos library page">
+  <br />
+  <em>Library page — manage your documents</em>
+</p>
+
+<br />
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/50183633/149676134-235f1d87-2323-4290-b8d6-651e34ed0f5e.gif" alt="Phobos upload modal">
+  <br />
+  <em>Explore page — explore public documents uploaded by users</em>
+</p>
 
 ### Directory structure
 

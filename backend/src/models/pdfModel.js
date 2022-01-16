@@ -285,26 +285,26 @@ const search = async (keyword, limit, offset) => { // ARRUMAR FULLTEXT
         PAGE.NUMBER AS PAGE_NUMBER,
         TS_HEADLINE(
           PAGE.BODY,
-          PLAINTO_TSQUERY('${keyword}'),
+          PLAINTO_TSQUERY($1),
           'MaxFragments=1,
           MaxWords=50'
         ) AS text
       FROM PAGE
       INNER JOIN PDF ON PAGE.PDF_ID = PDF.ID
       INNER JOIN PDF_TAG ON PDF.TAG_ID = PDF_TAG.ID
-      WHERE BODY @@ PLAINTO_TSQUERY('${keyword}')
-      LIMIT ${limit}
-      OFFSET ${offset}
+      WHERE BODY @@ PLAINTO_TSQUERY($1)
+      LIMIT $2
+      OFFSET $3
     `;
 
     const sqlTotal = `
       SELECT COUNT(ID) AS TOTAL
       FROM PAGE
-      WHERE BODY @@ PLAINTO_TSQUERY('${keyword}')
+      WHERE BODY @@ PLAINTO_TSQUERY($1)
     `;
 
-    const { rows: files } = await pool.query(sqlFiles)
-    const { rows: total } = await pool.query(sqlTotal)
+    const { rows: files } = await pool.query(sqlFiles, [keyword, limit, offset])
+    const { rows: total } = await pool.query(sqlTotal, [keyword])
 
     return { files, total: total[0].total }
   }

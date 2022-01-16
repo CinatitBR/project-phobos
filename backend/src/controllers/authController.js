@@ -49,7 +49,7 @@ const login = async (req, res) => {
     const { refreshToken, refreshTokenExpiration } = token.createRefreshToken()
 
     // Store refresh token in database
-    await refreshTokenModel.create(id, refreshToken)
+    await refreshTokenModel.create(user.id, refreshToken)
 
     // Set the refresh token in a HttpOnly cookie.
     res.cookie('refreshToken', refreshToken, { 

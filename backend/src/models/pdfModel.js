@@ -283,8 +283,8 @@ const search = async (keyword, limit, offset) => { // ARRUMAR FULLTEXT
       WHERE MATCH(body) AGAINST(?)
     `
 
-    const { rows: files } = await pool.query(sqlFiles, keyword)
-    const { rows: total } = await pool.query(sqlTotal, keyword)
+    const { rows: files } = await pool.query(sqlFiles, [keyword])
+    const { rows: total } = await pool.query(sqlTotal, [keyword])
 
     return { files, total: total[0].total }
   }

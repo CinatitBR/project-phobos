@@ -266,25 +266,45 @@ const checkUserOwner = async (pdfId, userId) => {
 
 const search = async (keyword, limit, offset) => { // ARRUMAR FULLTEXT
   try {
+    // const sqlFiles = `
+    //   SELECT pdf.*, pdf_tag.tag_name, page.id, page.number AS page_number, 
+    //   SUBSTRING(body, 1, LEAST(char_length(body), 400)) AS text
+    //   FROM page
+    //   INNER JOIN pdf
+    //   ON page.pdf_id = pdf.id
+    //   INNER JOIN pdf_tag
+    //   ON pdf.tag_id = pdf_tag.id
+    //   WHERE MATCH(body) AGAINST(?) 
+    //   LIMIT ${limit} OFFSET ${offset} 
+    // `
+
     const sqlFiles = `
-      SELECT pdf.*, pdf_tag.tag_name, page.id, page.number AS page_number, 
-      SUBSTRING(body, 1, LEAST(char_length(body), 400)) AS text
-      FROM page
-      INNER JOIN pdf
-      ON page.pdf_id = pdf.id
-      INNER JOIN pdf_tag
-      ON pdf.tag_id = pdf_tag.id
-      WHERE MATCH(body) AGAINST(?) 
-      LIMIT ${limit} OFFSET ${offset} 
-    `
+      SELECT PDF.*,
+        PDF_TAG.TAG_NAME,
+        PAGE.ID,
+        PAGE.NUMBER AS PAGE_NUMBER,
+        TS_HEADLINE(
+          PAGE.BODY,
+          PLAINTO_TSQUERY('${keyword}'),
+          'MaxFragments=1,
+          MaxWords=50'
+        ) AS text
+      FROM PAGE
+      INNER JOIN PDF ON PAGE.PDF_ID = PDF.ID
+      INNER JOIN PDF_TAG ON PDF.TAG_ID = PDF_TAG.ID
+      WHERE BODY @@ PLAINTO_TSQUERY('${keyword}')
+      LIMIT ${limit}
+      OFFSET ${offset}
+    `;
 
     const sqlTotal = `
-      SELECT COUNT(*) AS total FROM page
-      WHERE MATCH(body) AGAINST(?)
-    `
+      SELECT COUNT(ID) AS TOTAL
+      FROM PAGE
+      WHERE BODY @@ PLAINTO_TSQUERY('${keyword}')
+    `;
 
-    const { rows: files } = await pool.query(sqlFiles, [keyword])
-    const { rows: total } = await pool.query(sqlTotal, [keyword])
+    const { rows: files } = await pool.query(sqlFiles)
+    const { rows: total } = await pool.query(sqlTotal)
 
     return { files, total: total[0].total }
   }

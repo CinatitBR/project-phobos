@@ -21,8 +21,6 @@ app.get('/', (req, res) => {
   res.json({ message: "Its working!!!" });
 });
 
-console.log({ dirname: process.cwd() })
-
 app.listen(PORT, () => {
   console.log(`Server is up and running at http://localhost:${PORT}`)
 })

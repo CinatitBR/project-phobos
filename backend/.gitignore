@@ -1,2 +1,8 @@
 node_modules
 .env
+
+# Ignore everything inside phobos-storage, except .gitkeep.
+# Folder needs at least one file to be commited, 
+# that's the role of .gitkeep
+phobos-storage/*
+!phobos-storage/.gitkeep 

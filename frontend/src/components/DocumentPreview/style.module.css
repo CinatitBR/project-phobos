@@ -58,8 +58,8 @@
   align-items: center;
 }
 
-/* Highlight */
-.highlight {
+/* Style "em" tag (tags that highlight content) */
+em {
   color: var(--white);
   background: var(--primary-green);
   border-radius: 4px;

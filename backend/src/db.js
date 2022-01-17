@@ -7,4 +7,12 @@ export const pool = new Pool({
   connectionString
 })
 
+const test = async () => {
+  const { rows } = await pool.query('SELECT NOW()');
+
+  console.log({ time: rows[0] });
+}
+
+test();
+
 export default pool;

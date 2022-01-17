@@ -5,9 +5,13 @@ const connectionString = process.env.DATABASE_URL;
 
 export const pool = new Pool({
   connectionString,
-  ssl: {
-    rejectUnauthorized: false
-  }
+  ...(process.env.NODE_ENV === 'production' && 
+    {
+      ssl: {
+        rejectUnauthorized: false
+      }
+    }
+  ) // Add SSL conditionally
 })
 
 const test = async () => {

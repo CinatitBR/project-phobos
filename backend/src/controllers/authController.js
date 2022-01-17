@@ -110,7 +110,7 @@ const refreshToken = async (req, res) => {
 
   // Check if refresh token exists in database.
   // If refresh token exists in database, method will return a user. 
-  const { password, ...user } = await userModel.findByRefreshToken(refreshToken)
+  const user = await userModel.findByRefreshToken(refreshToken)
 
   if (!user) {
     return res.sendStatus(401)

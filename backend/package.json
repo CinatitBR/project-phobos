@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "node app.js",
+    "start": "node src/app.js",
     "start-dev": "nodemon -r dotenv/config src/app.js"
   },
   "dependencies": {

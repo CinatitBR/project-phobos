@@ -5,8 +5,6 @@ const axiosInstance = axios.create({
   withCredentials: true,
 })
 
-console.log(process.env.REACT_APP_SERVER_BASE_URL);
-
 const setAuthHeader = value => 
   axiosInstance
     .defaults

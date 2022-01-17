@@ -14,7 +14,7 @@ import stars from '../../assets/stars.svg'
 
 import style from './style.module.css'
 
-const SEARCH_DELAY = 1200;
+const SEARCH_DELAY = 1100;
 
 const Home = () => {
   const queryLimit = 10

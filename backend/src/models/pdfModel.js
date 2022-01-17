@@ -287,6 +287,8 @@ const search = async (keyword, limit, offset) => { // ARRUMAR FULLTEXT
           PAGE.BODY,
           PLAINTO_TSQUERY($1),
           'MaxFragments=1,
+          StartSel=<em>,
+          StopSel=</em>,
           MaxWords=50'
         ) AS text
       FROM PAGE

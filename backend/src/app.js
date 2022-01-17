@@ -14,7 +14,7 @@ const corsConfig = cors({
 app.use(corsConfig)
 app.use(cookieParser())
 app.use(express.json())
-app.use('/storage', express.static(STORAGE_PATH))
+app.use('/storage', express.static(process.env.STORAGE_PATH))
 app.use(router)
 
 app.get('/', (req, res) => {

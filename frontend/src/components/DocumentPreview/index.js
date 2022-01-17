@@ -19,9 +19,9 @@ const highlightPattern = (text, pattern) => {
   return splitText.reduce((arr, element, index) => (matches[index] ? [
     ...arr,
     element,
-    <span className={style.highlight} key={index}>
+    <em>
       {matches[index]}
-    </span>,
+    </em>,
   ] : [...arr, element]), [])
 }
 
@@ -66,9 +66,7 @@ function DocumentPreview({ file, keyword }) {
           </Document>
         }
 
-        <p>
-          {highlightPattern(file.text, keyword)}
-        </p>
+        <p dangerouslySetInnerHTML={{__html: file.text }} />
       </div>
 
       <Collapse 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import authAPI from '../../apis/authAPI'
 import Pagination, { usePagination } from '../../components/Pagination'
 import DocumentPreviewList from '../../components/DocumentPreviewList'
@@ -14,6 +14,8 @@ import stars from '../../assets/stars.svg'
 
 import style from './style.module.css'
 
+const SEARCH_DELAY = 1200;
+
 const Home = () => {
   const queryLimit = 10
   const [keyword, setKeyword] = useState('')
@@ -23,15 +25,24 @@ const Home = () => {
   const { currentPage, handlePageChange } = usePagination()
   const [totalPages, setTotalPages] = useState(0)
   const paginationCount = Math.ceil(totalPages / queryLimit)
+  const timeoutId = useRef(null);
 
   const onKeywordChange = async (keyword) => {
-    setKeyword(keyword)
+    // Clear last timeout, if it stil exists
+    clearTimeout(timeoutId.current);
 
-    const response = await authAPI.search(keyword, currentPage, queryLimit)
-    const { files, total } = response.data
+    setKeyword(keyword);
 
-    setDocumentPreviews(files)
-    setTotalPages(total)
+    // Make the search after the timeout delay
+    timeoutId.current = setTimeout(async () => {
+      // Get data from server
+      const response = await authAPI.search(keyword, currentPage, queryLimit);
+      const { files, total } = response.data;
+      
+      // Set values
+      setDocumentPreviews(files);
+      setTotalPages(total);
+    }, SEARCH_DELAY);
   }
 
   return (

@@ -8,7 +8,7 @@ const PORT = process.env.PORT
 const STORAGE_PATH = process.env.STORAGE_PATH
 const corsConfig = cors({
   credentials: true, 
-  origin: JSON.parse(process.env.CORS_ORIGIN)
+  origin: process.env.CORS_ORIGIN
 }) 
 
 app.use(corsConfig)
@@ -16,6 +16,10 @@ app.use(cookieParser())
 app.use(express.json())
 app.use('/storage', express.static(STORAGE_PATH))
 app.use(router)
+
+app.get('/', (req, res) => {
+  res.json({ message: "Its working!!!" });
+});
 
 app.listen(PORT, () => {
   console.log(`Server is up and running at http://localhost:${PORT}`)

@@ -6,7 +6,7 @@ import pageModel from '../models/pageModel.js'
 
 // Add file url to file object
 const addFileUrl = (files) => {
-  const domain = `http://localhost:${process.env.PORT}`
+  const domain = process.env.SERVER_URL;
 
   const newFiles = files.map(file => {
     const fileUrl = `${domain}/storage/user${file.user_id}/pdf/${file.filename}`
@@ -110,6 +110,8 @@ const search = async (req, res) => {
 
     const { files, total } = await pdfModel.search(keyword, limit, offset)
     const newFiles = addFileUrl(files)
+
+    console.log(files);
 
     res.json({ files: newFiles, total })
   }

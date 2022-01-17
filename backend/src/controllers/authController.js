@@ -9,6 +9,7 @@ import refreshTokenModel from '../models/refreshTokenModel.js'
 const register = async (req, res) => {
   try {
     const { email, username, password } = req.body
+    const STORAGE_PATH = process.env.STORAGE_PATH || `${process.cwd()}/phobos-storage`
 
     // Trim username and hash password
     const trimmedUsername = username.trim()
@@ -25,7 +26,7 @@ const register = async (req, res) => {
     const userId = rows.id
 
     // Create user folder
-    const folderPath = path.join(process.env.STORAGE_PATH, `user${userId}`, 'pdf')
+    const folderPath = path.join(STORAGE_PATH, `user${userId}`, 'pdf')
     mkdirSync(folderPath, { recursive: true })
 
     return res.sendStatus(201)

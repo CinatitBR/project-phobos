@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser'
 
 const app = express()
 const PORT = process.env.PORT
-const STORAGE_PATH = process.env.STORAGE_PATH
+const STORAGE_PATH = process.env.STORAGE_PATH || `${process.cwd()}/phobos-storage`
 const corsConfig = cors({
   credentials: true, 
   origin: process.env.CORS_ORIGIN

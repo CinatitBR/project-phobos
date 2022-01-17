@@ -30,7 +30,7 @@ const upload = extension => {
   
     const fileExtension = mimeExtensions[mimetype]
   
-    const storagePath = process.env.STORAGE_PATH
+    const storagePath = process.env.STORAGE_PATH || `${process.cwd()}/phobos-storage`
     const userFolder = `user${userId}`
     const filePath = path.join(storagePath, userFolder, fileExtension)
   

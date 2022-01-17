@@ -14,14 +14,14 @@ const corsConfig = cors({
 app.use(corsConfig)
 app.use(cookieParser())
 app.use(express.json())
-app.use('/storage', express.static(process.env.STORAGE_PATH))
+app.use('/storage', express.static(STORAGE_PATH))
 app.use(router)
 
 app.get('/', (req, res) => {
   res.json({ message: "Its working!!!" });
 });
 
-console.log({ dirname: process.cwd() })
+console.log({ dirname: __dirname })
 
 app.listen(PORT, () => {
   console.log(`Server is up and running at http://localhost:${PORT}`)

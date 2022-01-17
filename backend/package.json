@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "start-dev": "nodemon -r dotenv/config src/app.js",
+    "start-dev": "nodemon -r dotenv/config src/app.js"
   },
   "dependencies": {
     "axios": "^0.22.0",

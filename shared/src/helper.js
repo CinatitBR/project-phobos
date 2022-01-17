@@ -29,7 +29,7 @@ const handleValidationError = async validationExpression => {
 
 const emailExists = async email => {
   const response = await axios.post(
-    'http://localhost:5000/user/find-by-email', 
+    process.env.REACT_APP_SERVER_BASE_URL, 
     { email: email }
   )
 
@@ -40,7 +40,7 @@ const emailExists = async email => {
 
 const isPasswordCorrect = async (password, emailRelated) => {
   const response = await axios.post(
-    'http://localhost:5000/user/find-by-email', 
+    process.env.REACT_APP_SERVER_BASE_URL, 
     { email: emailRelated }
   )
   const user = response.data

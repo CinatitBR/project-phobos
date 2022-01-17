@@ -4,7 +4,10 @@ const { Pool } = pkg;
 const connectionString = process.env.DATABASE_URL;
 
 export const pool = new Pool({
-  connectionString
+  connectionString,
+  ssl: {
+    rejectUnauthorized: false
+  }
 })
 
 const test = async () => {

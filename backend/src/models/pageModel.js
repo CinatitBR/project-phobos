@@ -1,4 +1,4 @@
-import db, { pool } from '../db.js'
+import pool from '../db.js'
 
 // const create = async ({pdfId, number, body}) => {
 //   const sql = `

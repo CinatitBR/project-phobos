@@ -1,4 +1,4 @@
-import { pool } from '../db.js'
+import pool from '../db.js';
 
 // const create = async ({ email, username, password }) => {
 //   try {

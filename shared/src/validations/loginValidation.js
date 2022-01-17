@@ -26,4 +26,4 @@ const loginValidation = loginData => handleValidationError(
     .validate(loginData, { abortEarly: false })
 )
 
-export default loginValidation
+export default loginValidation 

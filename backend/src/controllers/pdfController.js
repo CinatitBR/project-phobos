@@ -111,8 +111,6 @@ const search = async (req, res) => {
     const { files, total } = await pdfModel.search(keyword, limit, offset)
     const newFiles = addFileUrl(files)
 
-    console.log(files);
-
     res.json({ files: newFiles, total })
   }
   catch (e) {

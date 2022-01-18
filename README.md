@@ -5,8 +5,14 @@ The **main goal** of Project Phobos is to **help you organize and search for spe
 The user can upload the desired documents and use a search bar to seek specific terms across all files, without having the pain to open each file individually and search manually.
 
 <div align="center">
+  <a href="https://project-phobos.vercel.app" target="_blank">
+    <strong>🔴 LIVE DEMO</strong>
+  </a>
+</div>
+
+<div align="center">
   <a href="https://www.youtube.com/watch?v=d-cIFKLLPqE" target="_blank">
-    <strong>BRIEF VIDEO REVIEW</strong>
+    <strong>🎥 BRIEF VIDEO REVIEW</strong>
   </a>
 </div>
 

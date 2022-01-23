@@ -43,12 +43,6 @@ const emailExists = async email => {
 }
 
 const isPasswordCorrect = async (password, emailRelated) => {
-  // const response = await axios.post(
-  //   'http://localhost:5000/user/find-by-email', 
-  //   { email: emailRelated }
-  // )
-  // const user = response.data
-
   const user = await userModel.findByEmail(emailRelated)
   
   // If user doesn't exist, 
